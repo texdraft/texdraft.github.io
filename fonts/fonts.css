@@ -1,0 +1,111 @@
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: mono-ten;
+  src: url("lmmono10-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: italic;
+  font-family: mono-ten;
+  src: url("lmmono10-italic.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: mono-proportional-ten;
+  src: url("lmmonoprop10-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: oblique;
+  font-family: mono-proportional-ten;
+  src: url("lmmonoprop10-oblique.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-family: sans-ten;
+  src: url("lmsans10-bold.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: oblique;
+  font-family: sans-ten;
+  src: url("lmsans10-boldoblique.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: oblique;
+  font-family: sans-ten;
+  src: url("lmsans10-oblique.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: sans-ten;
+  src: url("lmsans10-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: Pagella;
+  src: url("texgyrepagella-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: italic;
+  font-family: Pagella;
+  src: url("texgyrepagella-bolditalic.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: italic;
+  font-family: Pagella;
+  src: url("texgyrepagella-italic.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-family: Pagella;
+  src: url("texgyrepagella-bold.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-family: sans-quotation;
+  src: url("lmsansquot8-bold.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: oblique;
+  font-family: sans-quotation;
+  src: url("lmsansquot8-boldoblique.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: oblique;
+  font-family: sans-quotation;
+  src: url("lmsansquot8-oblique.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: sans-quotation;
+  src: url("lmsansquot8-regular.otf") format("opentype");
+}

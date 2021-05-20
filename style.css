@@ -1,0 +1,140 @@
+body {
+  background-color: #fdfdfd;
+}
+
+section#introduction {
+  border-bottom: 1px solid black;
+}
+
+section#formatting-notes {
+  border-top: 1px solid black;
+}
+
+section.normal {
+  position: relative;
+  width: 500px;
+  margin: 0 auto;
+}
+
+#listing {
+  width: 800px;
+  margin: 10px auto 10px auto;
+}
+
+article h1, article h2, article h3 {
+  font-family: sans-quotation, sans-serif;
+  margin: 0;
+  font-weight: normal;
+}
+
+article p, article li, article td {
+  font-family: Pagella, serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+article code {
+  font-family: mono-proportional-ten, monospace;
+  font-size: 16px;
+}
+
+.operator {
+  font-weight: bold;
+}
+
+.constant {
+  font-family: mono-proportional-ten, monospace;
+}
+
+.function {
+  font-family: Pagella, serif;
+  font-style: italic;
+}
+
+#listing td.prog-tag {
+  text-align: center;
+}
+
+var {
+  font-style: italic;
+}
+
+#listing table {
+  display: inline-table;
+  vertical-align: baseline;
+  border-collapse: collapse;
+}
+
+.indent {
+  margin-left:1em;
+}
+
+#listing td {
+  vertical-align: baseline;
+  padding: 0;
+}
+
+article .section-title a::before {
+  position: absolute;
+  left: -30px;
+  content: "§";
+  color: gray;
+}
+
+article section p::before {
+  position: absolute;
+  font-family: sans-ten;
+  left: -20px;
+  content: "\b6";
+}
+
+.article-title {
+  position: relative;
+  font-size: 36px;
+  text-align: center;
+  padding-top: 30px;
+}
+
+article a:link {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  article .aside {
+    display: block;
+    float: none;
+    margin: 5% 10% 5% 10%;
+    width: 80%;
+    font-size: 15px;
+  }
+}
+
+article a.internal-link, #listing a {
+  text-decoration: underline;
+  color: #44aa99;
+}
+
+article a.internal-link:hover, #listing a:hover {
+  text-decoration: underline;
+  color: #88ccee;
+}
+
+article a.internal-link:visited, #listing a:visited {
+  text-decoration: underline;
+  color: #7a7a7a;
+}
+
+/* See https://stackoverflow.com/questions/8160514/is-there-css-for-typesetting-the-latex-logo-in-html */
+.tex sub {
+  text-transform: uppercase;
+}
+
+.tex sub {
+  vertical-align: -0.5ex;
+  margin-left: -0.1667em;
+  margin-right: -0.125em;
+}
+
+.tex, .tex sub {
+  font-size: 1em;
+}
