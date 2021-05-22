@@ -24,9 +24,13 @@ function.
 the listing, for notes on the formatting.
         </p>
       </section>
-      <!-- Behold: -->
       <section id="listing">
-        <table>
+        <!-- HTML doesn't allow <table> inside <code>, for reasons that are
+        beyond me. I hope people don't think that all code must always look as
+        if it were formatted on a typewriter. (If you don't happen to like the
+        style of this listing, that's fine; I'm not trying to claim that it's
+        inherently superior.) -->
+        <table class="lisp">
           <tbody>
             <tr>
               <td>
@@ -50,7 +54,7 @@ the listing, for notes on the formatting.
                               <td>
                                 <table class="indent">
                                   <tbody>
-                                    <tr><td>(<span class="operator">lambda</span> (<var>m</var>)</td></tr>
+                                    <tr><td>(<span class="operator">&lambda;</span> (<var>m</var>)</td></tr>
                                     <tr>
                                       <td>
                                         <table class="indent">
@@ -133,7 +137,7 @@ the listing, for notes on the formatting.
                               <td>
                                 <table class="indent">
                                   <tbody>
-                                    <tr><td>(<span class="operator">lambda</span> (<var>x</var>)</td></tr>
+                                    <tr><td>(<span class="operator">&lambda;</span> (<var>x</var>)</td></tr>
                                     <tr>
                                       <td>
                                         <table class="indent">
@@ -209,7 +213,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>u</var> <var>v</var>)
+                                        (<span class="operator">&lambda;</span> (<var>u</var> <var>v</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -302,7 +306,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>exp</var> <var>stomap</var> <var>name</var>)
+                                        (<span class="operator">&lambda;</span> (<var>exp</var> <var>stomap</var> <var>name</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -606,7 +610,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>fn</var> <var>args</var>)
+                                        (<span class="operator">&lambda;</span> (<var>fn</var> <var>args</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -631,7 +635,7 @@ the listing, for notes on the formatting.
                                                           <tbody>
                                                             <tr>
                                                               <td>
-                                                                (<span class="operator">lambda</span> (<var>j</var>)
+                                                                (<span class="operator">&lambda;</span> (<var>j</var>)
                                                               </td>
                                                             </tr>
                                                             <tr>
@@ -705,7 +709,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>exp</var>)
+                                        (<span class="operator">&lambda;</span> (<var>exp</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -729,7 +733,7 @@ the listing, for notes on the formatting.
                                                         <table>
                                                           <tbody>
                                                             <tr>
-                                                              <td>(<span class="operator">lambda</span> (<var>j</var>)</td>
+                                                              <td>(<span class="operator">&lambda;</span> (<var>j</var>)</td>
                                                             </tr>
                                                             <tr>
                                                               <td>
@@ -881,7 +885,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>x</var>)
+                                        (<span class="operator">&lambda;</span> (<var>x</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -962,7 +966,7 @@ the listing, for notes on the formatting.
                                 <table class="indent">
                                   <tr>
                                     <td>
-                                      (<span class="operator">lambda</span> (<var>x</var> <var>y</var>)
+                                      (<span class="operator">&lambda;</span> (<var>x</var> <var>y</var>)
                                     </td>
                                   </tr>
                                   <tr>
@@ -1118,7 +1122,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -1182,7 +1186,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -1266,7 +1270,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>exp</var> <var>name</var>)
+                                        (<span class="operator">&lambda;</span> (<var>exp</var> <var>name</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -1428,7 +1432,7 @@ the listing, for notes on the formatting.
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                                       </td>
                                                     </tr>
                                                     <tr>
@@ -1438,7 +1442,8 @@ the listing, for notes on the formatting.
                                                             <tr>
                                                               <td>
                                                                 (<a href="#definition-store"><span class="function">store</span></a>
-                                                                (<span class="function">car</span> <var>j</var>) <var>f</var>))))
+                                                                (<span class="function">car</span> <var>j</var>)
+                                                                <span class="constant">f</span>))))
                                                               </td>
                                                             </tr>
                                                           </tbody>
@@ -1551,7 +1556,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>exp</var> <var>proglis</var> <var>retn</var>)
+                                        (<span class="operator">&lambda;</span> (<var>exp</var> <var>proglis</var> <var>retn</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -1886,7 +1891,7 @@ the listing, for notes on the formatting.
                                                                                   <tbody>
                                                                                     <tr>
                                                                                       <td>
-                                                                                        (<span class="operator">lambda</span>
+                                                                                        (<span class="operator">&lambda;</span>
                                                                                         <span class="constant">nil</span>
                                                                                       </td>
                                                                                     </tr>
@@ -1934,7 +1939,8 @@ the listing, for notes on the formatting.
                                                             <tr>
                                                               <td>
                                                                 (<a href="#definition-comcond"><span class="function">comcond</span></a>
-                                                                (<span class="function">cdar</span> <var>hold</var>) <var>f</var>))
+                                                                (<span class="function">cdar</span> <var>hold</var>)
+                                                                <span class="constant">f</span>))
                                                               </td>
                                                             </tr>
                                                           </tbody>
@@ -2024,7 +2030,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>exp</var> <var>name</var>)
+                                        (<span class="operator">&lambda;</span> (<var>exp</var> <var>name</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -2345,7 +2351,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>fn</var> <var>mode</var> <var>exp</var> <var>a</var>)
+                                        (<span class="operator">&lambda;</span> (<var>fn</var> <var>mode</var> <var>exp</var> <var>a</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -2917,7 +2923,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>exp</var> <var>mode</var>)
+                                        (<span class="operator">&lambda;</span> (<var>exp</var> <var>mode</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -3293,7 +3299,7 @@ the listing, for notes on the formatting.
                                                                   <tbody>
                                                                     <tr>
                                                                       <td>
-                                                                        (<span class="operator">lambda</span> (<var>v</var>)
+                                                                        (<span class="operator">&lambda;</span> (<var>v</var>)
                                                                       </td>
                                                                     </tr>
                                                                     <tr>
@@ -3356,7 +3362,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>exp</var> <var>stomap</var>)
+                                        (<span class="operator">&lambda;</span> (<var>exp</var> <var>stomap</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -3509,7 +3515,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>fn</var> <var>args</var>)
+                                        (<span class="operator">&lambda;</span> (<var>fn</var> <var>args</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -4298,7 +4304,7 @@ the listing, for notes on the formatting.
                                                                                   <tbody>
                                                                                     <tr>
                                                                                       <td>
-                                                                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                                                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                                                                       </td>
                                                                                     </tr>
                                                                                     <tr>
@@ -4441,7 +4447,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>a</var>)
+                                        (<span class="operator">&lambda;</span> (<var>a</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -4539,7 +4545,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>x</var>)
+                                        (<span class="operator">&lambda;</span> (<var>x</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -4625,7 +4631,7 @@ the listing, for notes on the formatting.
                                                                           <tbody>
                                                                             <tr>
                                                                               <td>
-                                                                                (<span class="operator">lambda</span>
+                                                                                (<span class="operator">&lambda;</span>
                                                                                 <span class="constant">nil</span>
                                                                               </td>
                                                                             </tr>
@@ -4768,7 +4774,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var> <var>m</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var> <var>m</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -4783,7 +4789,7 @@ the listing, for notes on the formatting.
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                                       </td>
                                                     </tr>
                                                     <tr>
@@ -4872,7 +4878,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>name</var> <var>fn</var>)
+                                        (<span class="operator">&lambda;</span> (<var>name</var> <var>fn</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -4913,7 +4919,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -4928,7 +4934,7 @@ the listing, for notes on the formatting.
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                                       </td>
                                                     </tr>
                                                     <tr>
@@ -4976,7 +4982,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>coms</var> <var>specs</var> <var>g</var>)
+                                        (<span class="operator">&lambda;</span> (<var>coms</var> <var>specs</var> <var>g</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5018,7 +5024,7 @@ the listing, for notes on the formatting.
                                                                   <tbody>
                                                                     <tr>
                                                                       <td>
-                                                                        (<span class="operator">quote</span> lambda)
+                                                                        (<span class="operator">quote</span> &lambda;)
                                                                       </td>
                                                                     </tr>
                                                                     <tr>
@@ -5070,7 +5076,7 @@ the listing, for notes on the formatting.
                                                                   <tbody>
                                                                     <tr>
                                                                       <td>
-                                                                        (<span class="operator">quote</span> lambda)
+                                                                        (<span class="operator">quote</span> &lambda;)
                                                                       </td>
                                                                     </tr>
                                                                     <tr>
@@ -5093,7 +5099,7 @@ the listing, for notes on the formatting.
                                                                             <tr>
                                                                               <td>
                                                                                 (<a href="#definition-pa11"><span class="function">pa11</span></a> <var>coms</var>
-                                                                                (<span class="operator">quote</span> <var>combind</var>))
+                                                                                (<span class="operator">quote</span> combind))
                                                                               </td>
                                                                             </tr>
                                                                             <tr>
@@ -5189,7 +5195,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5335,7 +5341,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>vars</var> <var>prop</var>)
+                                        (<span class="operator">&lambda;</span> (<var>vars</var> <var>prop</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5449,7 +5455,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>kind</var> <var>var</var>)
+                                        (<span class="operator">&lambda;</span> (<var>kind</var> <var>var</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5505,7 +5511,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var> <var>b</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var> <var>b</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5669,7 +5675,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>vars</var> <var>func</var>)
+                                        (<span class="operator">&lambda;</span> (<var>vars</var> <var>func</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5748,7 +5754,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>coms</var>)
+                                        (<span class="operator">&lambda;</span> (<var>coms</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5844,7 +5850,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="function">lambda</span> (<var>g</var>)
+                                        (<span class="function">&lambda;</span> (<var>g</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5885,7 +5891,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -5900,7 +5906,7 @@ the listing, for notes on the formatting.
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                                       </td>
                                                     </tr>
                                                     <tr>
@@ -5970,7 +5976,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>n</var> <var>a</var> <var>b</var>)
+                                        (<span class="operator">&lambda;</span> (<var>n</var> <var>a</var> <var>b</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6089,7 +6095,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>type</var> <var>length</var> <var>exp</var> <var>name</var>)
+                                        (<span class="operator">&lambda;</span> (<var>type</var> <var>length</var> <var>exp</var> <var>name</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6151,7 +6157,7 @@ the listing, for notes on the formatting.
                                                           <tbody>
                                                             <tr>
                                                               <td>
-                                                                (<span class="operator">lambda</span> (<var>j</var>)
+                                                                (<span class="operator">&lambda;</span> (<var>j</var>)
                                                               </td>
                                                             </tr>
                                                             <tr>
@@ -6263,7 +6269,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6303,7 +6309,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6343,7 +6349,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>x</var>)
+                                        (<span class="operator">&lambda;</span> (<var>x</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6358,7 +6364,7 @@ the listing, for notes on the formatting.
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                                       </td>
                                                     </tr>
                                                     <tr>
@@ -6423,7 +6429,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6438,7 +6444,7 @@ the listing, for notes on the formatting.
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        (<span class="operator">lambda</span> (<var>j</var>)
+                                                        (<span class="operator">&lambda;</span> (<var>j</var>)
                                                       </td>
                                                     </tr>
                                                     <tr>
@@ -6487,7 +6493,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>g1</var> <var>g2</var> <var>vs</var> <var>gs</var>)
+                                        (<span class="operator">&lambda;</span> (<var>g1</var> <var>g2</var> <var>vs</var> <var>gs</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6501,7 +6507,7 @@ the listing, for notes on the formatting.
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        (<span class="operator">quote</span> lambda)
+                                                        (<span class="operator">quote</span> &lambda;)
                                                       </td>
                                                     </tr>
                                                     <tr>
@@ -6608,7 +6614,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>name</var> <var>exp</var>)
+                                        (<span class="operator">&lambda;</span> (<var>name</var> <var>exp</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6731,7 +6737,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6830,7 +6836,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>j</var> <var>k</var>)
+                                        (<span class="operator">&lambda;</span> (<var>j</var> <var>k</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6870,7 +6876,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>g3</var>)
+                                        (<span class="operator">&lambda;</span> (<var>g3</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -6961,7 +6967,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var> <var>c</var> <var>s</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var> <var>c</var> <var>s</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -7111,7 +7117,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>fn</var> <var>b</var>)
+                                        (<span class="operator">&lambda;</span> (<var>fn</var> <var>b</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -7149,7 +7155,7 @@ the listing, for notes on the formatting.
                                                               <td>
                                                                 (<span class="function">eq</span>
                                                                 (<span class="function">car</span> <var>fn</var>)
-                                                                (<span class="operator">quote</span> lambda))
+                                                                (<span class="operator">quote</span> &lambda;))
                                                               </td>
                                                             </tr>
                                                             <tr>
@@ -7257,7 +7263,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>form</var> <var>b</var>)
+                                        (<span class="operator">&lambda;</span> (<var>form</var> <var>b</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -7671,7 +7677,7 @@ the listing, for notes on the formatting.
                                                                                                                                           <tbody>
                                                                                                                                             <tr>
                                                                                                                                               <td>
-                                                                                                                                                (<span class="operator">lambda</span> (<var>j</var>)
+                                                                                                                                                (<span class="operator">&lambda;</span> (<var>j</var>)
                                                                                                                                               </td>
                                                                                                                                             </tr>
                                                                                                                                             <tr>
@@ -7902,7 +7908,7 @@ the listing, for notes on the formatting.
                                                                                                                                   <tbody>
                                                                                                                                     <tr>
                                                                                                                                       <td>
-                                                                                                                                        <span class="operator">t</span>
+                                                                                                                                        <span class="constant">t</span>
                                                                                                                                       </td>
                                                                                                                                     </tr>
                                                                                                                                     <tr>
@@ -8020,7 +8026,7 @@ the listing, for notes on the formatting.
                                                                                                                                   <tbody>
                                                                                                                                     <tr>
                                                                                                                                       <td>
-                                                                                                                                        (<span class="operator">lambda</span> (<var>g</var>)
+                                                                                                                                        (<span class="operator">&lambda;</span> (<var>g</var>)
                                                                                                                                       </td>
                                                                                                                                     </tr>
                                                                                                                                     <tr>
@@ -8035,7 +8041,7 @@ the listing, for notes on the formatting.
                                                                                                                                                   <tbody>
                                                                                                                                                     <tr>
                                                                                                                                                       <td>
-                                                                                                                                                        (<span class="operator">quote</span> lambda)
+                                                                                                                                                        (<span class="operator">quote</span> &lambda;)
                                                                                                                                                       </td>
                                                                                                                                                     </tr>
                                                                                                                                                     <tr>
@@ -8277,7 +8283,7 @@ the listing, for notes on the formatting.
                                                                       <td>
                                                                         (<span class="function">eq</span>
                                                                         (<span class="function">caar</span> <var>form</var>)
-                                                                        (<span class="operator">quote</span> lambda))
+                                                                        (<span class="operator">quote</span> &lambda;))
                                                                       </td>
                                                                     </tr>
                                                                     <tr>
@@ -8393,7 +8399,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var> <var>m</var> <var>farg</var> <var>z</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var> <var>m</var> <var>farg</var> <var>z</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -8541,7 +8547,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>coms</var> <var>specs</var> <var>g</var>)
+                                        (<span class="operator">&lambda;</span> (<var>coms</var> <var>specs</var> <var>g</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -8763,7 +8769,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>n</var> <var>e</var>)
+                                        (<span class="operator">&lambda;</span> (<var>n</var> <var>e</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -8815,10 +8821,6 @@ the listing, for notes on the formatting.
                                                                     <tr>
                                                                       <td>
                                                                         (<a href="#definition-length"><span class="function">length</span></a>
-                                                                      </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                      <td>
                                                                         (<span class="function">cadr</span> <var>e</var>))
                                                                       </td>
                                                                     </tr>
@@ -8871,7 +8873,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>v</var> <var>k</var>)
+                                        (<span class="operator">&lambda;</span> (<var>v</var> <var>k</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -8953,7 +8955,7 @@ the listing, for notes on the formatting.
                                   <tbody>
                                     <tr>
                                       <td>
-                                        (<span class="operator">lambda</span> (<var>l</var>)
+                                        (<span class="operator">&lambda;</span> (<var>l</var>)
                                       </td>
                                     </tr>
                                     <tr>
@@ -9051,16 +9053,17 @@ the listing, for notes on the formatting.
         </table>
       </section>
       <section id="formatting-notes" class="normal">
+        <h2 class="section-title"><a href="#formatting-notes">Formatting notes</a></h2>
         <p>
           The style of formatting used above is inspired by Algol listings from
 the 1960s and 1970s. Probably the most notable feature is that the
-predominant typeface is proportional, rather than monospace. Semantic
+pre&shy;dominant typeface is proportional, rather than monospace. Semantic
 differences between lexical units is indicated by changes in font, not in color,
-following the conventions of mathematical publishing. A stunning demonstration
+following the conventions of mathematical publishing. A stun&shy;ning demonstration
 of the style can be found in Donald Knuth's
-<a href="http://mirrors.ctan.org/info/knuth-pdf/tex/tex.pdf"><i><span class="tex">T<sub>e</sub>X</span>: The Program</i></a>,
-where the language is (<a href="http://mirrors.ctan.org/info/knuth-pdf/web/webman.pdf">an augmented variant of</a>) Pascal.
-Knuth and Levy's <a href="http://mirrors.ctan.org/info/knuth-pdf/cweb/cwebman.pdf">CWEB</a> applies it to C.
+<a class="external-link" href="http://mirrors.ctan.org/info/knuth-pdf/tex/tex.pdf"><i><span class="tex">T<sub>e</sub>X</span>:&nbsp;The Program</i></a>,
+where the language is (<a class="external-link" href="http://mirrors.ctan.org/info/knuth-pdf/web/webman.pdf">an augmented variant of</a>) Pascal.
+Knuth and Levy's <a class="external-link" href="http://mirrors.ctan.org/info/knuth-pdf/cweb/cwebman.pdf">CWEB</a> applies it to C.
         </p>
         <p>
           Lisp code presents some challenges, when compared to Pascal and C.
@@ -9073,10 +9076,10 @@ are using proportional text.
         </p>
         <p>
           The solution adopted here is due to a suggestion by David Carlisle;
-see <a href="https://ux.stackexchange.com/questions/138363/how-should-non-monospace-code-listings-be-marked-up-in-html">my
+see <a class="external-link" href="https://ux.stackexchange.com/questions/138363/how-should-non-monospace-code-listings-be-marked-up-in-html">my
 (now closed) question</a> on the User Experience StackExchange site for
 additional information. Essentially, nested <code>&lt;table&gt;</code>s mimic
-s-expressions. There are over a thousand <code>table</code> elements on
+s&#8209;expressions. There are over a thousand <code>table</code> elements on
 this page.
         </p>
       </section>
