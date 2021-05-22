@@ -17,13 +17,6 @@ article code {
   font-family: mono-proportional-ten, monospace;
 }
 
-article .section-title a::before {
-  position: absolute;
-  left: -5%;
-  content: "§";
-  color: gray;
-}
-
 article .section-title a {
   color: #44aa99;
 }
@@ -36,16 +29,13 @@ article .section-title a:visited {
   color: #7a7a7a;
 }
 
-article section p::before {
-  position: absolute;
-  font-family: sans-ten, sans-serif;
-  left: -5%;
-  content: "\b6";
+article .section-title {
+  width: 100%;
+  text-align: center;
 }
 
 .article-title {
   position: relative;
-  font-size: 150%;
   text-align: center;
   font-family: sans-quotation, sans-serif;
   font-weight: normal;
@@ -100,13 +90,21 @@ section#formatting-notes {
 
 section.normal {
   position: relative;
-  width: 30em;
   margin: 0 auto;
 }
 
 #listing {
-  width: 40em;
   margin: 1% auto 1% auto;
+  overflow: auto;
+}
+
+@media screen and (min-width:800px) {
+  #listing {
+    width: 50em;
+  }
+  section.normal {
+    width: 30em;
+  }
 }
 
 #listing td.prog-tag {
@@ -117,6 +115,7 @@ section.normal {
   display: inline-table;
   vertical-align: baseline;
   border-collapse: collapse;
+  white-space: nowrap;
 }
 
 .indent {
@@ -151,7 +150,9 @@ var {
 }
 
 .tex sub {
-  vertical-align: -0.3ex;
+  position: relative;
+  vertical-align: baseline;
+  top: 0.3ex;
   margin-left: -0.1667em;
   margin-right: -0.125em;
 }
