@@ -66,8 +66,8 @@ article a.external-link {
   background-image: url(external.svg);
   background-position: top right;
   background-repeat: no-repeat;
-  background-size: 8px;
-  padding-right: 12px;
+  background-size: 10px;
+  padding-right: 13px;
 }
 
 article a.external-link:hover {
