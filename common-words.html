@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Common Words</title>
+    <link rel="stylesheet" href="webmac.css">
+  </head>
+  <body>
+    <h1>Common Words</h1>
+    <article>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <section id="section-1">
+          <p>
+            The purpose of this program is to solve the following problem posed
+            by Jon Bentley:
+          </p>
+          <blockquote>
+            <p>
+              Given a text file and an integer <var>k</var>, print the
+              <var>k</var> most common words in the file (and the number of
+              their occurrences) in decreasing frequency.
+            </p>
+          </blockquote>
+          <p>
+            Jon intentionally left the problem somewhat vague, but he stated
+            that “a user should be able to find the 100 most frequent words in a
+            twenty-page technical paper (roughly a 100K byte file) without undue
+            emotional trauma.”
+          </p>
+          <p>
+            Let us agree that a <dfn>word</dfn> is a sequence of one or more
+            contiguous letters; “<kbd>Bentley</kbd>” is a word, but
+            “<kbd>ain't</kbd>” isn't. The sequence of letters should be maximal,
+            in the sense that it cannot be lengthened without including a
+            nonletter. Uppercase letters are considered equivalent to their
+            lowercase counterparts, so that the words “<kbd>Bentley</kbd>” and
+            “<kbd>BENTLEY</kbd>” and “<kbd>bentley</kbd>” are essentially
+            identical.
+          </p>
+          <p>
+            The given problem still isn't well defined, for the file might
+            contain more than <var>k</var> words, all of the same frequency; or
+            there might not even be as many <var>k</var> words. Let's be more
+            precise: The most common words are to be printed in order of
+            decreasing frequency, with words of equal frequency listed in
+            alphabetical order. Printing should should stop after <var>k</var>
+            words have been output, if more than <var>k</var> words are present.
+          </p>
+        </section>
+        <section id="section-2">
+          <p>
+            The
+            <var class="program-parameter" title="program parameter file §3"><a href="#input-definition">input</a></var>
+            file is assumed to contain the given text. If it begins with a
+            positive decimal number (preceded by optional blanks), that number
+            will be the value of <var>k</var>; otherwise we shall assume that
+            <span class="formula"><var>k</var> = 100</span>. Answers will be
+            sent to the
+            <var class="program-parameter"><a href="#output-definition">output</a></var>
+            file.
+          </p>
+          <div class="definition-part">
+            <div class="macro-definition" id="default-k-definition">
+              <span class="keyword define">define</span>
+              <span class="numeric-macro" title="macro = 100 §2"><a href="#default-k-definition">default_k</a></span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">100</span>
+              <span class="comment">use this value if <var>k</var> isn't specified</span>
+            </div>
+          </div>
+        </section>
+        <section id="section-3">
+          <p>
+            Besides solving the given problem, this program is supposed to be an
+            example of the <span class="tt">WEB</span> system, for people who
+            know some Pascal but who have never seen <span class="tt">WEB</span>
+            before. Here is an outline of the program to be constructed:
+          </p>
+          <div class="Pascal-part">
+            <table class="code">
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="keyword program">program</span>
+                    <span class="program-name" id="common-words-definition"><a href="#common-words-definition">common_words</a></span><span class="punctuator left-parenthesis">(<var class="program-parameter" id="input-definition" title="program parameter file §3"><a href="#input-definition">input</a></var><span class="punctuator comma">,</span>
+                    <var class="program-parameter" id="output-definition" title="program parameter file §3"><a href="#output-definition">output</a></var><span class="punctuator right-parenthesis">)</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span class="keyword type">type</span>
+                            <span class="section-name">Type declarations <a href="#section-13" class="section-link"><span class="section-number">13</span></a></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword var">var</span>
+                            <span class="section-name">Global variables <a href="#section-4" class="section-link"><span class="section-number">4</span></a></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="section-name">Procedures for initialization <a href="#section-5" class="section-link"><span class="section-number">5</span></a></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="section-name">Procedures for input and output <a href="#section-9" class="section-link"><span class="section-number">9</span></a></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="section-name">Procedures for data manipulation <a href="#section-20" class="section-link"><span class="section-number">20</span></a></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword begin">begin</span>
+                            <span class="section-name">The main program <a href="#section-8" class="section-link"><span class="section-number">8</span></a></span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword end">end</span><span class="punctuator period">.</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="section-4">
+          <p>
+            The main idea of the <span class="tt">WEB</span> approach is to let
+            the program grow in natural stages, with its parts presented in
+            roughly the order that they might have been written by a programmer
+            who isn't especially clairvoyant.
+          </p>
+          <p>
+            For example, each global variable will be introduced when we first
+            know that it is necessary or desirable; the
+            <span class="tt">WEB</span> system will take care of collecting
+            these declarations into the proper place. We already know about one
+            global variable, namely the number that Bentley called <var>k</var>.
+            Let us give it the more descriptive name
+            <var class="global" title="integer §4"><a href="#max-words-to-print-declaration">max_words_to_print</a></var>.
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Global variables <a href="#section-4" class="section-link"><span class="section-number">4</span></a></span><span class="punctuator equivalent">≡</span>
+            <span class="next-definition-link"><a href="#section-11" title="go to the next definition of ⟨Global variables 4⟩">▸</a></span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr id="max-words-to-print-declaration">
+                  <td>
+                    <var class="global" title="integer §4"><a href="#max-words-to-print-declaration">max_words_to_print</a></var><span class="punctuator colon">:</span>
+                    <span class="type-name standard">integer</span><span class="punctuator semicolon">;</span>
+                    <span class="comment">at most this many words will be printed</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="several-subsequent-definitions">
+                <span class="section-number subsequent-definition"><a href="#section-11">11</a></span>
+                <span class="section-number subsequent-definition"><a href="#section-13">13</a></span>
+                <span class="section-number subsequent-definition"><a href="#section-18">18</a></span>
+                <span class="section-number subsequent-definition"><a href="#section-22">22</a></span>
+                <span class="section-number penultimate-subsequent-definition"><a href="#section-32">32</a></span>
+                <span class="section-number last-in-subsequent-definitions"><a href="#section-36">36</a></span>
+              </div>
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-3">3</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section-5">
+          <p>
+            As we introduce new global variables, we'll often want to give them
+            certain starting values, This will be done by the
+            <span class="procedure-name" title="procedure §5"><a href="#initialize-definition">initialize</a></span>
+            procedure, whose body will consist of various pieces of code to be
+            specified when we think of particular kinds of initialization.
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Procedures for initialization <a href="#section-5" class="section-link"><span class="section-number">5</span></a></span><span class="punctuator equivalent">≡</span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr id="initialize-definition">
+                  <td>
+                    <span class="keyword procedure">procedure</span>
+                    <span class="procedure-name" title="procedure §5"><a href="#initialize-definition">initialize</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td id="i-initialize-declaration">
+                            <span class="keyword var">var</span>
+                            <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator colon">:</span>
+                            <span class="type-name standard">integer</span><span class="punctuator semicolon">;</span>
+                            <span class="comment">all-purpose index for initialization</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword begin">begin</span>
+                            <span class="section-name">Set initial values <a href="#section-12" class="section-link"><span class="section-number">12</span></a></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-3">3</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section-6">
+          <p>
+            The <span class="tt">WEB</span> system, which may be thought of as a
+            preprocessor for Pascal, includes a macro definition facility so
+            that portable programs are easier to write. For example, we have
+            already defined
+            ‘<code><span class="numeric-macro" title="macro = 100 §2"><a href="#default-k-definition">default_k</a></span></code>’ to
+            be 100. Here are two more examples of WEB macros;
+            they allow us to write, e.g., ‘<code><span class="parametric-macro" title="macro (#) ≡ # ← # + 1 §6"><a href="#incr-definition">incr</a></span><span class="punctuator left-parenthesis">(</span><var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span><span class="punctuator right-parenthesis">)</span></code>’
+            as a convenient abbreviation for the statement
+            ‘<code><var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span>
+            <span class="punctuator becomes">←</span>
+            <var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span>
+            <span class="punctuator plus">+</span> <span class="decimal-integer">1</span></code>’.
+          </p>
+          <div class="definition-part">
+            <div class="macro-definition" id="incr-definition">
+              <span class="keyword define">define</span>
+              <span class="parametric-macro" title="macro (#) ≡ # ← # + 1 §6"><a href="#incr-definition">incr</a></span><span class="punctuator left-parenthesis">(</span><span class="punctuator macro-parameter">#</span><span class="punctuator right-parenthesis">)</span>
+              <span class="punctuator equivalent">≡</span>
+              <span class="punctuator macro-parameter">#</span>
+              <span class="punctuator becomes">←</span>
+              <span class="punctuator macro-parameter">#</span>
+              <span class="punctuator plus">+</span>
+              <span class="decimal-integer">1</span>
+              <span class="comment">increment a variable</span>
+            </div>
+            <div class="macro-definition" id="decr-definition">
+              <span class="keyword define">define</span>
+              <span class="parametric-macro" title="macro (#) ≡ # ← # − 1 §6"><a href="#decr-definition">decr</a></span><span class="punctuator left-parenthesis">(</span><span class="punctuator macro-parameter">#</span><span class="punctuator right-parenthesis">)</span>
+              <span class="punctuator equivalent">≡</span>
+              <span class="punctuator macro-parameter">#</span>
+              <span class="punctuator becomes">←</span>
+              <span class="punctuator macro-parameter">#</span>
+              <span class="punctuator plus">–</span>
+              <span class="decimal-integer">1</span>
+              <span class="comment">decrement a variable</span>
+            </div>
+          </div>
+        </section>
+        <section id="section-7">
+          <p>
+            Some of the procedures we shall be writing come to abrupt
+            conclusions; hence it will be convenient to introduce a
+            ‘<code><span class="keyword-like overridden-normal-macro" title="macro ≡ goto exit §7"><a href="#return-definition">return</a></span></code>’
+            macro for the operation of jumping to the end of the procedure. A
+            symbolic label ‘<code><span class="numeric-macro" title="macro = 30 §7"><a href="#exit-definition">exit</a></span></code>’ will
+            be declared in all such procedures, and
+            ‘<code><span class="numeric-macro" title="macro = 30 §7"><a href="#exit-definition">exit</a></span><span class="punctuator colon">:</span></code>’
+            will be placed just before the final end. (No other labels or
+            <code><span class="keyword goto">goto</span></code> statements are
+            used in the present program, but the author would find it painful to
+            eliminate these particular ones.)
+          </p>
+          <div class="definition-part">
+            <div class="macro-definition" id="exit-definition">
+              <span class="keyword define">define</span>
+              <span class="numeric-macro" title="macro = 30 §7"><a href="#exit-definition">exit</a></span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">30</span>
+              <span class="comment">the end of a procedure</span>
+            </div>
+            <div class="macro-definition" id="decr-definition">
+              <span class="keyword define">define</span>
+              <span class="normal-macro" title="macro ≡ goto exit §7"><a href="#return-definition">return</a></span>
+              <span class="punctuator equivalent">≡</span>
+              <span class="keyword goto">goto</span>
+              <span class="numeric-macro" title="macro = 30 §7"><a href="#exit-definition">exit</a></span>
+              <span class="comment">quick termination</span>
+            </div>
+            <div class="format-specification">
+              <span class="keyword format">format</span>
+              <span class="normal-macro" title="macro ≡ goto exit §7"><a href="#return-definition">return</a></span>
+              <span class="punctuator equivalent">≡</span>
+              <span class="keyword nil">nil</span>
+              <span class="comment">typeset ‘<span class="keyword-like overridden-normal-macro" title="macro ≡ goto exit §7"><a href="#return-definition">return</a></span>’ in boldface</span>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section id="strategic-considerations">
+        <h2>Strategic considerations</h2>
+        <section id="section-8">
+          <p>
+            What algorithms and data structures should be used for Bentley's
+            problem? Clearly we need to be able to recognize different
+            occurrences of the same word, so some sort of internal dictionary is
+            necessary. There's no obvious way to decide that a particular word
+            of the input cannot possibly be in the final set, until we've gotten
+            very near the end of the file; so we might as well remember every
+            word that appears. 
+          </p>
+          <p>
+            There should be a frequency count associated with each word, and we
+            will eventually want to run through the words in order of decreasing
+            frequency. But there's no need to keep these counts in order as we
+            read through the input, since the order matters only at the end.
+          </p>
+          <p>
+            Therefore it makes sense to structure our program as follows: 
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">The main program <a href="#section-8" class="section-link"><span class="section-number">8</span></a></span><span class="punctuator equivalent">≡</span>
+            <br>
+            <table class="code indent">
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="procedure-name" title="procedure §5"><a href="#initialize-definition">initialize</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="section-name">Establish the value of <code><var class="global" title="integer §4"><a href="#max-words-to-print-declaration">max_words_to_print</a></var></code> <a href="#section-10" class="section-link"><span class="section-number">10</span></a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="section-name">Input the text, maintaining a dictionary with frequency counts <a href="#section-34" class="section-link"><span class="section-number">34</span></a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="section-name">Sort the dictionary by frequency <a href="#section-39" class="section-link"><span class="section-number">39</span></a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="section-name">Output the results <a href="#section-41" class="section-link"><span class="section-number">41</span></a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-3">3</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section id="basic-input-routines">
+        <h2>Basic input routines</h2>
+        <section id="section-10">
+          <p>
+            Let's switch to a bottom-up approach now, by writing some of the
+            procedures that we know will be necessary sooner or later. Then
+            we'll have some confidence that our program is taking shape, even
+            though we haven't decided yet how to handle the searching or the
+            sorting. It will be nice to get the messy details of Pascal input
+            out of the way and off our minds.
+          </p>
+          <p>
+            Here's a function that reads an optional positive integer, returning
+            zero if none is present at the beginning of the current line. 
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Procedures for input and output <a href="#section-9" class="section-link"><span class="section-number">9</span></a></span><span class="punctuator equivalent">≡</span>
+            <span class="next-definition-link"><a href="#section-15" title="go to the next definition of ⟨Procedures for input and output 9⟩">▸</a></span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr id="read-int-declaration">
+                  <td>
+                    <span class="keyword function">function</span>
+                    <span class="function-name" title="function: integer §9"><a href="#read-int-declaration">read_int</a></span><span class="punctuator colon">:</span>
+                    <span class="type-name standard">integer</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr id="n-read-int-declaration">
+                          <td>
+                            <span class="keyword var">var</span>
+                            <var title="integer §9"><a href="#n-read-int-declaration">n</a></var><span class="punctuator colon">:</span>
+                            <span class="type-name standard">integer</span><span class="punctuator semicolon">;</span>
+                            <span class="comment">the accumulated value</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword begin">begin</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table class="indent">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <var title="integer §9"><a href="#n-read-int-declaration">n</a></var>
+                                    <span class="punctuator becomes">←</span>
+                                    <span class="decimal-integer">0</span><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span class="keyword if">if</span>
+                                    <span class="punctuator not">¬</span><span class="function-name standard">eof</span>
+                                    <span class="keyword then">then</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <table class="indent">
+                                      <tbody>
+                                        <tr>
+                                          <td>
+                                            <span class="keyword begin">begin</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <table class="indent">
+                                              <tbody>
+                                                <tr>
+                                                  <td>
+                                                    <span class="keyword while">while</span>
+                                                    <span class="punctuator left-parenthesis">(</span><span class="punctuator not">¬</span><span class="function-name standard">eoln</span><span class="punctuator right-parenthesis">)</span>
+                                                    <span class="punctuator and">∧</span>
+                                                    <span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §3"><a href="#input-definition">input</a></var><span class="punctuator up-arrow">↑</span>
+                                                    <span class="punctuator equal">=</span>
+                                                    <span class="character-constant">␣</span><span class="punctuator right-parenthesis">)</span>
+                                                    <span class="keyword do">do</span>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <table class="indent">
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>
+                                                            <span class="procedure-name standard">get</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §3"><a href="#input-definition">input</a></var><span class="right-parenthesis">)</span><span class="punctuator semicolon">;</span>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <span class="keyword while">while</span>
+                                                    <span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §3"><a href="#input-definition">input</a></var>
+                                                    <span class="punctuator greater-than-or-equal-to">≥</span>
+                                                    <span class="character-constant">0</span><span class="punctuator right-parenthesis">)</span>
+                                                    <span class="punctuator and">∧</span>
+                                                    <span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §3"><a href="#input-definition">input</a></var>
+                                                    <span class="punctuator less-than-or-equal-to">≤</span>
+                                                    <span class="character-constant">9</span><span class="punctuator right-parenthesis">)</span>
+                                                    <span class="keyword do">do</span>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <table class="indent">
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>
+                                                            <span class="keyword begin">begin</span>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            <table class="indent">
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td>
+                                                                    <var title="integer §9"><a href="#n-read-int-declaration">n</a></var>
+                                                                    <span class="punctuator becomes">←</span>
+                                                                    <span class="decimal-integer">10</span><span class="punctuator times">∗</span><var title="integer §9"><a href="#n-read-int-declaration">n</a></var>
+                                                                    <span class="punctuator plus">+</span>
+                                                                    <span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §3"><a href="#input-definition">input</a></var><span class="punctuator up-arrow">↑</span><span class="right-parenthesis">)</span>
+                                                                    <span class="punctuator minus">−</span>
+                                                                    <span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><span class="character-constant">0</span><span class="right-parenthesis">)</span><span class="punctuator semicolon">;</span>
+                                                                  </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>
+                                                                    <span class="procedure-name standard">get</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §3"><a href="#input-definition">input</a></var><span class="right-parenthesis">)</span><span class="punctuator semicolon">;</span>
+                                                                  </td>
+                                                                </tr>
+                                                              </tbody>
+                                                            </table>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            <span class="keyword end">end</span></span><span class="punctuator semicolon">;</span>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <span class="keyword end">end</span></span><span class="punctuator semicolon">;</span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span class="function-name" title="function: integer §9"><a href="#read-int-declaration">read_int</a></span>
+                                    <span class="punctuator becomes">←</span>
+                                    <var title="integer §9"><a href="#n-read-int-declaration">n</a></var><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="several-subsequent-definitions">
+                <span class="section-number subsequent-definition"><a href="#section-15">15</a></span>
+                <span class="section-number penultimate-subsequent-definition"><a href="#section-35">35</a></span>
+                <span class="section-number last-in-subsequent-definitions"><a href="#section-40">40</a></span>
+              </div>
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-3">3</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section-10">
+          <p>
+            We invoke
+            <span class="function-name" title="function: integer §9"><a href="#read-int-declaration">read_int</a></span>
+            only once.
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Establish the value of <code><var class="global" title="integer §4"><a href="#max-words-to-print-declaration">max_words_to_print</a></var></code> <a href="#section-10" class="section-link"><span class="section-number">10</span></a></span><span class="punctuator equivalent">≡</span>
+            <br>
+            <table class="indent">
+              <tbody>
+                <tr>
+                  <td>
+                    <var class="global" title="integer §4"><a href="#max-words-to-print-declaration">max_words_to_print</a></var>
+                    <span class="punctuator becomes">←</span>
+                    <span class="function-name" title="function: integer §9"><a href="#read-int-declaration">read_int</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="keyword if">if</span>
+                    <var class="global" title="integer §4"><a href="#max-words-to-print-declaration">max_words_to_print</a></var>
+                    <span class="punctuator equal">=</span>
+                    <span class="decimal-integer">0</span>
+                    <span class="keyword then">then</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <var class="global" title="integer §4"><a href="#max-words-to-print-declaration">max_words_to_print</a></var>
+                            <span class="punctuator becomes">←</span>
+                            <span class="numeric-macro" title="macro = 100 §2"><a href="#default-k-definition">default_k</a></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-8">8</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section-11">
+          <p>
+            To find words in the input file, we want a quick way to distinguish
+            letters from nonletters. Pascal has  conspired to make this problem
+            somewhat tricky, because it leaves many details of the character set
+            undefined. We shall define two arrays,
+            <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var>
+            and
+            <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var>,
+            that specify the letters of the alphabet. A third array,
+            <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var>, maps
+            arbitrary characters into the integers
+            <code><span class="decimal-integer">0</span><span class="punctuator subrange">..</span><span class="decimal-integer">26</span></code>.
+          </p>
+          <p>
+            If <var>c</var> is a value of type <span class="type-name standard">char</span>
+            that represents the
+            <var>k</var>th letter of the alphabet, then
+            <code>
+              <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var>c</var><span class="right-parenthesis">)</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <var>k</var></code>;
+            but if <var>c</var> is a nonletter,
+            <code>
+              <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var>c</var><span class="right-parenthesis">)</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">0</span></code>. We assume that
+            <code>
+              <span class="decimal-integer">0</span>
+              <span class="punctuator less-than-or-equal-to">≤</span>
+              <span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var>c</var><span class="right-parenthesis">)</span>
+              <span class="punctuator less-than-or-equal-to">≤</span>
+              <span class="decimal-integer">255</span>
+            </code>
+            whenever <var>c</var> is of type <span class="type-name standard">char</span>. 
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Global variables <a href="#section-4" class="section-link"><span class="section-number">4</span></a></span><span class="punctuator plus-equivalent">+≡</span>
+            <span class="previous-definition-link"><a href="#section-4" title="go to the previous definition of ⟨Global variables 4⟩">◂</a></span>
+            <span class="next-definition-link"><a href="#section-13" title="go to the next definition of ⟨Global variables 4⟩">▸</a></span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11" id="lowercase-declaration"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator comma">,</span>
+                    <var class="global" title="array [1..26] of char §11" id="uppercase-declaration"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator colon">:</span>
+                    <span class="keyword array">array</span>
+                    <span class="punctuator left-bracket">[</span><span class="decimal-integer">1</span><span class="punctuator subrange">..</span><span class="decimal-integer">26</span><span class="punctuator right-bracket">]</span>
+                    <span class="keyword of">of</span>
+                    <span class="type-name standard">char</span><span class="punctuator semicolon">;</span>
+                    <span class="comment">the letters</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [0..255] of 0..26 §11" id="lettercode-declaration"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator colon">:</span>
+                    <span class="keyword array">array</span>
+                    <span class="punctuator left-bracket">[</span><span class="decimal-integer">0</span><span class="punctuator subrange">..</span><span class="decimal-integer">255</span><span class="punctuator right-bracket">]</span>
+                    <span class="keyword of">of</span>
+                    <span class="decimal-integer">1</span><span class="punctuator subrange">..</span><span class="decimal-integer">26</span><span class="punctuator semicolon">;</span>
+                    <span class="comment">the input conversion table</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </section>
+        <section id="section-12">
+          <p>
+            A somewhat tedious set of assignments is necessary for the
+            definition of
+            <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var>
+            and
+            <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var>,
+            because letters need not be consecutive in Pascal's character set.
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Set initial values <a href="#section-12" class="section-link"><span class="section-number">12</span></a></span><span class="punctuator plus-equivalent">≡</span>
+            <span class="next-definition-link"><a href="#section-14" title="go to the next definition of ⟨Set initial values 12⟩">▸</a></span>
+            <br>
+            <table class="indent code">
+              <tbody>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">1</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">a</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">1</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">A</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">2</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">b</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">2</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">B</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">3</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">c</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">3</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">C</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">4</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">d</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">4</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">D</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">5</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">e</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">5</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">E</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">6</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">f</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">6</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">F</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">7</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">g</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">7</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">G</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">8</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">h</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">8</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">H</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">9</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">i</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">9</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">I</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">10</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">j</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">10</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">J</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">11</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">k</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">11</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">K</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">12</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">l</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">12</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">L</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">13</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">m</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">13</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">M</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">14</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">n</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">14</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">N</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">15</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">o</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">15</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">O</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">16</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">p</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">16</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">P</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">17</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">q</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">17</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">Q</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">18</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">r</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">18</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">R</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">19</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">s</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">19</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">S</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">20</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">t</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">20</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">T</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">21</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">u</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">21</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">U</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">22</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">v</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">22</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">V</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">23</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">w</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">23</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">W</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">24</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">x</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">24</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">X</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">25</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">y</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">25</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">Y</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">26</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">z</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">26</span><span class="punctuator right-square-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="character-constant">Z</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="keyword for">for</span>
+                    <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var>
+                    <span class="punctuator becomes">←</span>
+                    <span class="decimal-integer">0</span>
+                    <span class="keyword to">to</span>
+                    <span class="decimal-integer">255</span>
+                    <span class="keyword do">do</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator right-bracket">]</span>
+                            <span class="punctuator becomes">←</span>
+                            <span class="decimal-integer">0</span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="keyword for">for</span>
+                    <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var>
+                    <span class="punctuator becomes">←</span>
+                    <span class="decimal-integer">1</span>
+                    <span class="keyword to">to</span>
+                    <span class="decimal-integer">26</span>
+                    <span class="keyword do">do</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span class="keyword begin">begin</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table class="indent">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var class="global" title="array [1..26] of char §11"><a href="#lowercase-declaration">lowercase</a></var><span class="punctuator left-bracket">[</span><var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var></span><span class="punctuator right-square-bracket">]</span><span class="punctuator right-parenthesis">)<span class="punctuator right-bracket">]</span>
+                                    <span class="punctuator becomes">←</span>
+                                    <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var class="global" title="array [1..26] of char §11"><a href="#uppercase-declaration">uppercase</a></var><span class="punctuator left-bracket">[</span><var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator right-square-bracket">]</span><span class="punctuator right-parenthesis">)</span><span class="punctuator right-bracket">]</span>
+                                    <span class="punctuator becomes">←</span>
+                                    <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="several-subsequent-definitions">
+                <span class="section-number subsequent-definition"><a href="#section-14">14</a></span>
+                <span class="section-number subsequent-definition"><a href="#section-19">19</a></span>
+                <span class="section-number penultimate-subsequent-definition"><a href="#section-23">23</a></span>
+                <span class="section-number last-in-subsequent-definitions"><a href="#section-33">33</a></span>
+              </div>
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-5">5</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section-13">
+          <p>
+            Each new word found in the input will be placed into a
+            <code><var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var></code>
+            array. We shall assume that no words are more than 60 letters long;
+            if a longer word appears, it will be truncated to 60 characters, and
+            a warning message will be printed at the end of the run.
+          </p>
+          <div class="definition-part">
+            <div class="macro-definition" id="max-word-length-definition">
+              <span class="keyword define">define</span>
+              <span class="numeric-macro" title="macro = 60 §13"><a href="#max-word-length-definition">max_word_length</a></span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">60</span>
+              <span class="comment">words shouldn't be longer than this</span>
+            </div>
+          </div>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Global variables <a href="#section-4" class="section-link"><span class="section-number">4</span></a></span><span class="punctuator plus-equivalent">+≡</span>
+            <span class="previous-definition-link"><a href="#section-11" title="go to the previous definition of ⟨Global variables 4⟩">◂</a></span>
+            <span class="next-definition-link"><a href="#section-18" title="go to the next definition of ⟨Global variables 4⟩">▸</a></span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr id="buffer-declaration">
+                  <td>
+                    <var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var><span class="punctuator colon">:</span>
+                    <span class="keyword array">array</span>
+                    <span class="punctuator left-bracket">[</span><span class="decimal-integer">1</span><span class="punctuator subrange">..</span><span class="numeric-macro" title="macro = 60 §13"><a href="#max-word-length-definition">max_word_length</a></span><span class="punctuator right-bracket">]</span>
+                    <span class="keyword of">of</span>
+                    <span class="decimal-integer">1</span><span class="punctuator subrange">..</span><span class="decimal-integer">26</span><span class="punctuator semicolon">;</span>
+                    <span class="comment">the current word</span>
+                  </td>
+                </tr>
+                <tr id="word-length-declaration">
+                  <td>
+                    <var class="global" title="0..max_word_length §13"><a href="#word-length-declaration">word_length</a></var><span class="punctuator colon">:</span>
+                    <span class="decimal-integer">0</span><span class="punctuator subrange">..</span><span class="numeric-macro" title="macro = 60 §13"><a href="#max-word-length-definition">max_word_length</a></span><span class="punctuator semicolon">;</span>
+                    <span class="comment">the number of active characters currently in <code><var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var></code></span>
+                  </td>
+                </tr>
+                <tr id="word-truncated-declaration">
+                  <td>
+                    <var class="global" title="boolean §13"><a href="#word-truncated-declaration">word_truncated</a></var><span class="punctuator colon">:</span>
+                    <span class="type-name standard">boolean</span><span class="punctuator semicolon">;</span>
+                    <span class="comment">was some word longer than <code><span class="numeric-macro" title="macro = 60 §13"><a href="#max-word-length-definition">max_word_length</a></span></code>?</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="section-14" class="empty-TeX-part">
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Set initial values <a href="#section-12" class="section-link"><span class="section-number">12</span></a></span><span class="punctuator plus-equivalent">+≡</span>
+            <span class="previous-definition-link"><a href="#section-12" title="go to the previous definition of ⟨Set initial values 12⟩">◂</a></span>
+            <span class="next-definition-link"><a href="#section-19" title="go to the next definition of ⟨Set initial values 12⟩">▸</a></span>
+            <br>
+            <table class="code indent">
+              <tbody>
+                <tr>
+                  <td>
+                    <var class="global" title="boolean §13"><a href="#word-truncated-declaration">word_truncated</a></var>
+                    <span class="punctuator becomes">←</span>
+                    <span class="enumerator standard">false</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="section-15">
+          <p>
+            We're ready now for the main input routine, which puts the next word
+            into the buffer. If no more words remain,
+            <code><var class="global" title="0..max_word_length §13"><a href="#word-length-declaration">word_length</a></var></code>
+            is set to zero; otherwise
+            <code><var class="global" title="0..max_word_length §13"><a href="#word-length-declaration">word_length</a></var></code>
+            is set to the length of the new word. 
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Procedures for input and output <a href="#section-9" class="section-link"><span class="section-number">9</span></a></span><span class="punctuator plus-equivalent">+≡</span>
+            <span class="previous-definition-link"><a href="#section-9" title="go to the previous definition of ⟨Procedures for input and output 9⟩">◂</a></span>
+            <span class="next-definition-link"><a href="#section-35" title="go to the next definition of ⟨Procedures for input and output 9⟩">▸</a></span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr id="get-word-declaration">
+                  <td>
+                    <span class="keyword procedure">procedure</span>
+                    <span class="procedure-name" title="procedure §15"><a href="#get-word-declaration">get_word</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr id="exit-get-word-declaration">
+                          <td>
+                            <span class="keyword label">label</span>
+                            <span class="pseudo-label"><span class="numeric-macro" title="macro = 30 §7"><a href="#exit-definition">exit</a></span></span><span class="punctuator semicolon">;</span>
+                            <span class="comment">enable a quick <code><span class="keyword-like overridden-normal-macro" title="macro ≡ goto exit §7"><a href="#return-definition">return</a></span></code></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword begin">begin</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table class="indent">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <var class="global" title="0..max_word_length §13"><a href="#word-length-declaration">word_length</a></var>
+                                    <span class="punctuator becomes">←</span>
+                                    <span class="decimal-integer">0</span><span class="semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span class="keyword if">if</span>
+                                    <span class="punctuator not">¬</span><span class="function-name standard">eof</span>
+                                    <span class="keyword then">then</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <table class="indent">
+                                      <tbody>
+                                        <tr>
+                                          <td>
+                                            <span class="keyword begin">begin</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <table class="indent">
+                                              <tbody>
+                                                <tr>
+                                                  <td>
+                                                    <span class="keyword while">while</span>
+                                                    <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §2"><a href="#input-definition">input</a></var><span class="punctuator up-arrow">↑</span><span class="punctuator right-parenthesis">)</span><span class="punctuator right-bracket">]</span>
+                                                    <span class="equal">=</span>
+                                                    <span class="decimal-integer">0</span>
+                                                    <span class="keyword do">do</span>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <table class="indent">
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>
+                                                            <span class="keyword if">if</span>
+                                                            <span class="punctuator not">¬</span><span class="function-name standard">eoln</span>
+                                                            <span class="keyword then">then</span>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            <table class="indent">
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td>
+                                                                    <span class="procedure-name standard">get</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §2"><a href="#input-definition">input</a></var><span class="punctuator right-parenthesis">)</span>
+                                                                  </td>
+                                                                </tr>
+                                                              </tbody>
+                                                            </table>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            <span class="keyword else">else</span>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            <table class="indent">
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td>
+                                                                    <span class="keyword begin">begin</span>
+                                                                  </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>
+                                                                    <table class="indent">
+                                                                      <tbody>
+                                                                        <tr>
+                                                                          <td>
+                                                                            <!-- TANGLE turns read_ln into READLN -->
+                                                                            <span class="procedure-name standard">read_ln</span><span class="punctuator semicolon">;</span>
+                                                                          </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td>
+                                                                            <span class="keyword if">if</span>
+                                                                            <span class="function-name standard">eof</span>
+                                                                            <span class="keyword then">then</span>
+                                                                          </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td>
+                                                                            <table class="indent">
+                                                                              <tbody>
+                                                                                <tr>
+                                                                                  <td>
+                                                                                    <span class="keyword-like overridden-normal-macro" title="macro ≡ goto exit §7"><a href="#return-definition">return</a></span><span class="punctuator semicolon">;</span>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </tbody>
+                                                                            </table>
+                                                                          </td>
+                                                                        </tr>
+                                                                      </tbody>
+                                                                    </table>
+                                                                  </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>
+                                                                    <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                                                                  </td>
+                                                                </tr>
+                                                              </tbody>
+                                                            </table>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <span class="section-name">Read a word into <code><var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var></code> <a href="#section-16" class="section-link"><span class="section-number">16</span></a></span><span class="punctuator semicolon">;</span>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="dedent">
+                              <span class="pseudo-label"><a href="#exit-get-word-declaration">exit</a></span><span class="punctuator colon">:</span>
+                            </div>
+                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="section-16">
+          <p>
+            At this point
+            <code>
+              <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §2"><a href="#input-definition">input</a></var><span class="punctuator up-arrow">↑</span><span class="punctuator right-parenthesis">)</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator greater-than">></span>
+              <span class="decimal-integer">0</span></code>,
+            hence
+            <code><var class="program-parameter" title="program parameter file §2"><a href="#input-definition">input</a></var><span class="punctuator up-arrow">↑</span></code>
+            contains the first letter of a word.
+          </p>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Read a word into <code><var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var></code> <a href="#section-16" class="section-link"><span class="section-number">16</span></a></span><span class="punctuator equivalent">≡</span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="keyword repeat">repeat</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span class="keyword if">if</span>
+                            <var class="global" title="0..max_word_length §13"><a href="#word-length-declaration">word_length</a></var>
+                            <span class="punctuator equal">=</span>
+                            <span class="numeric-macro" title="macro = 60 §13"><a href="#max-word-length-definition">max_word_length</a></span>
+                            <span class="keyword then">then</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table class="indent">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <var class="global" title="boolean §13"><a href="#word-truncated-declaration">word_truncated</a></var>
+                                    <span class="punctuator becomes">←</span>
+                                    <span class="enumerator standard">true</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword else">else</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table class="indent">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <span class="keyword begin">begin</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <table class="indent">
+                                      <tbody>
+                                        <tr>
+                                          <td>
+                                            <span class="parametric-macro" title="macro (#) ≡ # ← # + 1 §6"><a href="#incr-definition">incr</a></span><span class="punctuator left-parenthesis">(</span><var class="global" title="0..max_word_length §13"><a href="#word-length-declaration">word_length</a></var><span class="punctuator right-parenthesis">)</span><span class="punctuator semicolon">;</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var><span class="punctuator left-bracket">[</span><var class="global" title="0..max_word_length §13"><a href="#word-length-declaration">word_length</a></var><span class="punctuator right-bracket">]</span>
+                                            <span class="punctuator becomes">←</span>
+                                            <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §2"><a href="#input-definition">input</a></var><span class="punctuator up-arrow">↑</span><span class="punctuator right-parenthesis">)</span><span class="punctuator right-bracket">]</span><span class="punctuator semicolon">;</span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="procedure-name standard">get</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §3"><a href="#input-definition">input</a></var><span class="right-parenthesis">)</span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="keyword until">until</span>
+                    <var class="global" title="array [0..255] of 0..26 §11"><a href="#lettercode-declaration">lettercode</a></var><span class="punctuator left-bracket">[</span><span class="function-name standard">ord</span><span class="punctuator left-parenthesis">(</span><var class="program-parameter" title="program parameter file §2"><a href="#input-definition">input</a></var><span class="punctuator up-arrow">↑</span><span class="punctuator right-parenthesis">)</span><span class="punctuator right-bracket">]</span>
+                    <span class="punctuator equal">=</span>
+                    <span class="decimal-integer">0</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-15">15</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section id="dictionary-lookup">
+        <h2>Dictionary lookup</h2>
+        <section id="section-17">
+          <p>
+            Given a word in the buffer, we will want to look for it in a dynamic
+            dictionary of all words that have appeared so far. We expect many
+            words to occur often, so we want a search technique that will find
+            existing words quickly. Furthermore, the dictionary should
+            accommodate words of variable length, and (ideall) it should also
+            facilitate the taks of alphabetic ordering.
+          </p>
+          <p>
+            These constraints suggest a variant of the data structure introduced
+            by Frank M. Liang in his Ph.D. thesis [“Word Hy-phen-a-tion by
+            Com-pu-ter,” Stanford University, 1983]. Liang's structure, which we
+            may call a <dfn>hash trie</dfn>, requires comparatively few
+            operations to find a word that is already present, although it may
+            take somewhat longer to insert a new entry. Some space is
+            sacrificed—we will need two pointers, a count, and another 5-bit
+            field for each character in the dictionary, plus extra space to keep
+            the hash table from becoming congested—but relatively large memories
+            are commonplace nowadays, so the method seems ideal for the present
+            application.
+          </p>
+          <p>
+            A trie represents a set of words and all prefixes of those words
+            [cf. Knuth, <cite>Sorting and Searching</cite>, Section 6.3]. For
+            convenience, we shall say that all nonempty prefixes of the words in
+            our dictionary are also words, even though they may not occur as
+            “words” in the input file. Each word (in this generalized sense) is
+            represented by a
+            <code><span class="type-name" title="0..trie_size §17"><a href="#pointer-definition">pointer</a></span></code>,
+            which is an index into four large arrays
+            called
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var></code>,
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var></code>,
+            <code><var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var></code>,
+            and
+            <code><var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var></code>.
+          </p>
+          <div class="definition-part">
+            <div class="macro-definition" id="trie-size-definition">
+              <span class="keyword define">define</span>
+              <span class="numeric-macro" title="macro = 32767 §17"><a href="#trie-size-definition">trie_size</a></span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">32767</span>
+              <span class="comment">the largest pointer value</span>
+            </div>
+          </div>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Type declarations <a href="#section-17" class="section-link"><span class="section-number">17</span></a></span><span class="punctuator equivalent">≡</span>
+            <br>
+            <table class="code indent">
+              <tbody>
+                <tr id="pointer-definition">
+                  <td>
+                    <span class="type-name" title="0..trie_size"><a href="#pointer-definition">pointer</a></span>
+                    <span class="punctuator equal">=</span>
+                    <span class="decimal-integer">0</span><span class="punctuator subrange">..</span><span class="numeric-macro" title="macro = 32767 §17"><a href="#trie-size-definition">trie_size</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-3">3</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section-18">
+          <p>
+            One-letter words are represented by the pointers 1 through 26. The
+            representation of longer words is defined recursively: If
+            <var>p</var> represents word <var>w</var> and if
+            <code>
+              <span class="decimal-integer">1</span>
+              <span class="punctuator less-than-or-equal-to">≤</span>
+              <var>c</var>
+              <span class="punctuator less-than-or-equal-to">≤</span>
+              <span class="decimal-integer">26</span></code>,
+            then the word <var>w</var> followed by the <var>c</var>th letter of
+            the alphabet is represented by
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span>
+              <span class="punctuator plus">+</span>
+              <var>c</var></code>.
+          </p>
+          <p>
+            For example, suppose that
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><span clas="decimal-integer">2</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span clas="decimal-integer">1000</span></code>,
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><span clas="decimal-integer">1005</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span clas="decimal-integer">2000</span></code>,
+            and
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><span clas="decimal-integer">2015</span>] = <span clas="decimal-integer">3000</span></code>.
+            Then the word “<kbd>b</kbd>” is represented by
+            the pointer value <span class="decimal-integer">2</span>;
+            “<kbd>be</kbd>” is represented by
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var>[2] + 5 = 1005</code>;
+            “<kbd>ben</kbd>” is represented by
+            <span class="decimal-integer">2015</span>; and “<kbd>bent</kbd>” by
+            <span class="decimal-integer">3021</span>. If no longer word
+            beginning with “<kbd>bent</kbd>” appears in
+            the dictionary,
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var>[3021]</code> will be zero.
+          </p>
+          <p>
+            The hash trie also contains redundant information to facilitate
+            traversal and updating. If
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="right-bracket">]</span></code>
+            is nonzero, then
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <var>p</var></code>.
+            Furthermore if
+            <code>
+              <var>q</var>
+              <span class="punctuator equal">=</span>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="right-bracket">]</span>
+              <span class="punctuator">+</span>
+              <var>c</var>
+            </code>
+            is a “child” of <var>p</var>, we have
+            <code>
+              <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><var>q</var><span class="punctuator left-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <var>c</var></code>;
+            this makes it possible to go from child to
+            parent, since
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>q</var>
+              <span class="punctuator minus">−</span>
+              <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><var>q</var><span class="punctuator left-bracket">]</span><span class="punctuator left-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var>]]
+              <span class="punctuator equal">=</span>
+              <var>p</var></code>.
+          </p>
+          <p>
+            Children of the same parent are linked by
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var></code>
+            pointers: The
+            largest child of <var>p</var> is
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span><span class="punctuator right-bracket">]</span></code>,
+            and the next largest is
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span><span class="punctuator right-bracket">]</span><span class="punctuator right-bracket">]</span></code>;
+            the smallest child's
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var></code>
+            pointer is
+            <code>link<span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span></code>.
+            Continuing our earlier example, if all words in the dictionary
+            beginning with “<kbd>be</kbd>” start with either “<kbd>ben</kbd>” or
+            “<kbd>bet</kbd>”, then
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">2000</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">2021</span></code>,
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">2021</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">2015</span></code>,
+            and
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">2015</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">2000</span></code>.
+          </p>
+          <p>
+            Notice that children of different parents might appear
+            next to each other. For example, we might
+            have
+            <code>
+              <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">2020</span><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">6</span></code>,
+            for the child of some word such that
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">2014</span></code>.
+          </p>
+          <p>
+            If
+            <code>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span>
+              <span class="punctuator not-equal">≠</span>
+              <span class="decimal-integer">0</span>
+            </code>,
+            the table entry in position
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span></code>
+            is called the “header” of <var>p</var>’s children. The special code
+            value
+            <code><span class="numeric-macro" title="macro = 27 §18"><a href="header-definition">header</a></span></code> appears in the
+            <code><var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var></code>
+            field of each header entry.
+          </p>
+          <p>
+            If <var>p</var> represents a word,
+            <code><var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span></code>
+            is the number of times that the word has occurred in the input so far.
+            The
+            <code><var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var></code>
+            field in a header entry is undefined.
+            Unused positions <var>p</var> have
+            <code>
+              <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span>
+              <span class="punctuator equal">=</span>
+              <span class="numeric-macro" title="macro = 27 §18"><a href="empty-slot-definition">empty_slot</a></span></code>.
+            In this case
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span></code>,
+            <code><var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span></code>,
+            and
+            <code><var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var><span class="punctuator left-bracket">[</span><var>p</var><span class="punctuator right-bracket">]</span></code>
+            are undefined.
+          </p>
+          <div class="definition-part">
+            <div class="macro-definition" id="empty-slot-definition">
+              <span class="keyword define">define</span>
+              <span class="numeric-macro" title="macro = 0 §18"><a href="#empty-slot-definition">empty_slot</a></span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">0</span>
+            </div>
+            <div class="macro-definition" id="header-definition">
+              <span class="keyword define">define</span>
+              <span class="numeric-macro" title="macro = 27 §18"><a href="#header-definition">header</a></span>
+              <span class="punctuator equal">=</span>
+              <span class="decimal-integer">27</span>
+            </div>
+            <div class="macro-definition" id="move-to-prefix-definition">
+              <span class="keyword define">define</span>
+              <span class="parametric-macro" title="macro (#) ≡ # ← link[# − ch[#]] §18"><a href="#move-to-prefix-definition">move_to_prefix</a></span><span class="punctuator left-parenthesis">(</span><span class="punctuator macro-parameter">#</span><span class="punctuator right-parentheis">)</span>
+              <span class="punctuator equivalent">≡</span>
+              <span class="punctuator macro-parameter">#</span>
+              <span class="punctuator becomes">←</span>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><span class="punctuator macro-parameter">#</span>
+              <span class="punctuator minus">−</span>
+              <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><span class="punctuator macro-parameter">#</span><span class="punctuator right-bracket">]</span><span class="punctuator right-bracket">]</span>
+            </div>
+            <div class="macro-definition" id="move-to-last-suffix-definition">
+              <span class="keyword define">define</span>
+              <span class="parametric-macro" title="macro (#) ≡ while link[#] ≠ 0 do # ← sibling[link[#]] §18"><a href="#move-to-last-suffix-definition">move_to_last_suffix</a></span><span class="punctuator left-parenthesis">(</span><span class="punctuator macro-parameter">#</span><span class="punctuator right-parentheis">)</span>
+              <span class="punctuator equivalent">≡</span>
+              <span class="keyword while">while</span>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><span class="punctuator macro-parameter">#</span><span class="punctuator right-bracket">]</span>
+              <span class="punctator not-equal">≠</span>
+              <span class="decimal-integer">0</span>
+              <span class="keyword do">do</span>
+              <span class="punctuator macro-parameter">#</span>
+              <span class="punctuator becomes">←</span>
+              <var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><span class="punctuator macro-parameter">#</span><span class="punctuator right-bracket">]</span><span class="punctuator right-bracket">]</span>
+            </div>
+          </div>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Global variables <a href="#section-4" class="section-link"><span class="section-number">4</span></a></span><span class="punctuator plus-equivalent">+≡</span>
+            <span class="previous-definition-link"><a href="#section-13" title="go to the previous definition of ⟨Global variables 4⟩">◂</a></span>
+            <span class="next-definition-link"><a href="#section-22" title="go to the next definition of ⟨Global variables 4⟩">▸</a></span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr>
+                  <td>
+                    <var class="global" title="array [pointer] of pointer §18" id="link-declaration"><a href="#link-declaration">link</a></var><span class="punctuator comma">,</span>
+                    <var class="global" title="array [pointer] of pointer §18" id="sibling-declaration"><a href="#sibling-declaration">sibling</a></var><span class="punctuator colon">:</span>
+                    <span class="keyword array">array</span>
+                    <span class="punctuator left-bracket">[</span><span class="type-name" title="0..trie_size §17"><a href="#pointer-definition">pointer</a></span><span class="punctuator right-bracket">]</span>
+                    <span class="keyword of">of</span>
+                    <span class="type-name" title="0..trie_size §17"><a href="#pointer-definition">pointer</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr id="ch-declaration">
+                  <td>
+                    <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator colon">:</span>
+                    <span class="keyword array">array</span>
+                    <span class="punctuator left-bracket">[</span><span class="type-name" title="0..trie_size §17"><a href="#pointer-definition">pointer</a></span><span class="punctuator right-bracket">]</span>
+                    <span class="keyword of">of</span>
+                    <span class="numeric-macro" title="macro = 0 §18"><a href="#empty-slot-definition">empty_slot</a></span><span class="punctuator subrange">..</span><span class="numeric-macro" title="macro = 27 §18"><a href="#header-definition">header</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="section-19" class="empty-TeX-part">
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Set initial values <a href="#section-12" class="section-link"><span class="section-number">12</span></a></span><span class="punctuator plus-equivalent">+≡</span>
+            <span class="previous-definition-link"><a href="#section-14" title="go to the previous definition of ⟨Set initial values 12⟩">◂</a></span>
+            <span class="next-definition-link"><a href="#section-23" title="go to the next definition of ⟨Set initial values 12⟩">▸</a></span>
+            <br>
+            <table class="code indent">
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="keyword for">for</span>
+                    <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var>
+                    <span class="punctuator becomes">←</span>
+                    <span class="decimal-integer">27</span>
+                    <span class="keyword to">to</span>
+                    <span class="numeric-macro" title="macro = 32767 §17"><a href="#trie-size-definition">trie_size</a></span>
+                    <span class="keyword do">do</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator left-bracket">]</span>
+                            <span class="punctuator becomes">←</span>
+                            <span class="numeric-macro" title="macro = 27 §18"><a href="empty-slot-definition">empty_slot</a></span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="keyword for">for</span>
+                    <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var>
+                    <span class="punctuator becomes">←</span>
+                    <span class="decimal-integer">1</span>
+                    <span class="keyword to">to</span>
+                    <span class="decimal-integer">26</span>
+                    <span class="keyword do">do</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span class="keyword begin">begin</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table class="indent">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator left-bracket">]</span>
+                                    <span class="punctuator becomes">←</span>
+                                    <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator left-bracket">]</span>
+                                    <span class="punctuator becomes">←</span>
+                                    <span class="decimal-integer">0</span><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var><span class="punctuator left-bracket">[</span><var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator left-bracket">]</span>
+                                    <span class="punctuator becomes">←</span>
+                                    <span class="decimal-integer">0</span><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var><span class="punctuator left-bracket">]</span>
+                                    <span class="punctuator becomes">←</span>
+                                    <var class="local" title="integer §5"><a href="#i-initialize-declaration">i</a></var>
+                                    <span class="punctuator minus">−</span>
+                                    <span class="decimal-integer">1</span><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">0</span><span class="punctuator left-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="numeric-macro" title="macro = 27 §18"><a href="header-definition">header</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">0</span><span class="punctuator left-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="decimal-integer">0</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <var class="global" title="array [pointer] of pointer §18"><a href="#sibling-declaration">sibling</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">0</span><span class="punctuator left-bracket">]</span>
+                    <span class="punctuator becomes">←</span>
+                    <span class="decimal-integer">26</span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="section-20">
+          <p>
+            Here's the basic subroutine that finds a given word in the
+            dictionary. The word will be inserted (with a
+            <code><var class="global" title="array [pointer] of 0..max_count §32"><a href="#count-declaration">count</a></var></code>
+            of zero) if it isn't already present. More precisely, the
+            <code><span class="function-name" title="function: pointer §20"><a href="#find-buffer-definition">find_buffer</a></span></code>
+            function looks for the contents of
+            <code><var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var></code>,
+            and returns a pointer to the appropriate dictionary location. If the
+            dictionary is so full that a new word cannot be inserted, the
+            pointer 0 is returned.
+          </p>
+          <div class="definition-part">
+            <div class="macro-definition" id="abord-find-definition">
+              <span class="keyword define">define</span>
+              <span class="normal-macro" title="macro ≡ begin find_buffer ← 0; return; end §20"><a href="#abord-find-definition">abort_find</a></span>
+              <span class="punctuator equivalent">≡</span>
+              <span class="keyword begin">begin</span>
+              <span class="function-name" title="function: pointer §20"><a href="#find-buffer-definition">find_buffer</a></span>
+              <span class="punctuator becomes">←</span>
+              <span class="decimal-integer">0</span><span class="punctuator semicolon">;</span>
+              <span class="keyword-like overridden-normal-macro" title="macro ≡ goto exit §7"><a href="#return-definition">return</a></span><span class="punctuator semicolon">;</span>
+              <span class="keyword end">end</span>
+            </div>
+          </div>
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Procedures for data manipulation <a href="#section-20" class="section-link"><span class="section-number">20</span></a></span><span class="punctuator equivalent">≡</span>
+            <span class="next-definition-link"><a href="#section-37" title="go to the next definition of ⟨Procedures for data manipulation 20⟩">▸</a></span>
+            <br>
+            <table class="code">
+              <tbody>
+                <tr id="find-buffer-definition">
+                  <td>
+                    <span class="keyword function">function</span>
+                    <span class="function-name" title="function: pointer §20"><a href="#find-buffer-definition">find_buffer</a></span><span class="punctuator colon">:</span>
+                    <span class="type-name" title="0..trie_size §17"><a href="#pointer-definition">pointer</a></span><span class="punctuator semicolon">;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr id="exit-find-buffer-declaration">
+                          <td>
+                            <span class="keyword label">label</span>
+                            <span class="pseudo-label"><span class="numeric-macro" title="macro = 30 §7"><a href="#exit-definition">exit</a></span></span><span class="punctuator semicolon">;</span>
+                            <span class="comment">enable a quick <code><span class="keyword-like overridden-normal-macro" title="macro ≡ goto exit §7"><a href="#return-definition">return</a></span></code></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword var">var</span>
+                            <table class="declaration-group">
+                              <tbody>
+                                <tr id="i-find-buffer-declaration">
+                                  <td>
+                                    <var class="local" title="1..max_word_length §20"><a href="#i-find-buffer-declaration">i</a></var><span class="punctuator colon">:</span>
+                                    <span class="decimal-integer">1</span><span class="punctuator subrange">..</span><span class="numeric-macro" title="macro = 60 §13"><a href="#max-word-length-definition">max_word_length</a></span><span class="punctuator semicolon">;</span>
+                                    <span class="comment">index into <code><var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var></code></span>
+                                  </td>
+                                </tr>
+                                <tr id="p-find-buffer-declaration">
+                                  <td>
+                                    <var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var><span class="punctuator colon">:</span>
+                                    <span class="type-name" title="0..trie_size §17"><a href="#pointer-definition">pointer</a></span><span class="punctuator semicolon">;</span>
+                                    <span class="comment">the current word position</span>
+                                  </td>
+                                </tr>
+                                <tr id="q-find-buffer-declaration">
+                                  <td>
+                                    <var class="local" title="pointer §20"><a href="#q-find-buffer-declaration">q</a></var><span class="punctuator colon">:</span>
+                                    <span class="type-name" title="0..trie_size §17"><a href="#pointer-definition">pointer</a></span><span class="punctuator semicolon">;</span>
+                                    <span class="comment">the next word position</span>
+                                  </td>
+                                </tr>
+                                <tr id="c-find-buffer-declaration">
+                                  <td>
+                                    <var class="local" title="1..26 §20"><a href="#c-find-buffer-declaration">c</a></var><span class="punctuator colon">:</span>
+                                    <span class="decimal-integer">1</span><span class="punctuator subrange">..</span><span class="decimal-integer">26</span><span class="punctuator semicolon">;</span>
+                                    <span class="comment">current letter code</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span class="section-name">Other local variables of <span class="function-name" title="function: pointer §20"><a href="#find-buffer-definition">find_buffer</a></span> <a href="#section-26" class="section-link"><span class="section-number">26</span></a></span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword begin">begin</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table class="indent">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <var class="local" title="1..max_word_length §20"><a href="#i-find-buffer-declaration">i</a></var>
+                                    <span class="punctuator becomes">←</span>
+                                    <span class="decimal-integer">1</span><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var>
+                                    <span class="punctuator becomes">←</span>
+                                    <var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var><span class="punctuator left-bracket">[</span><span class="decimal-integer">1</span><span class="punctuator right-bracket">]</span><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span class="keyword while">while</span>
+                                    <var class="local" title="1..max_word_length §20"><a href="#i-find-buffer-declaration">i</a></var>
+                                    <span class="punctuator less-than">&lt;</span>
+                                    <var class="global" title="0..max_word_length §13"><a href="#word-length-declaration">word_length</a></var>
+                                    <span class="keyword do">do</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <table class="indent">
+                                      <tbody>
+                                        <tr>
+                                          <td>
+                                            <span class="keyword begin">begin</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <table class="indent">
+                                              <tbody>
+                                                <tr>
+                                                  <td>
+                                                    <span class="parametric-macro" title="macro (#) ≡ # ← # + 1 §6"><a href="#incr-definition">incr</a></span><span class="punctuator left-parenthesis">(</span><var class="local" title="1..max_word_length §20"><a href="#i-find-buffer-declaration">i</a></var><span class="punctuator right-parenthesis">)</span><span class="punctuator semicolon">;</span>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <var class="local" title="1..26 §20"><a href="#c-find-buffer-declaration">c</a></var>
+                                                    <span class="punctuator becomes">←</span>
+                                                    <var class="global" title="array [1..max_word_length] of 1..26 §13"><a href="#buffer-declaration">buffer</a></var><span class="punctuator left-bracket">[</span><var class="local" title="1..max_word_length §20"><a href="#i-find-buffer-declaration">i</a></var><span class="punctuator right-bracket">]</span><span class="punctuator semicolon">;</span>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <span class="section-name">Advance <code><var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var></code> to its child number <code><var class="local" title="1..26 §20"><a href="#c-find-buffer-declaration">c</a></var></code> <a href="#section-21" class="section-link"><span class="section-number">21</span></a></span>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span class="function-name" title="function: pointer §20"><a href="#find-buffer-definition">find_buffer</a></span>
+                                    <span class="punctuator becomes">←</span>
+                                    <var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var><span class="punctuator semicolon">;
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="dedent">
+                              <span class="pseudo-label"><a href="#exit-get-word-declaration">exit</a></span><span class="punctuator colon">:</span>
+                            </div>
+                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="one-subsequent-definition">
+                <span class="section-number subsequent-definition"><a href="#section-37">37</a></span>
+              </div>
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-3">3</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="section-21" class="empty-TeX-part">
+          <div class="Pascal-part section-definition">
+            <span class="section-name">Advance <code><var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var></code> to its child number <code><var class="local" title="1..26 §20"><a href="#c-find-buffer-declaration">c</a></var></code> <a href="#section-21" class="section-link"><span class="section-number">21</span></a></span><span class="punctuator equivalent">≡</span>
+            <br>
+            <table class="code indent">
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="keyword if">if</span>
+                    <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var><span class="punctuator right-bracket">]</span>
+                    <span class="punctuator equal">=</span>
+                    <span class="decimal-integer">0</span>
+                    <span class="keyword then">then</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span class="section-name">Insert the firstborn child of <var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var> and move to it, or <span class="normal-macro" title="macro ≡ begin find_buffer ← 0; return; end §20"><a href="#abord-find-definition">abort_find</a></span> <a href="#section-21" class="section-link"><span class="section-number">21</span></a></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                <tr>
+                  <td>
+                    <span class="keyword else">else</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table class="indent">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span class="keyword begin">begin</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table class="indent">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <var class="local" title="pointer §20"><a href="#q-find-buffer-declaration">q</a></var>
+                                    <span class="punctuator becomes">←</span>
+                                    <var class="global" title="array [pointer] of pointer §18"><a href="#link-declaration">link</a></var><span class="punctuator left-bracket">[</span><var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var><span class="punctuator right-bracket">]</span>
+                                    <span class="punctuator plus">+</span>
+                                    <var class="local" title="1..26 §20"><a href="#c-find-buffer-declaration">c</a></var><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span class="keyword if">if</span>
+                                    <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><var class="local" title="pointer §20"><a href="#q-find-buffer-declaration">q</a></var><span class="punctuator right-bracket">]</span> 
+                                    <span class="punctuator not-equal">≠</span> 
+                                    <var class="local" title="1..26 §20"><a href="#c-find-buffer-declaration">c</a></var>
+                                    <span class="keyword then">then</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <table class="indent">
+                                      <tbody>
+                                        <tr>
+                                          <td>
+                                            <span class="keyword begin">begin</span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <table class="indent">
+                                              <tbody>
+                                                <tr>
+                                                  <td>
+                                                    <span class="keyword if">if</span>
+                                                    <var class="global" title="array [pointer] of empty_slot..header §18"><a href="#ch-declaration">ch</a></var><span class="punctuator left-bracket">[</span><var class="local" title="pointer §20"><a href="#q-find-buffer-declaration">q</a></var><span class="punctuator right-bracket">]</span>
+                                                    <span class="punctuator">≠</span>
+                                                    <span class="numeric-macro" title="macro = 0 §18"><a href="#empty-slot-definition">empty_slot</a></span>
+                                                    <span class="keyword then">then</span>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <table class="indent">
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>
+                                                            <span class="section-name">Move <code><var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var></code>'s family to a place where child <code><var class="local" title="1..26 §20"><a href="#c-find-buffer-declaration">c</a></var></code> will fit, or <code><span class="normal-macro" title="macro ≡ begin find_buffer ← 0; return; end §20"><a href="#abord-find-definition">abort_find</a></span></code> <span class="section-number"><a href="#section-29">29</a></span></span><span class="punctuator semicolon">;</span>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <span class="section-name">Insert child <code><var class="local" title="1..26 §20"><a href="#c-find-buffer-declaration">c</a></var></code> into <code><var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var></code>'s family <span class="section-number"><a href="#section-28">28</a></span></span><span class="punctuator semicolon">;</span>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <span class="keyword end">end</span>;
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <var class="local" title="pointer §20"><a href="#p-find-buffer-declaration">p</a></var>
+                                    <span class="punctuator becomes">←</span>
+                                    <var class="local" title="pointer §20"><a href="#q-find-buffer-declaration">q</a></var><span class="punctuator semicolon">;</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="keyword end">end</span><span class="punctuator semicolon">;</span>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="auxiliary-details">
+              <div class="used-in-single">
+                <span class="section-number last-in-used-in"><a href="#section-20">20</a></span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </article>
+  </body>
+</html>
