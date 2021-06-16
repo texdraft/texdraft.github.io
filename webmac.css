@@ -1,0 +1,208 @@
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.display {
+  text-align: center;
+}
+
+.section-number {
+  font-size: smaller;
+}
+
+var,
+.type-name,
+.program-name,
+.procedure-name,
+.function-name,
+.numeric-macro,
+.normal-macro,
+.parametric-macro,
+.enumerator {
+  font-style: italic;
+}
+
+.character-constant::before,
+.character-constant::after {
+  content: "'";
+  font-family: monospace;
+}
+
+.character-constant {
+  font-family: monospace;
+}
+
+.section-name::before {
+  content: "⟨\2009"; /* that's a thin space */
+}
+
+.section-name::after {
+  content: "\2009⟩"; /* that's a thin space */
+}
+
+.section-name + .equivalent,
+.section-name + .plus-equivalent {
+  padding-left: 0.125em;
+}
+
+.keyword,
+.keyword-like {
+  font-weight: bold;
+}
+
+code {
+  font-family: inherit;
+}
+
+code,
+.formula {
+  white-space: nowrap;
+}
+
+.macro-parameter {
+  font-family: monospace;
+}
+
+.tt {
+  font-family: monospace;
+}
+
+.comment {
+  padding-left: 0.5em;
+}
+
+.comment::before {
+  content: "{";
+}
+
+.comment::after {
+  content: "}";
+}
+
+.definition-part {
+  margin-left: 1em;
+}
+
+.code, .declaration-group {
+  display: inline-table;
+  vertical-align: baseline;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+.indent {
+  margin-left: 1em;
+}
+
+.dedent {
+  display: inline;
+  margin-left: -1em;
+}
+
+.code,
+.indent {
+  border-spacing: 1px;
+}
+
+.code td {
+  vertical-align: baseline;
+  padding: 0;
+}
+
+p {
+  margin-top: 1em;
+}
+
+section,
+.Pascal-part,
+.definition-part {
+  margin-top: 1.5em;
+}
+
+.section-definition .code {
+  margin-bottom: 0.5em;
+}
+
+body {
+  width: 50em;
+  margin: 0 auto;
+}
+
+.auxiliary-details {
+  margin-top: 0.5em;
+  font-size: small;
+}
+
+.several-subsequent-definitions::before {
+  content: "See also sections ";
+}
+
+.one-subsequent-definition::before {
+  content: "See also section ";
+}
+
+.penultimate-subsequent-definition::after {
+  content: ",";
+}
+
+.last-in-subsequent-definitions::before {
+  content: " and ";
+}
+
+.last-in-subsequent-definitions::after {
+  content: ".";
+}
+
+.subsequent-definition::after {
+  content: ",";
+}
+
+.used-in-single::before {
+  content: "This code is used in section"
+}
+
+.last-in-used-in::after {
+  content: ".";
+}
+
+/* Thanks to https://stackoverflow.com/questions/67911885/67912023#67912023 */
+
+body {
+  counter-reset: section-count;
+}
+
+section > h2 + section > p:first-child::before {
+  counter-increment: none;
+  content: none;
+}
+
+h2::before,
+section > section > p:first-child::before,
+section > section.empty-TeX-part > div::before {
+  counter-increment: section-count;
+  content: counter(section-count) ". ";
+  font-size: 1em;
+  font-weight: bold;
+}
+
+h2 {
+  display: inline-block;
+  font-size: 1em;
+  margin: 0 0.5em 0 0;
+}
+
+h2::after {
+  content: ".";
+}
+
+section > h2 + section {
+  display: inline;
+}
+
+section > h2 + section > p:first-child {
+  display: inline;
+}
