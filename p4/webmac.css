@@ -1,0 +1,160 @@
+/* Layout */
+
+body {
+  width: 50em;
+  margin: 0 auto;
+}
+
+section,
+.Pascal-part,
+.definition-part,
+.trace {
+  margin-top: 1.5em;
+}
+
+.definition-part, /* macro definitions are indented */
+.indent {
+  margin-left: 1em; /* = \quad */
+}
+
+.code,
+.indent {
+  white-space: nowrap;
+}
+
+.auxiliary-details {
+  margin-top: 0.5em;
+  font-size: small;
+}
+
+.declaration-group {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.use-list ol li {
+  margin-top: 0.25em;
+}
+
+.end-routine {
+  margin-top: 0.25em;
+}
+
+.enumerator-list {
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+}
+
+/* General formatting */
+
+.use-list {
+  list-style-type: none;
+}
+
+.uses-in-section {
+  list-style-type: square;
+}
+
+a {
+  text-decoration: none; /* underlining every identifier looks pretty bad */
+}
+
+a:hover {
+  text-decoration: underline; /* but it's fine when hovering */
+}
+
+code,
+.formula {
+  white-space: nowrap; /* don't break lines in inline code or formulas */
+}
+
+.subject-identifier {
+  border: 1px solid;
+}
+
+/* This rule lets us get output like
+ *         begin
+ *           x := 0;
+ *    label: y := 1
+ *         end. */
+.label-expression {
+  padding-right: 0.25em;       /* space after colon */
+  position: absolute;          /* allow the transform to work */
+  transform: translate(-100%); /* labels protrude by their full width */
+}
+
+/* Fonts */
+
+.section-number-run-in {
+  font-weight: bold;
+}
+
+var,
+.identifier,
+.type-name,
+.program-name,
+.routine-name,
+.numeric-macro,
+.normal-macro,
+.parametric-macro,
+.constant-name,
+.field-name,
+.parameter-name,
+.enumerator-name,
+.forward {
+  font-style: italic;
+  /* Once CSS Fonts Level 4 (https://www.w3.org/TR/css-fonts-4/) is widely
+   * adopted, we might want to have
+             font-family: math;
+   * here as well. */
+}
+
+.keyword,
+.keyword-like { /* “define” and “format”, along with “debug” et al. */
+  font-weight: bold;
+}
+
+.tt, /* \.{...} */
+.string-contents,
+.macro-parameter {
+  font-family: monospace;
+}
+
+.forward-arrow {
+  font-size: small;
+}
+
+.module-name .section-number-link {
+  font-size: smaller;
+}
+
+code {
+  font-family: inherit; /* don't monospace punctuation */
+}
+
+/* Spacing tweaks */
+
+/* Note: “0.16em” is supposed to be a “thin space” (\, in TeX). You could also
+ * use U+2009 THIN SPACE before and after elements. */
+
+.field-width-colon,
+.subrange {
+  padding-left: 0.16em;
+  padding-right: 0.16em;
+}
+
+.empty-set-bracket,
+.empty-variant-parenthesis {
+  padding-right: 0.16em; /* extra space in “[]” and “()” */
+}
+
+/* The space added here separates module names from the triangle buttons. */
+.module-name + .equivalence-sign,
+.module-name + .plus-equivalent {
+  padding-left: 0.16em;
+}
+
+.comment {
+  padding-left: 0.5em;
+}

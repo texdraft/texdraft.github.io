@@ -1,0 +1,101 @@
+/* Special changes I think look nice */
+
+/* Pagella's “:=” symbol is beautiful. */
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: Pagella;
+  src: url("../fonts/texgyrepagella-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: italic;
+  font-family: Pagella;
+  src: url("../fonts/texgyrepagella-italic.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-family: Pagella;
+  src: url("../fonts/texgyrepagella-bold.otf") format("opentype");
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-family: DVM;
+  src: url("../fonts/DejaVuSansMono.ttf") format("truetype");
+}
+
+.string-contents {
+  font-family: DVM;
+  font-size: smaller;
+}
+
+body {
+  line-height: 1.1;
+  font-family: Pagella;
+}
+
+/* Uncomment the next two rules for the true Algol 68 experience.
+ * I prefer DejaVu Sans, but it's a fundamentally larger font than Pagella.
+ * Decreasing the size (to “smaller”) fixes this at a distance; however, you can
+ * still tell that something isn't right when you zoom in. The same problem is
+ * present with DejaVu Sans Mono, although to a lesser extent (which is why I've
+ * used it for string-contents above). */
+/*
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-family: Heros;
+  src: url("texgyreheros-bold.otf") format("opentype");
+}
+
+.keyword,
+.keyword-like {
+  font-family: Heros, sans-serif;
+}
+*/
+
+h1 {
+  text-align: center;
+}
+
+/* The space after commas and colons are larger than the normal interword
+ * spacing, so we compensate: */
+.var,
+.const,
+.type,
+.label {
+  padding-right: 0.24em;
+}
+
+.punctuator.dot {
+  padding-left: 0.16em;
+  padding-right: 0.16em;
+}
+
+.punctuator.up-arrow {
+  padding-left: 0.16em;
+}
+
+.punctuator.comma {
+  padding-right: 0.24em;
+}
+
+.punctuator.becomes {
+  padding-left: 0.16em;
+  padding-right: 0.16em;
+}
+
+.punctuator.parameter-semicolon {
+  padding-right: 0.32em;
+}
+
+.punctuator.not {
+  position: relative;
+  top: -0.05em;
+  padding-right: 0.1em;
+}
