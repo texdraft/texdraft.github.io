@@ -66,6 +66,10 @@ article .section-title {
   font-weight: normal;
 }
 
+.article-title h2 {
+  font-size: x-large;
+}
+
 article a:link {
   text-decoration: none;
 }
