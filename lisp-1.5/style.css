@@ -1,0 +1,43 @@
+.listing {
+	font-family: monospace;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.address,
+.number {
+	padding-right: 2em;
+}
+
+.operation {
+	font-weight: bold;
+}
+
+.location,
+.number,
+.assembly {
+	text-align: right;
+}
+
+.location-head {
+	text-align: left;
+}
+
+.remarks-line {
+	white-space: pre;
+}
+
+.variable-remarks,
+.assembly {
+	white-space: pre;
+}
+
+h1.symbol-name {
+	font-family: monospace;
+}
+
+h1,
+h2 {
+	text-align: center;
+}
