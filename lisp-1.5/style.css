@@ -1,54 +1,54 @@
 .listing {
-	margin-top: 1em;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: monospace;
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
 }
 
 .introduction {
-	max-width: 100ch;
-	margin: auto;
-	padding-top: 1em;
-	padding-bottom: 1em;
-	border-top: solid 2px;
-	border-bottom: solid 2px;
+    max-width: 100ch;
+    margin: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-top: solid 2px;
+    border-bottom: solid 2px;
 }
 
 .address,
 .number {
-	padding-right: 2em;
+    padding-right: 2em;
 }
 
 .operation {
-	font-weight: bold;
-	font-family: monospace; /* for inline instructions in explanatory text */
+    font-weight: bold;
+    font-family: monospace; /* for inline instructions in explanatory text */
 }
 
 .location,
 .number,
 .assembly {
-	text-align: right;
+    text-align: right;
 }
 
 .location-head {
-	text-align: left;
+    text-align: left;
 }
 
 .remarks-line {
-	white-space: pre;
+    white-space: pre;
 }
 
 .variable-remarks,
 .assembly {
-	white-space: pre;
+    white-space: pre;
 }
 
 h1.symbol-name {
-	font-family: monospace;
+    font-family: monospace;
 }
 
 h1,
 h2 {
-	text-align: center;
+    text-align: center;
 }
