@@ -3,8 +3,64 @@
                         <link rel="stylesheet" type="text/css" href="../style.css"></head><body>
 <h1>Symbol <span class=symbol-name>C$LAP</span></h1>
 <h2>Definition</h2>
-<table class=listing><tbody><tr><td class=flags></td><td class=address>16321 </td><td class=assembly> 0634 00 4 16470  </td><td class=number><a href="../listing.html#line-8322">8322</a></td><td class=location><span class=symbol title="= 16321₈ (7377₁₀)" id="C__LAP-definition"><a href="../listing.html#C__LAP-definition">LAP</a></span></td><td class=operation><span class=mnemonic title="Store Index in Address">SXA</span></td><td class=variable-remarks><span class=symbol title="= 16470₈ (7480₁₀)"><a href="../listing.html#C__LAX-definition">LAX</a></span>,4                                                              </td></tr>
-</tbody></table>
+<table class=listing><tbody>
+ <td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8295</a></td>
+                          <td colspan=3>*                                                                       </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8296</a></td>
+                          <td colspan=3>* LAP IS THE ASSEMBLER. ONE ARG IS LISTING.  IT IS LIST OF INSTRUC-     </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8297</a></td>
+                          <td colspan=3>* TIONS, NON-ATOMIC OR NIL. THE ATOMIC SYMBOLS ARE LOCATION SYMBOLS     </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8298</a></td>
+                          <td colspan=3>* SECOND ARG IS START OF SYMBIL TABLE WHICH IS AN A-LIST.               </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8299</a></td>
+                          <td colspan=3>* THE FIRST ITEM IS ORG AS FOLLOWS-                                     </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8300</a></td>
+                          <td colspan=3>*      NIL= IN BPS                                                      </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8301</a></td>
+                          <td colspan=3>*      ATOM= AT SYMBOLIC LOCATION                                       </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8302</a></td>
+                          <td colspan=3>*      NUM= ATHIS NUMBER                                                </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8303</a></td>
+                          <td colspan=3>*      (NAME TYPE NUM) = IN BPS, AND PUT TXL ON PROP LIST OF NAME       </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8304</a></td>
+                          <td colspan=3>*      WITH FLAG TYPE AND NUM (B DEC. OF TXL.                           </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8305</a></td>
+                          <td colspan=3>* INSTRUCTION FORMAT IS (OP ADDR TAG DEC)                               </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8306</a></td>
+                          <td colspan=3>* FIELD FORMAT IS AS FOLLOWS-                                           </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8307</a></td>
+                          <td colspan=3>*      TEMP SYMBOL                                                      </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8308</a></td>
+                          <td colspan=3>*      NUMBER                                                           </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8309</a></td>
+                          <td colspan=3>*      SYM SUBR OR FSUBR                                                </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8310</a></td>
+                          <td colspan=3>*      (E NAME) FOR IMMEDIATE AS IN TXL FILTER                          </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8311</a></td>
+                          <td colspan=3>*      (QUOTE NAME) FOR IMTE IN DEC OF WORD ON QTLST                    </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8312</a></td>
+                          <td colspan=3>*      POINTER TO COMMON WORD.MAKES ONE IF NONE ALREADY                 </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8313</a></td>
+                          <td colspan=3>*      SUM OF ANY OF ABOVE                                              </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8314</a></td>
+                          <td colspan=3>* LAP IS IDENTITY FUNCTION                                              </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8315</a></td>
+                          <td colspan=3>*      LAP DOES NOT USE IX1. IX2,4 ARE SCARTCH                          </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8316</a></td>
+                          <td colspan=3>* ERRORS IN LAP AS FOLLOWS-                                             </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8317</a></td>
+                          <td colspan=3>*      *L  1*  UNABLE TO EVALUATE ORIGIN                                </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8318</a></td>
+                          <td colspan=3>*      *L  2*  OUT OF BPS DISCOVERED AFTER PASS 1                       </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8319</a></td>
+                          <td colspan=3>*      *L  3* UNDEFINED SYMBOL                                          </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8320</a></td>
+                          <td colspan=3>*      *L  4*  FIELD WAS RECURSIVE                                      </td></tr><td id="line-8322" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-8322">8321</a></td>
+                          <td colspan=3>*                                                                       </td></tr><tr><td class=flags></td><td class=address>16321 </td><td class=assembly> 0634 00 4 16470  </td><td class=number><a href="../listing.html#line-8322">8322</a></td><td class=location><span class=symbol title="= 16321₈ (7377₁₀)" id="C__LAP-definition"><a href="../listing.html#C__LAP-definition">LAP</a></span></td><td class=operation><span class=mnemonic title="Store Index in Address">SXA</span></td><td class=variable-remarks><span class=symbol title="= 16470₈ (7480₁₀)"><a href="../listing.html#C__LAX-definition">LAX</a></span>,4                                                              </td></tr>
+
+                      </tbody></table>
 <h2>Uses</h2>
 <table class=listing><tbody>
 <tr><td class=flags></td><td class=address>70013 </td><td class=assembly>−3 00002 0 16321  </td><td class=number><a href="../listing.html#line-9974">9974</a></td><td class=location></td><td class=operation><span class=mnemonic title="Transfer on Index Low or Equal">TXL</span></td><td class=variable-remarks><span class=symbol title="= 16321₈ (7377₁₀)"><a href="../listing.html#C__LAP-definition">C$LAP</a></span>,,2                                                 GPLI0610  </td></tr>

@@ -3,8 +3,56 @@
                         <link rel="stylesheet" type="text/css" href="../style.css"></head><body>
 <h1>Symbol <span class=symbol-name>S$OVBGN</span></h1>
 <h2>Definition</h2>
-<table class=listing><tbody><tr><td class=flags></td><td class=address>10220 </td><td class=assembly> 0604 00 0 10336  </td><td class=number><a href="../listing.html#line-4740">4740</a></td><td class=location><span class=symbol title="= 10220₈ (4240₁₀)" id="SOVBGN-definition"><a href="../listing.html#SOVBGN-definition">OVBGN</a></span></td><td class=operation><span class=mnemonic title="Store Indicators">STI</span></td><td class=variable-remarks><span class=symbol title="= 10336₈ (4318₁₀)"><a href="../listing.html#SOVSVI-definition">OVSVI</a></span>              BEGIN BY SAVING INDICATORS AND                  </td></tr>
-</tbody></table>
+<table class=listing><tbody>
+ <td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4717</a></td>
+                          <td colspan=3>*                                                                       </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4718</a></td>
+                          <td colspan=3>* OVERLORD     THE TAPE HANDLING SECTION OF LISP. RECODED 20 FEBRUARY   </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4719</a></td>
+                          <td colspan=3>*              1961 BY D. J. EDWARDS.                                   </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4720</a></td>
+                          <td colspan=3>*                                                                       </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4721</a></td>
+                          <td colspan=3>* OVERLORD DIRECTION CARDS ARE PUNCHED IN FAP FORMAT WITH THE VARIABLE  </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4722</a></td>
+                          <td colspan=3>*              FIELD BEGINNING IN COLUMN 16. DIRECTION CARDS ARE        </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4723</a></td>
+                          <td colspan=3>*      ONE     (USE NO TAPES FOR THIS RUN)                              </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4724</a></td>
+                          <td colspan=3>*      SET     ( SAVE RESULTS ON SYSTMP IF NO ERROR OCCURS)             </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4725</a></td>
+                          <td colspan=3>*      TST     (GET NEW CORE IMAGE AFTER OPERATION)                     </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4726</a></td>
+                          <td colspan=3>*      TEST    (SAVE AS ABOVE)                                          </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4727</a></td>
+                          <td colspan=3>*      FIN     (ALL DONE, STOP MACHINE OR RETURN TO A HIGHER MONITOR)   </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4728</a></td>
+                          <td colspan=3>*      SETSET  (AVE RESULTS ON SYSTMP NO MATTER WHAT)                   </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4729</a></td>
+                          <td colspan=3>*      DEBUG   (SAME AS TEST BUT OBJECTLIST IS NOT SAVED AFTER READ IN) </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4730</a></td>
+                          <td colspan=3>*      SIZE    N1,N2,N3,N4  (GIVES SIZE OF BINPRG, PPDL, FWS AND FREE)  </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4731</a></td>
+                          <td colspan=3>*      TAPE    SYSXXX,A7  (ASSIGNS SYSXXX TO UNIT A 7)                  </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4732</a></td>
+                          <td colspan=3>*      DUMP    BEG,END,TYPE   (MAKES OCTAL DUMP ON SYSPOT ACCORDING TO  </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4733</a></td>
+                          <td colspan=3>*                              TYPE, 0 FOR STRAIGHT OCTAL, NON-ZERO FOR </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4734</a></td>
+                          <td colspan=3>*                              LISP (COMPLEMENT) DUMP.)                 </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4735</a></td>
+                          <td colspan=3>*      REMARK  (LOG AS DIRECTION CARD AND LOKK FOR NEXT DIRECTION CARD) </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4736</a></td>
+                          <td colspan=3>*      EXCISE  I  (I IS COMPILER, INTERPRETER OR BOTH. TURNS ITEM INTO  </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4737</a></td>
+                          <td colspan=3>*                 FREE STORAGE OR FULL WOTD SPACE)                      </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4738</a></td>
+                          <td colspan=3>*                                                                       </td></tr><td id="line-4740" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-4740">4739</a></td>
+                          <td colspan=3>*                                                                       </td></tr><tr><td class=flags></td><td class=address>10220 </td><td class=assembly> 0604 00 0 10336  </td><td class=number><a href="../listing.html#line-4740">4740</a></td><td class=location><span class=symbol title="= 10220₈ (4240₁₀)" id="SOVBGN-definition"><a href="../listing.html#SOVBGN-definition">OVBGN</a></span></td><td class=operation><span class=mnemonic title="Store Indicators">STI</span></td><td class=variable-remarks><span class=symbol title="= 10336₈ (4318₁₀)"><a href="../listing.html#SOVSVI-definition">OVSVI</a></span>              BEGIN BY SAVING INDICATORS AND                  </td></tr>
+
+                      </tbody></table>
 <h2>Uses</h2>
 <table class=listing><tbody>
 <tr><td class=flags></td><td class=address>      </td><td class=assembly>           10220  </td><td class=number><a href="../listing.html#line-11310">11310</a></td><td class=location><span class=symbol title="= 10220₈ (4240₁₀)" id="_OVBGN-definition"><a href="../listing.html#_OVBGN-definition">OVBGN</a></span></td><td class=operation><span class=mnemonic title="Define Synonym (assembler pseudo-operation)">SYN</span></td><td class=variable-remarks><span class=symbol title="= 10220₈ (4240₁₀)"><a href="../listing.html#SOVBGN-definition">S$OVBGN</a></span>            OVERLORD BEGINNING                              </td></tr>

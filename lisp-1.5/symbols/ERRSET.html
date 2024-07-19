@@ -3,8 +3,32 @@
                         <link rel="stylesheet" type="text/css" href="../style.css"></head><body>
 <h1>Symbol <span class=symbol-name>ERRSET</span></h1>
 <h2>Definition</h2>
-<table class=listing><tbody><tr><td class=flags></td><td class=address>11560 </td><td class=assembly>−0634 00 4 11662  </td><td class=number><a href="../listing.html#line-5552">5552</a></td><td class=location><span class=symbol title="= 11560₈ (4976₁₀)" id="ERRSET-definition"><a href="../listing.html#ERRSET-definition">ERRSET</a></span></td><td class=operation><span class=mnemonic title="Store Index in Decrement">SXD</span></td><td class=variable-remarks><span class=symbol title="= 11662₈ (5042₁₀)"><a href="../listing.html#H_HORN-definition">HORN</a></span>,4                                                             </td></tr>
-</tbody></table>
+<table class=listing><tbody>
+ <td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5541</a></td>
+                          <td colspan=3>*      ERRORSET(E,N,SW)                                                 </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5542</a></td>
+                          <td colspan=3>                                                                        </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5543</a></td>
+                          <td colspan=3>*                                                                       </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5544</a></td>
+                          <td colspan=3>*      ERRORSET ATTEMPTS TO EVALUATE ITS FIRST ARGUMENT.  IF AN         </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5545</a></td>
+                          <td colspan=3>*      ERROR OCCURS DURING THE EVALUATION, OR IF MORE THAN N CONS-S     </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5546</a></td>
+                          <td colspan=3>*      OCCUR DURING THE EVALUATION, ERRORSET RETURNS WITH A VALUE OF F  </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5547</a></td>
+                          <td colspan=3>*      AFTER RESTORING CONDITIONS TO WHAT THEY WERE BEFORE THE          </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5548</a></td>
+                          <td colspan=3>*      ATTEMPTED EVALUATION.  IF THE EVLAUATION SUCCEEDS, ERRORSET      </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5549</a></td>
+                          <td colspan=3>*      RETURNS LIST OF THE RESULT.  IF SW * F, ERROR DIAGNOSTICS ARE    </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5550</a></td>
+                          <td colspan=3>*      SUPPRESSED, AND IF SW = T, THEY ARE INCLUDED.                    </td></tr><td id="line-5552" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-5552">5551</a></td>
+                          <td colspan=3>*                                                                       </td></tr><tr><td class=flags></td><td class=address>11560 </td><td class=assembly>−0634 00 4 11662  </td><td class=number><a href="../listing.html#line-5552">5552</a></td><td class=location><span class=symbol title="= 11560₈ (4976₁₀)" id="ERRSET-definition"><a href="../listing.html#ERRSET-definition">ERRSET</a></span></td><td class=operation><span class=mnemonic title="Store Index in Decrement">SXD</span></td><td class=variable-remarks><span class=symbol title="= 11662₈ (5042₁₀)"><a href="../listing.html#H_HORN-definition">HORN</a></span>,4                                                             </td></tr>
+
+                      </tbody></table>
 <h2>Uses</h2>
 <table class=listing><tbody>
 <tr><td class=flags></td><td class=address>67572 </td><td class=assembly>−3 00003 0 11560  </td><td class=number><a href="../listing.html#line-9808">9808</a></td><td class=location></td><td class=operation><span class=mnemonic title="Transfer on Index Low or Equal">TXL</span></td><td class=variable-remarks><span class=symbol title="= 11560₈ (4976₁₀)"><a href="../listing.html#ERRSET-definition">ERRSET</a></span>,,3                                                GPLI0445    </td></tr>

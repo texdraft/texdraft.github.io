@@ -3,8 +3,34 @@
                         <link rel="stylesheet" type="text/css" href="../style.css"></head><body>
 <h1>Symbol <span class=symbol-name>E$DECON</span></h1>
 <h2>Definition</h2>
-<table class=listing><tbody><tr><td class=flags></td><td class=address>04111 </td><td class=assembly> 0600 00 0 77662  </td><td class=number><a href="../listing.html#line-2324">2324</a></td><td class=location><span class=symbol title="= 4111₈ (2121₁₀)" id="EDECON-definition"><a href="../listing.html#EDECON-definition">DECON</a></span></td><td class=operation><span class=mnemonic title="Store Zero">STZ</span></td><td class=variable-remarks><span class=symbol title="= 77662₈ (32690₁₀)"><a href="../listing.html#EDETS1-definition">DETS1</a></span>              SIGNAL FOR DECON EXIT                           </td></tr>
-</tbody></table>
+<table class=listing><tbody>
+ <td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2312</a></td>
+                          <td colspan=3>*      DECON AND NUMNAM                                                 </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2313</a></td>
+                          <td colspan=3>*                                                                       </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2314</a></td>
+                          <td colspan=3>*      DECON TAKES A DECIMAL NUMBER (+ OR -) AS INPUT IN THE AC AND     </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2315</a></td>
+                          <td colspan=3>*      GIVES AS OUTPUT THE BCD REPRESENTATION OF THAT NUMBER.  LO ORDER </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2316</a></td>
+                          <td colspan=3>*      BITS ARE IN AC. HI ORDER BITS IN MQ.  LEADING ZEROS ARE          </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2317</a></td>
+                          <td colspan=3>*      SUPPRESSED.  IF THERE ARE NO HI ORDER BITS, MQ IS ZERO.  THE     </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2318</a></td>
+                          <td colspan=3>*      P BIT AND SIGN OF AC WILL AGREE.                                 </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2319</a></td>
+                          <td colspan=3>*                                                                       </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2320</a></td>
+                          <td colspan=3>*      NUMNAM TAKES AS INPUT A POINTER TO A DECIMAL INTEGER (+ OR 0) AND</td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2321</a></td>
+                          <td colspan=3>*      CAUSES THE BCD REPRESENTATION OF THAT NUMBER TO BE PRINTER, WITH </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2322</a></td>
+                          <td colspan=3>*      LEADING ZEROS SUPPRESSED.                                        </td></tr><td id="line-2324" class=remarks-line><td colspan=2></td>
+                          <td class=number><a href="#line-2324">2323</a></td>
+                          <td colspan=3>                                                                        </td></tr><tr><td class=flags></td><td class=address>04111 </td><td class=assembly> 0600 00 0 77662  </td><td class=number><a href="../listing.html#line-2324">2324</a></td><td class=location><span class=symbol title="= 4111₈ (2121₁₀)" id="EDECON-definition"><a href="../listing.html#EDECON-definition">DECON</a></span></td><td class=operation><span class=mnemonic title="Store Zero">STZ</span></td><td class=variable-remarks><span class=symbol title="= 77662₈ (32690₁₀)"><a href="../listing.html#EDETS1-definition">DETS1</a></span>              SIGNAL FOR DECON EXIT                           </td></tr>
+
+                      </tbody></table>
 <h2>Uses</h2>
 <table class=listing><tbody>
 <tr><td class=flags></td><td class=address>      </td><td class=assembly>           04111  </td><td class=number><a href="../listing.html#line-11277">11277</a></td><td class=location><span class=symbol title="= 4111₈ (2121₁₀)" id="_DECON-definition"><a href="../listing.html#_DECON-definition">DECON</a></span></td><td class=operation><span class=mnemonic title="Define Synonym (assembler pseudo-operation)">SYN</span></td><td class=variable-remarks><span class=symbol title="= 4111₈ (2121₁₀)"><a href="../listing.html#EDECON-definition">E$DECON</a></span>                                                            </td></tr>
