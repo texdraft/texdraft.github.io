@@ -25,6 +25,10 @@
     font-family: monospace; /* for inline instructions in explanatory text */
 }
 
+.contents li {
+    list-style-type: square;
+}
+
 .location,
 .number,
 .assembly {
