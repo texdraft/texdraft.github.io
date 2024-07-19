@@ -1,8 +1,18 @@
 .listing {
-	font-family: monospace;
+	margin-top: 1em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	font-family: monospace;
+}
+
+.introduction {
+	max-width: 100ch;
+	margin: auto;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	border-top: solid 2px;
+	border-bottom: solid 2px;
 }
 
 .address,
@@ -12,6 +22,7 @@
 
 .operation {
 	font-weight: bold;
+	font-family: monospace; /* for inline instructions in explanatory text */
 }
 
 .location,
