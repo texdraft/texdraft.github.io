@@ -1,0 +1,105 @@
+.listing {
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+}
+
+.symbol-list {
+    margin: 0 auto;
+    width: 120ch;
+}
+
+.symbol-list details {
+    text-align: left;
+}
+
+.symbol-list .listing {
+    justify-content: flex-end;
+}
+
+.symbol-list li {
+    list-style-type: square;
+}
+
+.introduction {
+    max-width: 100ch;
+    margin: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.address,
+.number {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.number {
+    width: 5ch;
+}
+
+.operation {
+    font-weight: bold;
+    font-family: monospace; /* for inline instructions in explanatory text */
+}
+
+.index-symbol-name {
+    font-family: monospace;
+}
+
+.main-navigation {
+    text-align: center;
+}
+
+.navigation-button {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.contents li {
+    list-style-type: square;
+}
+
+.location,
+.number,
+.assembled {
+    text-align: right;
+}
+
+.location-head {
+    text-align: left;
+}
+
+.remarks-line {
+    white-space: pre;
+}
+
+.variable-remarks,
+.assembled {
+    white-space: pre;
+}
+
+.assemblies {
+    margin: 0 auto;
+}
+
+.location {
+    width: 6ch;
+}
+
+.operation {
+    width: 4ch;
+    text-align: center;
+}
+
+h1.symbol-name {
+    font-family: monospace;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
