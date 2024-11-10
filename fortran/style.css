@@ -26,8 +26,12 @@
 .introduction {
     max-width: 100ch;
     margin: auto;
-    padding-top: 1em;
     padding-bottom: 1em;
+}
+
+.attribution {
+    max-width: 90ch;
+    margin: 0 auto;
 }
 
 .address,
