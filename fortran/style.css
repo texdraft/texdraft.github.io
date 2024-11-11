@@ -6,6 +6,11 @@
     font-family: monospace;
 }
 
+.symbol a,
+.location a {
+    text-decoration: none;
+}
+
 .symbol-list {
     margin: 0 auto;
     width: 120ch;
