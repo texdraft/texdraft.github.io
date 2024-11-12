@@ -7,7 +7,8 @@
 }
 
 .symbol a,
-.location a {
+.location a,
+.number a {
     text-decoration: none;
 }
 
