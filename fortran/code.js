@@ -4,7 +4,6 @@ function set_up_symbols() {
   elements.forEach(e => {
     const text = e.textContent.trim();
     const found = symbols.get(text);
-    if (text === "") console.log(e);
     if (found !== undefined) {
       found.push(e);
     } else {
@@ -13,7 +12,6 @@ function set_up_symbols() {
   });
   elements.forEach(e => {
     e.addEventListener('mouseover', event => {
-      symbols.get(event.target.innerText) == undefined ? console.log(event.target.innerText) : void 0;
       symbols.get(event.target.innerText).forEach(s => {
         s.style.backgroundColor = "lightgray";
       });
