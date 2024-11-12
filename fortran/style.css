@@ -12,6 +12,10 @@
     text-decoration: none;
 }
 
+.number a:hover {
+    text-decoration: underline;
+}
+
 .symbol-list {
     margin: 0 auto;
     width: 120ch;
