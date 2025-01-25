@@ -15,6 +15,18 @@
     border-bottom: solid 2px;
 }
 
+.symbol a,
+.location a,
+.number a {
+    text-decoration: none;
+}
+
+.number a:hover,
+.location a:hover,
+.symbol a:hover {
+    text-decoration: underline;
+}
+
 .address,
 .number {
     padding-right: 2em;
