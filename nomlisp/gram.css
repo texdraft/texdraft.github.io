@@ -40,6 +40,14 @@ body {
 	font-size: large;
 }
 
+.h4 {
+	padding-left: 3em;
+}
+
+.h5 {
+	padding-left: 4em;
+}
+
 .nonterminal a {
 	text-decoration: none;
 	color: blue;
@@ -70,7 +78,7 @@ sub {
 	line-height: 0;
 }
 
-.grammar {
+body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;	
@@ -84,4 +92,8 @@ sub {
 
 .rule {
 	width: 50%;
+}
+
+.rule td {
+	padding-top: 1em;
 }
