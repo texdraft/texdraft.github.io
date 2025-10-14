@@ -52,8 +52,8 @@
             <td><span class="string"><span><span class="literal">(</span><span class=
             "string"><span><span class="string"><span><span class="nonterminal"><a href=
             "#s-expression-definition"><span class=
-            "nonterminal">s-expression</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">s-expression</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
@@ -69,8 +69,8 @@
           </tr>
           <tr>
             <td colspan="2"></td>
-            <td><span class="string"><span class="optional">[<span class="string"><span class=
-            "literal">#</span> <span><span class="nonterminal"><a href=
+            <td><span class="string"><span class="optional" title="optional">[<span class=
+            "string"><span class="literal">#</span> <span><span class="nonterminal"><a href=
             "#identifier-definition"><span class=
             "nonterminal">identifier</span></a></span></span></span>]</span> <span><span class=
             "nonterminal"><a href="#delimited-expression-definition"><span class=
@@ -78,8 +78,8 @@
           </tr>
           <tr>
             <td colspan="2"></td>
-            <td><span class="string"><span class="optional">[<span class="string"><span class=
-            "literal">#</span> <span><span class="nonterminal"><a href=
+            <td><span class="string"><span class="optional" title="optional">[<span class=
+            "string"><span class="literal">#</span> <span><span class="nonterminal"><a href=
             "#dotted-identifier-definition"><span class=
             "nonterminal">dotted-identifier</span></a></span></span></span>]</span> <span><span 
             class="nonterminal"><a href="#delimited-expression-definition"><span class=
@@ -111,8 +111,8 @@
             href="#opening-delimiter-definition"><span class=
             "nonterminal">opening-delimiter<sub>i</sub></span></a></span></span> <span><span class=
             "nonterminal"><a href="#s-expression-definition"><span class=
-            "nonterminal">s-expression</span></a></span></span></span><span class=
-            "star">⁎</span></span> <span><span class="nonterminal"><a href=
+            "nonterminal">s-expression</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span> <span><span class="nonterminal"><a href=
             "#closing-delimiter-definition"><span class=
             "nonterminal">closing-delimiter<sub>i</sub></span></a></span></span></span></td>
           </tr>
@@ -136,8 +136,8 @@
             <td>→</td>
             <td class="alternative"><span class="string"><span><span class="string"><span><span 
             class="nonterminal"><a href="#identifier-element-definition"><span class=
-            "nonterminal">identifier-element</span></a></span></span></span><span class=
-            "plus">+</span></span></span></td>
+            "nonterminal">identifier-element</span></a></span></span></span><span class="plus" 
+            title="one or more">…+</span></span></span></td>
             <td class="details"><span>as long as <span class="nonterminal"><a href=
             "#constant-definition"><span class="nonterminal">constant</span></a></span> does not
             generate this string</span></td>
@@ -176,14 +176,14 @@
             <td><span class="string"><span><span class="string"><span class="literal">“</span>
             <span><span class="nonterminal"><a href="#double-string-element-definition"><span 
             class="nonterminal">double-string-element</span></a></span></span></span><span class=
-            "star">⁎</span></span> <span class="literal">”</span></span></td>
+            "star" title="zero or more">…</span></span> <span class="literal">”</span></span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td><span class="string"><span><span class="string"><span class="literal">‘</span>
             <span><span class="nonterminal"><a href="#single-string-element-definition"><span 
             class="nonterminal">single-string-element</span></a></span></span></span><span class=
-            "star">⁎</span></span> <span class="literal">’</span></span></td>
+            "star" title="zero or more">…</span></span> <span class="literal">’</span></span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
@@ -229,8 +229,8 @@
             <td colspan="2"></td>
             <td><span class="string"><span><span class="string"><span class="literal">\</span>
             <span><span class="nonterminal"><a href="#hexadecimal-digit-definition"><span class=
-            "nonterminal">hexadecimal-digit</span></a></span></span></span><span class=
-            "plus">+</span></span></span></td>
+            "nonterminal">hexadecimal-digit</span></a></span></span></span><span class="plus" 
+            title="one or more">…+</span></span></span></td>
           </tr>
           <tr class="rule" id="number-definition">
             <td><span class="nonterminal"><a href="#number-definition"><span class=
@@ -238,8 +238,8 @@
             <td>→</td>
             <td><span class="string"><span><span class="string"><span><span class="nonterminal"><a 
             href="#decimal-digit-definition"><span class=
-            "nonterminal">decimal-digit</span></a></span></span></span><span class=
-            "plus">+</span></span></span></td>
+            "nonterminal">decimal-digit</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
@@ -253,8 +253,8 @@
             <td colspan="2"></td>
             <td><span class="string"><span><span class="nonterminal"><a href=
             "#decimal-digit-definition"><span class=
-            "nonterminal">decimal-digit</span></a></span></span> <span class="optional">[<span 
-            class="string"><span><span class="nonterminal"><a href=
+            "nonterminal">decimal-digit</span></a></span></span> <span class="optional" title=
+            "optional">[<span class="string"><span><span class="nonterminal"><a href=
             "#decimal-digit-definition"><span class=
             "nonterminal">decimal-digit</span></a></span></span></span>]</span> <span class=
             "literal">R</span> <span><span class="nonterminal"><a href=
@@ -362,9 +362,10 @@
             <td><span class="nonterminal"><a href="#delimiter-template-definition"><span class=
             "nonterminal">delimiter-template</span></a></span></td>
             <td>→</td>
-            <td><span class="string"><span class="optional">[<span class="string"><span class=
-            "literal">#</span> <span><span class="nonterminal"><a href="#name-definition"><span 
-            class="nonterminal">name</span></a></span></span></span>]</span> <span><span class=
+            <td><span class="string"><span class="optional" title="optional">[<span class=
+            "string"><span class="literal">#</span> <span><span class="nonterminal"><a href=
+            "#name-definition"><span class=
+            "nonterminal">name</span></a></span></span></span>]</span> <span><span class=
             "nonterminal"><a href="#delimited-expression-definition"><span class=
             "nonterminal">delimited-expression</span></a></span></span></span></td>
           </tr>
@@ -439,8 +440,8 @@
             "#name-definition"><span class=
             "nonterminal">name<sub>pattern</sub></span></a></span></span> <span><span class=
             "nonterminal"><a href="#pattern-definition"><span class=
-            "nonterminal">pattern</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">pattern</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>constructor pattern</span></td>
           </tr>
           <tr>
@@ -456,22 +457,23 @@
             class="string"><span><span class="string"><span class="literal">record</span> <span 
             class="grouped">{<span class="string"><span><span class="nonterminal"><a href=
             "#label-definition"><span class="nonterminal">label</span></a></span></span> <span 
-            class="optional">[<span class="string"><span><span class="nonterminal"><a href=
-            "#pattern-definition"><span class=
+            class="optional" title="optional">[<span class="string"><span><span class=
+            "nonterminal"><a href="#pattern-definition"><span class=
             "nonterminal">pattern</span></a></span></span></span>]</span></span>}</span></span><span 
-            class="plus">+</span></span> <span class="optional">[<span class="string"><span><span 
-            class="nonterminal"><a href="#name-definition"><span class=
+            class="plus" title="one or more">…+</span></span> <span class="optional" title=
+            "optional">[<span class="string"><span><span class="nonterminal"><a href=
+            "#name-definition"><span class=
             "nonterminal">name<sub>term</sub></span></a></span></span></span>]</span></span><span 
             class="literal">)</span></span></span></td>
-            <td class="details"><span>match record</span></td>
+            <td class="details"><span>match record with row</span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">tuple</span>
             <span><span class="nonterminal"><a href="#pattern-definition"><span class=
-            "nonterminal">pattern</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">pattern</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>match tuple</span></td>
           </tr>
           <tr>
@@ -484,8 +486,8 @@
             "#pattern-definition"><span class="nonterminal">pattern</span></a></span></span>
             <span><span class="nonterminal"><a href="#expression-definition"><span class=
             "nonterminal">expression</span></a></span></span></span><span class=
-            "literal">)</span></span></span><span class="star">⁎</span></span></span><span class=
-            "literal">)</span></span></span></td>
+            "literal">)</span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>guard with additional matches</span></td>
           </tr>
           <tr class="heading">
@@ -504,20 +506,20 @@
             "nonterminal">name<sub>module</sub></span></a></span></span> <span><span class=
             "literal">(</span><span class="string"><span><span class="string"><span><span class=
             "nonterminal"><a href="#export-definition"><span class=
-            "nonterminal">export</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span><span class=
-            "literal">)</span></span> <span><span class="nonterminal"><a href=
+            "nonterminal">export</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span><span 
+            class="literal">)</span></span> <span><span class="nonterminal"><a href=
             "#declaration-definition"><span class=
-            "nonterminal">declaration</span></a></span></span></span><span class=
-            "plus">+</span></span></span></td>
+            "nonterminal">declaration</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span></td>
             <td class="details"><span>file shorthand</span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td class="alternative"><span class="string"><span><span class="string"><span><span 
             class="nonterminal"><a href="#module-definition-definition"><span class=
-            "nonterminal">module-definition</span></a></span></span></span><span class=
-            "plus">+</span></span></span></td>
+            "nonterminal">module-definition</span></a></span></span></span><span class="plus" 
+            title="one or more">…+</span></span></span></td>
             <td class="details"><span>models directory as module</span></td>
           </tr>
           <tr class="after-heading rule" id="module-definition-definition">
@@ -530,11 +532,11 @@
             "nonterminal">name<sub>module</sub></span></a></span></span> <span><span class=
             "literal">(</span><span class="string"><span><span class="string"><span><span class=
             "nonterminal"><a href="#export-definition"><span class=
-            "nonterminal">export</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#declaration-definition"><span class=
-            "nonterminal">declaration</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">export</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span> <span><span 
+            class="nonterminal"><a href="#declaration-definition"><span class=
+            "nonterminal">declaration</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
           </tr>
           <tr class="rule" id="export-definition">
             <td><span class="nonterminal"><a href="#export-definition"><span class=
@@ -543,8 +545,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">syntax</span>
             <span><span class="nonterminal"><a href="#syntax-port-definition"><span class=
-            "nonterminal">syntax-port</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">syntax-port</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>syntax bindings</span></td>
           </tr>
           <tr>
@@ -554,8 +556,8 @@
             <span><span class="nonterminal"><a href="#export-definition"><span class=
             "nonterminal">export</span></a></span></span> <span><span class="nonterminal"><a href=
             "#export-definition"><span class=
-            "nonterminal">export</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">export</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>omit bindings</span></td>
           </tr>
           <tr>
@@ -563,8 +565,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">for-syntax</span>
             <span><span class="nonterminal"><a href="#export-definition"><span class=
-            "nonterminal">export</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">export</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>higher-phase bindings</span></td>
           </tr>
           <tr>
@@ -612,8 +614,8 @@
             "literal">(</span><span class="string"><span><span class="string"><span><span class=
             "nonterminal"><a href="#ported-name-definition"><span class=
             "nonterminal">ported-name<sub>term</sub></span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span><span class=
-            "literal">)</span></span></span></td>
+            "star" title="zero or more">…</span></span></span><span class=
+            "literal">)</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>ADT with constructors</span></td>
           </tr>
           <tr>
@@ -622,11 +624,11 @@
             class="string"><span class="literal">class</span> <span><span class="nonterminal"><a 
             href="#ported-name-definition"><span class=
             "nonterminal">ported-name<sub>type</sub></span></a></span></span> <span class=
-            "optional">[<span class="string"><span><span class="literal">(</span><span class=
-            "string"><span><span class="string"><span><span class="nonterminal"><a href=
-            "#ported-name-definition"><span class=
+            "optional" title="optional">[<span class="string"><span><span class=
+            "literal">(</span><span class="string"><span><span class="string"><span><span class=
+            "nonterminal"><a href="#ported-name-definition"><span class=
             "nonterminal">ported-name<sub>term</sub></span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class=
+            "star" title="zero or more">…</span></span></span><span class=
             "literal">)</span></span></span>]</span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>type class, optional methods</span></td>
@@ -667,8 +669,8 @@
             class="string"><span><span class="literal">(</span><span class="string"><span><span 
             class="string"><span><span class="nonterminal"><a href="#name-definition"><span class=
             "nonterminal">name<sub>synspace</sub></span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#ported-syntax-definition"><span class=
+            "plus" title="one or more">…+</span></span></span><span class="literal">)</span></span>
+            <span><span class="nonterminal"><a href="#ported-syntax-definition"><span class=
             "nonterminal">ported-syntax</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>bindings from multiple synspaces</span></td>
@@ -745,8 +747,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">for-syntax</span>
             <span><span class="nonterminal"><a href="#import-definition"><span class=
-            "nonterminal">import</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">import</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>available at higher phase</span></td>
           </tr>
           <tr>
@@ -767,8 +769,8 @@
             <span><span class="nonterminal"><a href="#name-definition"><span class=
             "nonterminal">name<sub>module</sub></span></a></span></span> <span><span class=
             "nonterminal"><a href="#import-item-definition"><span class=
-            "nonterminal">import-item</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">import-item</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>restrict imported bindings</span></td>
           </tr>
           <tr class="rule" id="import-item-definition">
@@ -778,8 +780,9 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span class="literal">qualified</span> <span><span class=
             "nonterminal"><a href="#import-definition"><span class=
-            "nonterminal">import</span></a></span></span> <span class="optional">[<span class=
-            "string"><span><span class="nonterminal"><a href="#name-definition"><span class=
+            "nonterminal">import</span></a></span></span> <span class="optional" title=
+            "optional">[<span class="string"><span><span class="nonterminal"><a href=
+            "#name-definition"><span class=
             "nonterminal">name<sub>module</sub></span></a></span></span></span>]</span></span><span 
             class="literal">)</span></span></span></td>
             <td class="details"><span>new module name</span></td>
@@ -843,8 +846,8 @@
             <span><span class="nonterminal"><a href="#import-definition"><span class=
             "nonterminal">import</span></a></span></span> <span><span class="nonterminal"><a href=
             "#import-item-definition"><span class=
-            "nonterminal">import-item</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">import-item</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>omit bindings</span></td>
           </tr>
           <tr>
@@ -852,8 +855,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">syntax</span>
             <span><span class="nonterminal"><a href="#syntax-port-definition"><span class=
-            "nonterminal">syntax-port</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">syntax-port</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>syntactic bindings</span></td>
           </tr>
           <tr class="heading">
@@ -872,8 +875,9 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">implicit</span>
             <span><span class="nonterminal"><a href="#name-definition"><span class=
-            "nonterminal">name<sub>type</sub></span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">name<sub>type</sub></span></a></span></span></span><span class="star" 
+            title="zero or more">…</span></span></span><span class=
+            "literal">)</span></span></span></td>
             <td class="details"><span>make instances implicit</span></td>
           </tr>
           <tr>
@@ -887,8 +891,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">import</span>
             <span><span class="nonterminal"><a href="#import-definition"><span class=
-            "nonterminal">import</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">import</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>bring in external bindings</span></td>
           </tr>
           <tr>
@@ -896,8 +900,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">splice</span>
             <span><span class="nonterminal"><a href="#declaration-definition"><span class=
-            "nonterminal">declaration</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">declaration</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>splice nested declarations</span></td>
           </tr>
           <tr>
@@ -905,8 +909,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">for-syntax</span>
             <span><span class="nonterminal"><a href="#declaration-definition"><span class=
-            "nonterminal">declaration</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">declaration</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>define at higher phase</span></td>
           </tr>
           <tr class="rule" id="definition-definition">
@@ -952,8 +956,8 @@
             <span><span class="nonterminal"><a href="#defining-type-name-definition"><span class=
             "nonterminal">defining-type-name</span></a></span></span> <span><span class=
             "nonterminal"><a href="#typeclass-item-definition"><span class=
-            "nonterminal">typeclass-item</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">typeclass-item</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>type class</span></td>
           </tr>
           <tr>
@@ -965,8 +969,8 @@
             "nonterminal"><a href="#constraint-definition"><span class=
             "nonterminal">constraint</span></a></span></span> <span><span class="nonterminal"><a 
             href="#instance-item-definition"><span class=
-            "nonterminal">instance-item</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">instance-item</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>type class instance</span></td>
           </tr>
           <tr>
@@ -978,8 +982,8 @@
             "literal">(</span><span class="string"><span><span class="string"><span><span class=
             "nonterminal"><a href="#name-definition"><span class=
             "nonterminal">name<sub>synspace</sub></span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#expression-definition"><span class=
+            "plus" title="one or more">…+</span></span></span><span class="literal">)</span></span>
+            <span><span class="nonterminal"><a href="#expression-definition"><span class=
             "nonterminal">expression</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>syntactic binding</span></td>
@@ -993,8 +997,8 @@
             class="literal">(</span><span class="string"><span><span class="string"><span><span 
             class="nonterminal"><a href="#name-definition"><span class=
             "nonterminal">name<sub>synspace</sub></span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#expression-definition"><span class=
+            "plus" title="one or more">…+</span></span></span><span class="literal">)</span></span>
+            <span><span class="nonterminal"><a href="#expression-definition"><span class=
             "nonterminal">expression</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>syntactic extension</span></td>
@@ -1009,10 +1013,10 @@
             "nonterminal"><a href="#name-definition"><span class=
             "nonterminal">name</span></a></span></span> <span><span class="nonterminal"><a href=
             "#parameter-definition"><span class=
-            "nonterminal">parameter</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span> <span class=
-            "optional">[<span class="string"><span class="literal">:</span> <span><span class=
-            "nonterminal"><a href="#type-definition"><span class=
+            "nonterminal">parameter</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span> <span class=
+            "optional" title="optional">[<span class="string"><span class="literal">:</span>
+            <span><span class="nonterminal"><a href="#type-definition"><span class=
             "nonterminal">type</span></a></span></span></span>]</span> <span><span class=
             "nonterminal"><a href="#body-definition"><span class=
             "nonterminal">body</span></a></span></span></span><span class=
@@ -1024,9 +1028,9 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span class="literal">define</span> <span><span class="nonterminal"><a 
             href="#name-definition"><span class=
-            "nonterminal">name<sub>term</sub></span></a></span></span> <span class=
-            "optional">[<span class="string"><span class="literal">:</span> <span><span class=
-            "nonterminal"><a href="#type-definition"><span class=
+            "nonterminal">name<sub>term</sub></span></a></span></span> <span class="optional" 
+            title="optional">[<span class="string"><span class="literal">:</span> <span><span 
+            class="nonterminal"><a href="#type-definition"><span class=
             "nonterminal">type</span></a></span></span></span>]</span> <span><span class=
             "nonterminal"><a href="#body-definition"><span class=
             "nonterminal">body</span></a></span></span></span><span class=
@@ -1038,19 +1042,19 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">define</span>
             <span><span class="nonterminal"><a href="#name-definition"><span class=
-            "nonterminal">name<sub>term</sub></span></a></span></span> <span class=
-            "optional">[<span class="string"><span class="literal">:</span> <span><span class=
-            "nonterminal"><a href="#type-definition"><span class=
+            "nonterminal">name<sub>term</sub></span></a></span></span> <span class="optional" 
+            title="optional">[<span class="string"><span class="literal">:</span> <span><span 
+            class="nonterminal"><a href="#type-definition"><span class=
             "nonterminal">type</span></a></span></span></span>]</span> <span><span class=
             "literal">(</span><span class="string"><span class="literal">λ</span> <span><span 
             class="literal">(</span><span class="string"><span><span class="string"><span><span 
             class="nonterminal"><a href="#parameter-definition"><span class=
-            "nonterminal">parameter</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#body-definition"><span class=
+            "nonterminal">parameter</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span> <span><span 
+            class="nonterminal"><a href="#body-definition"><span class=
             "nonterminal">body</span></a></span></span></span><span class=
-            "literal">)</span></span></span><span class="plus">+</span></span></span><span class=
-            "literal">)</span></span></span></td>
+            "literal">)</span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>define by matching</span></td>
           </tr>
           <tr class="rule" id="defining-type-name-definition">
@@ -1061,9 +1065,9 @@
             class="string"><span class="literal">∀</span> <span><span class=
             "literal">(</span><span class="string"><span><span class="string"><span><span class=
             "nonterminal"><a href="#name-definition"><span class=
-            "nonterminal">name<sub>type</sub></span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#defining-type-name-definition"><span class=
+            "nonterminal">name<sub>type</sub></span></a></span></span></span><span class="plus" 
+            title="one or more">…+</span></span></span><span class="literal">)</span></span>
+            <span><span class="nonterminal"><a href="#defining-type-name-definition"><span class=
             "nonterminal">defining-type-name</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>quantified arguments</span></td>
@@ -1079,8 +1083,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">⇒</span> <span><span 
             class="nonterminal"><a href="#constraint-definition"><span class=
-            "nonterminal">constraint</span></a></span></span></span><span class=
-            "plus">+</span></span> <span><span class="nonterminal"><a href=
+            "nonterminal">constraint</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span> <span><span class="nonterminal"><a href=
             "#defining-type-name-definition"><span class=
             "nonterminal">defining-type-name</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
@@ -1103,8 +1107,9 @@
             "#name-definition"><span class=
             "nonterminal">name<sub>type</sub></span></a></span></span> <span><span class=
             "nonterminal"><a href="#name-definition"><span class=
-            "nonterminal">name<sub>type</sub></span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">name<sub>type</sub></span></a></span></span></span><span class="plus" 
+            title="one or more">…+</span></span></span><span class=
+            "literal">)</span></span></span></td>
             <td class="details"><span>type with arguments</span></td>
           </tr>
           <tr class="rule" id="data-body-definition">
@@ -1115,16 +1120,16 @@
             class="nonterminal"><a href="#traditional-data-item-definition"><span class=
             "nonterminal">traditional-data-item</span></a></span></span> <span><span class=
             "nonterminal"><a href="#traditional-data-item-definition"><span class=
-            "nonterminal">traditional-data-item</span></a></span></span></span><span class=
-            "plus">+</span></span></span></td>
+            "nonterminal">traditional-data-item</span></a></span></span></span><span class="plus" 
+            title="one or more">…+</span></span></span></td>
             <td class="details"><span>avoid ambiguity by requiring two</span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td class="alternative"><span class="string"><span><span class="string"><span><span 
             class="nonterminal"><a href="#gadt-item-definition"><span class=
-            "nonterminal">gadt-item</span></a></span></span></span><span class=
-            "plus">+</span></span></span></td>
+            "nonterminal">gadt-item</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span></td>
             <td class="details"><span>always unambiguous</span></td>
           </tr>
           <tr class="rule" id="traditional-data-item-definition">
@@ -1143,8 +1148,8 @@
             "#name-definition"><span class=
             "nonterminal">name<sub>term</sub></span></a></span></span> <span><span class=
             "nonterminal"><a href="#type-definition"><span class=
-            "nonterminal">type</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">type</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>n-ary constructor</span></td>
           </tr>
           <tr class="rule" id="gadt-item-definition">
@@ -1206,8 +1211,8 @@
             <td><span class="string"><span><span class="literal">(</span><span class=
             "string"><span><span class="string"><span class="literal">declare</span> <span><span 
             class="nonterminal"><a href="#metadata-definition"><span class=
-            "nonterminal">metadata</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">metadata</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
           </tr>
           <tr class="rule" id="metadata-definition">
             <td><span class="nonterminal"><a href="#metadata-definition"><span class=
@@ -1216,8 +1221,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">deprecated</span>
             <span><span class="nonterminal"><a href="#spaced-name-definition"><span class=
-            "nonterminal">spaced-name</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">spaced-name</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>bindings shouldn't be used</span></td>
           </tr>
           <tr>
@@ -1225,8 +1230,9 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">ignore</span>
             <span><span class="nonterminal"><a href="#name-definition"><span class=
-            "nonterminal">name<sub>term</sub></span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">name<sub>term</sub></span></a></span></span></span><span class="star" 
+            title="zero or more">…</span></span></span><span class=
+            "literal">)</span></span></span></td>
             <td class="details"><span>names unused in scope</span></td>
           </tr>
           <tr>
@@ -1234,8 +1240,9 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">ignorable</span>
             <span><span class="nonterminal"><a href="#name-definition"><span class=
-            "nonterminal">name<sub>term</sub></span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">name<sub>term</sub></span></a></span></span></span><span class="star" 
+            title="zero or more">…</span></span></span><span class=
+            "literal">)</span></span></span></td>
             <td class="details"><span>names may be unused in scope</span></td>
           </tr>
           <tr>
@@ -1243,8 +1250,9 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">inline</span>
             <span><span class="nonterminal"><a href="#name-definition"><span class=
-            "nonterminal">name<sub>term</sub></span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">name<sub>term</sub></span></a></span></span></span><span class="star" 
+            title="zero or more">…</span></span></span><span class=
+            "literal">)</span></span></span></td>
             <td class="details"><span>request inline expansion</span></td>
           </tr>
           <tr>
@@ -1252,8 +1260,9 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">notinline</span>
             <span><span class="nonterminal"><a href="#name-definition"><span class=
-            "nonterminal">name<sub>term</sub></span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">name<sub>term</sub></span></a></span></span></span><span class="star" 
+            title="zero or more">…</span></span></span><span class=
+            "literal">)</span></span></span></td>
             <td class="details"><span>forbid inline expansion</span></td>
           </tr>
           <tr>
@@ -1268,8 +1277,8 @@
             "nonterminal">quality</span></a></span></span> <span><span class="nonterminal"><a href=
             "#number-definition"><span class=
             "nonterminal">number</span></a></span></span></span><span class=
-            "literal">)</span></span></span></span></span>}</span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "literal">)</span></span></span></span></span>}</span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>request optimization priorities</span></td>
           </tr>
           <tr>
@@ -1370,8 +1379,8 @@
             "string"><span><span class="literal">(</span><span class="string"><span><span class=
             "string"><span><span class="nonterminal"><a href="#name-definition"><span class=
             "nonterminal">name<sub>synspace</sub></span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#name-definition"><span class=
+            "plus" title="one or more">…+</span></span></span><span class="literal">)</span></span>
+            <span><span class="nonterminal"><a href="#name-definition"><span class=
             "nonterminal">name</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
           </tr>
@@ -1413,9 +1422,9 @@
             class="string"><span class="literal">∀</span> <span><span class=
             "literal">(</span><span class="string"><span><span class="string"><span><span class=
             "nonterminal"><a href="#type-parameter-definition"><span class=
-            "nonterminal">type-parameter</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#type-definition"><span class=
+            "nonterminal">type-parameter</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span> <span><span 
+            class="nonterminal"><a href="#type-definition"><span class=
             "nonterminal">type</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>generic type</span></td>
@@ -1425,8 +1434,8 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">⇒</span> <span><span 
             class="nonterminal"><a href="#constraint-definition"><span class=
-            "nonterminal">constraint</span></a></span></span></span><span class=
-            "plus">+</span></span> <span><span class="nonterminal"><a href=
+            "nonterminal">constraint</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span> <span><span class="nonterminal"><a href=
             "#type-definition"><span class="nonterminal">type</span></a></span></span></span><span 
             class="literal">)</span></span></span></td>
             <td class="details"><span>constrained type</span></td>
@@ -1437,8 +1446,8 @@
             class="string"><span><span class="string"><span><span class="nonterminal"><a href=
             "#type-definition"><span class="nonterminal">type</span></a></span></span> <span><span 
             class="nonterminal"><a href="#type-argument-definition"><span class=
-            "nonterminal">type-argument</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">type-argument</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>type application</span></td>
           </tr>
           <tr>
@@ -1448,17 +1457,20 @@
             class="grouped">{<span class="string"><span><span class="nonterminal"><a href=
             "#label-definition"><span class="nonterminal">label</span></a></span></span>
             <span><span class="nonterminal"><a href="#type-definition"><span class=
-            "nonterminal">type</span></a></span></span></span>}</span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
-            <td class="details"><span>type of records</span></td>
+            "nonterminal">type</span></a></span></span></span>}</span></span><span class="plus" 
+            title="one or more">…+</span></span> <span class="optional" title="optional">[<span 
+            class="string"><span><span class="nonterminal"><a href="#type-definition"><span class=
+            "nonterminal">type</span></a></span></span></span>]</span></span><span class=
+            "literal">)</span></span></span></td>
+            <td class="details"><span>type of records with row</span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">tuple</span>
             <span><span class="nonterminal"><a href="#type-definition"><span class=
-            "nonterminal">type</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">type</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>type of tuples</span></td>
           </tr>
           <tr class="rule" id="type-parameter-definition">
@@ -1518,11 +1530,11 @@
             <td>→</td>
             <td><span class="string"><span><span class="string"><span><span class=
             "string"><span><span class="nonterminal"><a href="#declaration-definition"><span class=
-            "nonterminal">declaration</span></a></span></span></span><span class=
-            "star">⁎</span></span> <span><span class="nonterminal"><a href=
+            "nonterminal">declaration</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span> <span><span class="nonterminal"><a href=
             "#expression-definition"><span class=
-            "nonterminal">expression</span></a></span></span></span><span class=
-            "plus">+</span></span></span></td>
+            "nonterminal">expression</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span></td>
           </tr>
           <tr class="rule" id="expression-definition">
             <td><span class="nonterminal"><a href="#expression-definition"><span class=
@@ -1545,9 +1557,9 @@
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span class="literal">λ</span> <span><span class="nonterminal"><a href=
             "#name-definition"><span class=
-            "nonterminal">name<sub>term</sub></span></a></span></span> <span class=
-            "optional">[<span class="string"><span class="literal">:</span> <span><span class=
-            "nonterminal"><a href="#type-definition"><span class=
+            "nonterminal">name<sub>term</sub></span></a></span></span> <span class="optional" 
+            title="optional">[<span class="string"><span class="literal">:</span> <span><span 
+            class="nonterminal"><a href="#type-definition"><span class=
             "nonterminal">type</span></a></span></span></span>]</span> <span><span class=
             "nonterminal"><a href="#body-definition"><span class=
             "nonterminal">body</span></a></span></span></span><span class=
@@ -1560,9 +1572,9 @@
             class="string"><span class="literal">λ</span> <span><span class=
             "literal">(</span><span class="string"><span><span class="string"><span><span class=
             "nonterminal"><a href="#parameter-definition"><span class=
-            "nonterminal">parameter</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#body-definition"><span class=
+            "nonterminal">parameter</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span> <span><span 
+            class="nonterminal"><a href="#body-definition"><span class=
             "nonterminal">body</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>fixed-arity abstraction</span></td>
@@ -1627,16 +1639,20 @@
             "#label-definition"><span class="nonterminal">label</span></a></span></span>
             <span><span class="nonterminal"><a href="#expression-definition"><span class=
             "nonterminal">expression</span></a></span></span></span>}</span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
-            <td class="details"><span>construct record</span></td>
+            "star" title="zero or more">…</span></span> <span class="optional" title=
+            "optional">[<span class="string"><span><span class="nonterminal"><a href=
+            "#expression-definition"><span class=
+            "nonterminal">expression</span></a></span></span></span>]</span></span><span class=
+            "literal">)</span></span></span></td>
+            <td class="details"><span>construct record with row</span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span><span class="string"><span class="literal">tuple</span>
             <span><span class="nonterminal"><a href="#expression-definition"><span class=
-            "nonterminal">expression</span></a></span></span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">expression</span></a></span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>construct tuple</span></td>
           </tr>
           <tr>
@@ -1649,23 +1665,22 @@
             "#pattern-definition"><span class="nonterminal">pattern</span></a></span></span>
             <span><span class="nonterminal"><a href="#expression-definition"><span class=
             "nonterminal">expression</span></a></span></span></span><span class=
-            "literal">)</span></span></span><span class="plus">+</span></span></span><span class=
-            "literal">)</span></span></span></td>
+            "literal">)</span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>pattern matching</span></td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span class="literal">let</span> <span><span class=
-            "literal">(</span><span class="string"><span><span class="string"><span class=
-            "grouped">{<span class="string"><span><span class="literal">(</span><span class=
-            "string"><span><span class="nonterminal"><a href="#pattern-definition"><span class=
-            "nonterminal">pattern</span></a></span></span> <span><span class="nonterminal"><a href=
-            "#expression-definition"><span class=
+            "literal">(</span><span class="string"><span><span class="string"><span><span class=
+            "literal">(</span><span class="string"><span><span class="nonterminal"><a href=
+            "#pattern-definition"><span class="nonterminal">pattern</span></a></span></span>
+            <span><span class="nonterminal"><a href="#expression-definition"><span class=
             "nonterminal">expression</span></a></span></span></span><span class=
-            "literal">)</span></span></span>}</span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#body-definition"><span class=
+            "literal">)</span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span> <span><span 
+            class="nonterminal"><a href="#body-definition"><span class=
             "nonterminal">body</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>non-recursive bindings</span></td>
@@ -1674,15 +1689,14 @@
             <td colspan="2"></td>
             <td class="alternative"><span class="string"><span><span class="literal">(</span><span 
             class="string"><span class="literal">letrec</span> <span><span class=
-            "literal">(</span><span class="string"><span><span class="string"><span class=
-            "grouped">{<span class="string"><span><span class="literal">(</span><span class=
-            "string"><span><span class="nonterminal"><a href="#pattern-definition"><span class=
-            "nonterminal">pattern</span></a></span></span> <span><span class="nonterminal"><a href=
-            "#expression-definition"><span class=
+            "literal">(</span><span class="string"><span><span class="string"><span><span class=
+            "literal">(</span><span class="string"><span><span class="nonterminal"><a href=
+            "#pattern-definition"><span class="nonterminal">pattern</span></a></span></span>
+            <span><span class="nonterminal"><a href="#expression-definition"><span class=
             "nonterminal">expression</span></a></span></span></span><span class=
-            "literal">)</span></span></span>}</span></span><span class=
-            "star">⁎</span></span></span><span class="literal">)</span></span> <span><span class=
-            "nonterminal"><a href="#body-definition"><span class=
+            "literal">)</span></span></span><span class="star" title=
+            "zero or more">…</span></span></span><span class="literal">)</span></span> <span><span 
+            class="nonterminal"><a href="#body-definition"><span class=
             "nonterminal">body</span></a></span></span></span><span class=
             "literal">)</span></span></span></td>
             <td class="details"><span>recursive bindings</span></td>
@@ -1693,8 +1707,8 @@
             class="string"><span><span class="string"><span><span class="nonterminal"><a href=
             "#expression-definition"><span class="nonterminal">expression</span></a></span></span>
             <span><span class="nonterminal"><a href="#argument-definition"><span class=
-            "nonterminal">argument</span></a></span></span></span><span class=
-            "plus">+</span></span></span><span class="literal">)</span></span></span></td>
+            "nonterminal">argument</span></a></span></span></span><span class="plus" title=
+            "one or more">…+</span></span></span><span class="literal">)</span></span></span></td>
             <td class="details"><span>application</span></td>
           </tr>
         </tbody>

@@ -2,6 +2,10 @@ body {
 	font-family: "IBM Plex Serif", serif;
 }
 
+h1 {
+	font-size: xxx-large;
+}
+
 .natural-language {
 	font-style: italic;
 }
@@ -96,4 +100,9 @@ body {
 
 .rule td {
 	padding-top: 1em;
+}
+
+.plus,
+.star {
+	padding-left: 0.25em;
 }
