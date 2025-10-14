@@ -1,0 +1,87 @@
+body {
+	font-family: "IBM Plex Serif", serif;
+}
+
+.natural-language {
+	font-style: italic;
+}
+
+.natural-language code {
+	font-style: normal;
+	font-family: "IBM Plex Mono", monospace;
+}
+
+.grammar th {
+	padding-top: 0.25em;
+	text-align: left;
+}
+
+.grammar .after-heading td {
+	padding-top: 0.25em;
+}
+
+.h1 {
+	font-size: xx-large;
+}
+
+.h2 {
+	padding-left: 1em;
+	font-size: x-large;
+}
+
+.h3 {
+	padding-left: 2em;
+	font-size: larger;
+}
+
+.h4,
+.h5,
+.h6 {
+	font-size: large;
+}
+
+.nonterminal a {
+	text-decoration: none;
+	color: blue;
+}
+
+.nonterminal a:hover {
+	color: lightblue;
+}
+
+.literal {
+	font-family: "IBM Plex Mono", monospace;
+}
+
+.rule {
+	margin-bottom: 2em;
+}
+
+.alternatives {
+	padding-left: 1em;
+}
+
+.alternative {
+	padding-top: 0.25em;
+}
+
+sup,
+sub {
+	line-height: 0;
+}
+
+.grammar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;	
+	justify-content: center;
+	word-spacing: 0.25em;
+}
+
+.grammar .details {
+	word-spacing: 0em;
+}
+
+.rule {
+	width: 50%;
+}
