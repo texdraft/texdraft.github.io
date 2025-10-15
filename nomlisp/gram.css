@@ -3,9 +3,9 @@ body {
 	display: grid;
 	place-items: center;
 	word-spacing: 0.25em;
-}
-
-section {
+	width: 100vw;
+	overflow-x: hidden;
+	margin: 0;
 }
 
 h1 {
@@ -45,11 +45,6 @@ dl.rule-sequence {
 	grid-template-columns: 25% 75%;
 }
 
-@media screen and (max-width:800px) {
-  dl.rule-sequence {  	
-	font-size: 1vw;
-  }
-}
 
 dl.rule-sequence dt {
 	grid-column: 1;
