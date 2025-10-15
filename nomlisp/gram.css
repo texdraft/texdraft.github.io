@@ -6,6 +6,77 @@ h1 {
 	font-size: xxx-large;
 }
 
+h2 {
+	font-size: xx-large;
+}
+
+h3 {
+	font-size: x-large;
+}
+
+h4 {
+	font-size: large;
+}
+
+.alternative {
+	margin: 0;
+}
+
+.rule,
+.alternatives {
+	padding-top: 1em;
+}
+
+.arrow,
+.bar {
+	width: 3ch;
+	text-align: center;
+	grid-column: 1;
+}
+
+dl.rule-sequence {
+	width: 100em;
+	display: grid;
+	grid-template-columns: 25% 75%;
+}
+
+dl.rule-sequence dt {
+	grid-column: 1;
+}
+
+dl.rule-sequence .alternative {
+	display: grid;
+	grid-template-columns: 3ch 1fr 1fr;
+}
+
+.open-bracket,
+.open-brace {
+	padding-right: 0.125em;
+}
+
+.close-bracket,
+.close-brace {
+	padding-left: 0.125em;
+}
+
+.quantification {
+	padding-left: 0.25em;
+}
+
+.expansion {
+	grid-column: 2;
+	white-space: nowrap;
+}
+
+.comment {
+	grid-column: 3;
+}
+
+dt.rule {
+	text-align: right;
+}
+
+
 .natural-language {
 	font-style: italic;
 }
@@ -13,43 +84,6 @@ h1 {
 .natural-language code {
 	font-style: normal;
 	font-family: "IBM Plex Mono", monospace;
-}
-
-.grammar th {
-	padding-top: 0.25em;
-	text-align: left;
-}
-
-.grammar .after-heading td {
-	padding-top: 0.25em;
-}
-
-.h1 {
-	font-size: xx-large;
-}
-
-.h2 {
-	padding-left: 1em;
-	font-size: x-large;
-}
-
-.h3 {
-	padding-left: 2em;
-	font-size: larger;
-}
-
-.h4,
-.h5,
-.h6 {
-	font-size: large;
-}
-
-.h4 {
-	padding-left: 3em;
-}
-
-.h5 {
-	padding-left: 4em;
 }
 
 .nonterminal a {
@@ -65,18 +99,6 @@ h1 {
 	font-family: "IBM Plex Mono", monospace;
 }
 
-.rule {
-	margin-bottom: 2em;
-}
-
-.alternatives {
-	padding-left: 1em;
-}
-
-.alternative {
-	padding-top: 0.25em;
-}
-
 sup,
 sub {
 	line-height: 0;
@@ -90,19 +112,14 @@ body {
 	word-spacing: 0.25em;
 }
 
-.grammar .details {
+.natural-language {
 	word-spacing: 0em;
-}
-
-.rule {
-	width: 50%;
 }
 
 .rule td {
 	padding-top: 1em;
 }
 
-.plus,
-.star {
+.postfix, {
 	padding-left: 0.25em;
 }
