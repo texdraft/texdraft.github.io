@@ -782,7 +782,7 @@
                   ::=
                 </div>
                 <div class="expansion">
-                  <span class="nonterminal"><a href="#name-definition">name</a><sub>module</sub></span>
+                  <span class="nonterminal"><a href="#ported-name-definition">ported-name</a><sub>module</sub></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">all exports from module</span>
@@ -823,7 +823,18 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">from</span> <span class="nonterminal"><a href="#name-definition">name</a><sub>module</sub></span> <span><span class="nonterminal"><a href="#import-item-definition">import-item</a></span><span class="quantification">…+</span></span><span class="literal">)</span></span>
+                  <span><span class="literal">(</span><span class="literal">except</span> <span class="nonterminal"><a href="#name-definition">name</a><sub>module</sub></span> <span><span class="nonterminal"><a href="#import-item-definition">import-item</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+                </div>
+                <div class="comment">
+                  <span class="natural-language">omit bindings</span>
+                </div>
+              </dd>
+              <dd class="alternative">
+                <div class="bar">
+                  |
+                </div>
+                <div class="expansion">
+                  <span><span class="literal">(</span><span class="literal">from</span> <span class="nonterminal"><a href="#name-definition">name</a><sub>module</sub></span> <span><span class="nonterminal"><a href="#import-item-definition">import-item</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">restrict imported bindings</span>
@@ -837,17 +848,6 @@
               <dd class="alternative">
                 <div class="arrow">
                   ::=
-                </div>
-                <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">qualified</span> <span class="nonterminal"><a href="#import-definition">import</a></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#name-definition">name</a><sub>module</sub></span><span class="close-bracket">]</span></span><span class="literal">)</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">new module name</span>
-                </div>
-              </dd>
-              <dd class="alternative">
-                <div class="bar">
-                  |
                 </div>
                 <div class="expansion">
                   <span class="nonterminal"><a href="#ported-name-definition">ported-name</a><sub>term</sub></span>
@@ -916,17 +916,6 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">except</span> <span class="nonterminal"><a href="#import-definition">import</a></span> <span><span class="nonterminal"><a href="#import-item-definition">import-item</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">omit bindings</span>
-                </div>
-              </dd>
-              <dd class="alternative">
-                <div class="bar">
-                  |
-                </div>
-                <div class="expansion">
                   <span><span class="literal">(</span><span class="literal">syntax</span> <span><span class="nonterminal"><a href="#syntax-port-definition">syntax-port</a></span><span class="quantification">…+</span></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
@@ -964,7 +953,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">define/type</span> <span class="nonterminal"><a href="#defining-type-name-definition">defining-type-name</a></span> <span class="nonterminal"><a href="#type-definition">type</a></span><span class="literal">)</span></span>
+                  <span><span class="literal">(</span><span class="literal">define/type</span> <span class="nonterminal"><a href="#type-definition">type</a></span> <span class="nonterminal"><a href="#type-definition">type</a></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">type synonym</span>
@@ -975,7 +964,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">define/type</span> <span class="nonterminal"><a href="#defining-type-name-definition">defining-type-name</a></span> <span class="nonterminal"><a href="#data-body-definition">data-body</a></span><span class="literal">)</span></span>
+                  <span><span class="literal">(</span><span class="literal">define/type</span> <span class="nonterminal"><a href="#type-definition">type</a></span> <span class="nonterminal"><a href="#data-body-definition">data-body</a></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">algebraic data type</span>
@@ -986,7 +975,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">define/class</span> <span class="nonterminal"><a href="#defining-type-name-definition">defining-type-name</a></span> <span><span class="nonterminal"><a href="#typeclass-item-definition">typeclass-item</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+                  <span><span class="literal">(</span><span class="literal">define/class</span> <span class="nonterminal"><a href="#type-definition">type</a></span> <span><span class="nonterminal"><a href="#typeclass-item-definition">typeclass-item</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">type class</span>
@@ -1065,68 +1054,6 @@
                 </div>
                 <div class="comment">
                   <span class="natural-language">define by matching</span>
-                </div>
-              </dd>
-            </div>
-            <dt class="rule" id="defining-type-name-definition">
-              <span class="nonterminal"><a href="#defining-type-name-definition">defining-type-name</a></span>
-            </dt>
-            <div class="alternatives">
-              <dd class="alternative">
-                <div class="arrow">
-                  ::=
-                </div>
-                <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">∀</span> <span><span class="literal">(</span><span><span class="nonterminal"><a href="#name-definition">name</a><sub>type</sub></span><span class="quantification">…+</span></span><span class="literal">)</span></span> <span class="nonterminal"><a href="#defining-type-name-definition">defining-type-name</a></span><span class="literal">)</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">quantified arguments</span>
-                </div>
-              </dd>
-              <dd class="alternative">
-                <div class="bar">
-                  |
-                </div>
-                <div class="expansion">
-                  <span class="nonterminal"><a href="#type-name-with-possible-arguments-definition">type-name-with-possible-arguments</a></span>
-                </div>
-              </dd>
-              <dd class="alternative">
-                <div class="bar">
-                  |
-                </div>
-                <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">⇒</span> <span><span class="nonterminal"><a href="#constraint-definition">constraint</a></span><span class="quantification">…+</span></span> <span class="nonterminal"><a href="#defining-type-name-definition">defining-type-name</a></span><span class="literal">)</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">constrained arguments</span>
-                </div>
-              </dd>
-            </div>
-            <dt class="rule" id="type-name-with-possible-arguments-definition">
-              <span class="nonterminal"><a href="#type-name-with-possible-arguments-definition">type-name-with-possible-arguments</a></span>
-            </dt>
-            <div class="alternatives">
-              <dd class="alternative">
-                <div class="arrow">
-                  ::=
-                </div>
-                <div class="expansion">
-                  <span class="nonterminal"><a href="#name-definition">name</a><sub>type</sub></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">no arguments</span>
-                </div>
-              </dd>
-              <dd class="alternative">
-                <div class="bar">
-                  |
-                </div>
-                <div class="expansion">
-                  <span><span class="literal">(</span><span class="nonterminal"><a href="#name-definition">name</a><sub>type</sub></span> <span><span class="nonterminal"><a href="#name-definition">name</a><sub>type</sub></span><span class="quantification">…+</span></span><span class="literal">)</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">type with arguments</span>
                 </div>
               </dd>
             </div>
@@ -1707,7 +1634,7 @@
                 |
               </div>
               <div class="expansion">
-                <span><span class="literal">(</span><span class="literal">quote</span> <span class="nonterminal"><a href="#expression-definition">expression</a></span><span class="literal">)</span></span>
+                <span><span class="literal">(</span><span class="literal">quote</span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span><span class="literal">)</span></span>
               </div>
               <div class="comment">
                 <span class="natural-language">treat as syntax object</span>
