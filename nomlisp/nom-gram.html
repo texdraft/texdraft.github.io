@@ -15,6 +15,83 @@
     <section>
       <h2>Lexical structure</h2>
       <dl class="rule-sequence">
+        <dt class="rule" id="s-expression-definition">
+          <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
+        </dt>
+        <div class="alternatives">
+          <dd class="alternative">
+            <div class="arrow">
+              ::=
+            </div>
+            <div class="expansion">
+              <span class="nonterminal"><a href="#identifier-definition">identifier</a></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span class="nonterminal"><a href="#label-definition">label</a></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span class="nonterminal"><a href="#constant-definition">constant</a></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span><span class="literal">(</span><span><span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span class="literal">@</span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span class="literal">⇐</span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span class="optional"><span class="open-bracket">[</span><span class="literal">#</span> <span class="nonterminal"><a href="#identifier-definition">identifier</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#delimited-expression-definition">delimited-expression</a></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span class="optional"><span class="open-bracket">[</span><span class="literal">#</span> <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#delimited-expression-definition">delimited-expression</a></span>
+            </div>
+          </dd>
+        </div>
         <dt class="rule" id="dotted-identifier-definition">
           <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span>
         </dt>
@@ -347,6 +424,27 @@
       <section>
         <h3>Basics</h3>
         <dl class="rule-sequence">
+          <dt class="rule" id="name-definition">
+            <span class="nonterminal"><a href="#name-definition">name</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#identifier-definition">identifier</a></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#qualified-name-definition">qualified-name</a></span>
+              </div>
+            </dd>
+          </div>
           <dt class="rule" id="qualified-name-definition">
             <span class="nonterminal"><a href="#qualified-name-definition">qualified-name</a></span>
           </dt>
@@ -536,6 +634,31 @@
         <section>
           <h4>Modules</h4>
           <dl class="rule-sequence">
+            <dt class="rule" id="module-definition">
+              <span class="nonterminal"><a href="#module-definition">module</a></span>
+            </dt>
+            <div class="alternatives">
+              <dd class="alternative">
+                <div class="arrow">
+                  ::=
+                </div>
+                <div class="expansion">
+                  <span><span class="literal">(</span><span class="literal">define/module</span> <span class="nonterminal"><a href="#name-definition">name</a><sub>module</sub></span> <span><span class="literal">(</span><span><span class="nonterminal"><a href="#export-definition">export</a></span><span class="quantification">…</span></span><span class="literal">)</span></span><span class="literal">)</span></span> <span><span class="nonterminal"><a href=
+                  "#declaration-definition">declaration</a></span><span class="quantification">…+</span></span>
+                </div>
+                <div class="comment">
+                  <span class="natural-language">file shorthand</span>
+                </div>
+              </dd>
+              <dd class="alternative">
+                <div class="bar">
+                  |
+                </div>
+                <div class="expansion">
+                  <span><span class="nonterminal"><a href="#module-definition-definition">module-definition</a></span><span class="quantification">…+</span></span> <span class="literal">models</span> <span class="literal">directory</span> <span class="literal">as</span> <span class="nonterminal"><a href="#module-definition">module</a></span>
+                </div>
+              </dd>
+            </div>
             <dt class="rule" id="module-definition-definition">
               <span class="nonterminal"><a href="#module-definition-definition">module-definition</a></span>
             </dt>
@@ -928,6 +1051,65 @@
         <section>
           <h4>Declarations</h4>
           <dl class="rule-sequence">
+            <dt class="rule" id="declaration-definition">
+              <span class="nonterminal"><a href="#declaration-definition">declaration</a></span>
+            </dt>
+            <div class="alternatives">
+              <dd class="alternative">
+                <div class="arrow">
+                  ::=
+                </div>
+                <div class="expansion">
+                  <span class="nonterminal"><a href="#definition-definition">definition</a></span>
+                </div>
+              </dd>
+              <dd class="alternative">
+                <div class="bar">
+                  |
+                </div>
+                <div class="expansion">
+                  <span><span class="literal">(</span><span class="literal">implicit</span> <span><span class="nonterminal"><a href="#name-definition">name</a><sub>type</sub></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+                </div>
+                <div class="comment">
+                  <span class="natural-language">make instances implicit</span>
+                </div>
+              </dd>
+              <dd class="alternative">
+                <div class="bar">
+                  |
+                </div>
+                <div class="expansion">
+                  <span class="nonterminal"><a href="#metadata-declaration-definition">metadata-declaration</a></span>
+                </div>
+              </dd>
+              <dd class="alternative">
+                <div class="bar">
+                  |
+                </div>
+                <div class="expansion">
+                  <span><span class="literal">(</span><span class="literal">import</span> <span><span class="nonterminal"><a href="#import-definition">import</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+                </div>
+                <div class="comment">
+                  <span class="natural-language">bring in external bindings</span>
+                </div>
+              </dd>
+              <dd class="alternative">
+                <div class="bar">
+                  |
+                </div>
+                <div class="expansion">
+                  <span><span class="literal">(</span><span class="literal">splice</span> <span><span class="nonterminal"><a href="#declaration-definition">declaration</a></span><span class="quantification">…</span></span><span class="literal">)</span></span> <span class="literal">splice</span> <span class="literal">nested</span> <span class="literal">declarations</span>
+                </div>
+              </dd>
+              <dd class="alternative">
+                <div class="bar">
+                  |
+                </div>
+                <div class="expansion">
+                  <span><span class="literal">(</span><span class="literal">for-syntax</span> <span><span class="nonterminal"><a href="#declaration-definition">declaration</a></span><span class="quantification">…</span></span><span class="literal">)</span></span> <span class="literal">define</span> <span class="literal">at</span> <span class="literal">higher</span> <span class="literal">phase</span>
+                </div>
+              </dd>
+            </div>
             <dt class="rule" id="definition-definition">
               <span class="nonterminal"><a href="#definition-definition">definition</a></span>
             </dt>
@@ -1457,6 +1639,78 @@
       <section>
         <h3>Types</h3>
         <dl class="rule-sequence">
+          <dt class="rule" id="type-definition">
+            <span class="nonterminal"><a href="#type-definition">type</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#name-definition">name</a><sub>type</sub></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">type variable or nullary constructor</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="literal">(</span><span class="literal">∀</span> <span><span class="literal">(</span><span><span class="nonterminal"><a href="#type-parameter-definition">type-parameter</a></span><span class="quantification">…+</span></span><span class="literal">)</span></span> <span class="nonterminal"><a href="#type-definition">type</a></span><span class="literal">)</span></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">generic type</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="literal">(</span><span class="literal">⇒</span> <span><span class="nonterminal"><a href="#constraint-definition">constraint</a></span><span class="quantification">…+</span></span> <span class="nonterminal"><a href="#type-definition">type</a></span><span class="literal">)</span></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">constrained type</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="literal">(</span><span class="nonterminal"><a href="#type-definition">type</a></span> <span><span class="nonterminal"><a href="#type-argument-definition">type-argument</a></span><span class="quantification">…+</span></span><span class="literal">)</span></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">type application</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="literal">(</span><span class="literal">record</span> <span><span class="group"><span class="open-brace">{</span><span class="nonterminal"><a href="#label-definition">label</a></span> <span class="nonterminal"><a href="#type-definition">type</a></span><span class="close-brace">}</span></span><span class="quantification">…+</span></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#type-definition">type</a></span>
+                <span class="close-bracket">]</span></span><span class="literal">)</span></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">type of records with row</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="literal">(</span><span class="literal">tuple</span> <span><span class="nonterminal"><a href="#type-definition">type</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">type of tuples</span>
+              </div>
+            </dd>
+          </div>
           <dt class="rule" id="type-parameter-definition">
             <span class="nonterminal"><a href="#type-parameter-definition">type-parameter</a></span>
           </dt>
@@ -1537,6 +1791,19 @@
       <section>
         <h3>Terms</h3>
         <dl class="rule-sequence">
+          <dt class="rule" id="body-definition">
+            <span class="nonterminal"><a href="#body-definition">body</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span><span class="nonterminal"><a href="#declaration-definition">declaration</a></span><span class="quantification">…</span></span> <span><span class="nonterminal"><a href="#expression-definition">expression</a></span><span class="quantification">…+</span></span>
+              </div>
+            </dd>
+          </div>
           <dt class="rule" id="expression-definition">
             <span class="nonterminal"><a href="#expression-definition">expression</a></span>
           </dt>
