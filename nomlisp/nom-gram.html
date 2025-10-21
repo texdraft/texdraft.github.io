@@ -272,15 +272,7 @@
                 ::=
               </div>
               <div class="expansion">
-                <span class="literal">"</span> <span><span class="nonterminal"><a href="#double-string-element-definition">double-string-element</a></span><span class="quantification">…</span></span> <span class="literal">"</span>
-              </div>
-            </dd>
-            <dd class="alternative">
-              <div class="bar">
-                |
-              </div>
-              <div class="expansion">
-                <span class="literal">‘</span> <span><span class="nonterminal"><a href="#single-string-element-definition">single-string-element</a></span><span class="quantification">…</span></span> <span class="literal">’</span>
+                <span class="nonterminal"><a href="#string-definition">string</a></span>
               </div>
             </dd>
             <dd class="alternative">
@@ -289,6 +281,27 @@
               </div>
               <div class="expansion">
                 <span class="nonterminal"><a href="#number-definition">number</a></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="string-definition">
+            <span class="nonterminal"><a href="#string-definition">string</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="literal">“</span> <span><span class="nonterminal"><a href="#double-string-element-definition">double-string-element</a></span><span class="quantification">…</span></span> <span class="literal">”</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="literal">‘</span> <span><span class="nonterminal"><a href="#single-string-element-definition">single-string-element</a></span><span class="quantification">…</span></span> <span class="literal">’</span>
               </div>
             </dd>
           </div>
@@ -301,7 +314,7 @@
                 ::=
               </div>
               <div class="expansion">
-                <span class="natural-language">any character other than \ or "</span>
+                <span class="natural-language">any character other than <code>\</code> or <code>“</code></span>
               </div>
             </dd>
             <dd class="alternative">
@@ -309,7 +322,7 @@
                 |
               </div>
               <div class="expansion">
-                <span class="literal">"</span>
+                <span class="literal">”</span>
               </div>
             </dd>
             <dd class="alternative">
@@ -330,7 +343,7 @@
                 ::=
               </div>
               <div class="expansion">
-                <span class="natural-language">any character other than \ or ’</span>
+                <span class="natural-language">any character other than <code>\</code> or <code>’</code></span>
               </div>
             </dd>
             <dd class="alternative">
