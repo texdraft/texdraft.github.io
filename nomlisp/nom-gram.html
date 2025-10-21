@@ -26,6 +26,9 @@
             <div class="expansion">
               <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
             </div>
+            <div class="comment">
+              <span class="natural-language"><code>foo</code>, <code>Maybe</code></span>
+            </div>
           </dd>
           <dd class="alternative">
             <div class="bar">
@@ -33,6 +36,9 @@
             </div>
             <div class="expansion">
               <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
+            </div>
+            <div class="comment">
+              <span class="natural-language"><code>M.x</code>, <code>N.{1 2 3}</code></span>
             </div>
           </dd>
           <dd class="alternative">
@@ -42,6 +48,9 @@
             <div class="expansion">
               <span class="nonterminal"><a href="#label-definition">label</a></span>
             </div>
+            <div class="comment">
+              <span class="natural-language"><code>:x</code>, <code>:y</code></span>
+            </div>
           </dd>
           <dd class="alternative">
             <div class="bar">
@@ -50,13 +59,30 @@
             <div class="expansion">
               <span class="nonterminal"><a href="#constant-definition">constant</a></span>
             </div>
+            <div class="comment">
+              <span class="natural-language"><code>“string”</code>, <code>16r10FFFF</code></span>
+            </div>
           </dd>
           <dd class="alternative">
             <div class="bar">
               |
             </div>
             <div class="expansion">
-              <span><span class="literal">(</span><span><span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+              <span><span class="literal">(</span><span class="literal">)</span></span>
+            </div>
+            <div class="comment">
+              <span class="natural-language">unit denotation</span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span><span class="literal">(</span><span><span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span><span class="quantification">…+</span></span><span class="literal">)</span></span>
+            </div>
+            <div class="comment">
+              <span class="natural-language">parenthesized list</span>
             </div>
           </dd>
           <dd class="alternative">
@@ -66,6 +92,9 @@
             <div class="expansion">
               <span class="literal">@</span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
             </div>
+            <div class="comment">
+              <span class="natural-language"><code>@ arguments</code></span>
+            </div>
           </dd>
           <dd class="alternative">
             <div class="bar">
@@ -73,6 +102,9 @@
             </div>
             <div class="expansion">
               <span class="literal">⇐</span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
+            </div>
+            <div class="comment">
+              <span class="natural-language"><code>⇐ my-Ordering</code></span>
             </div>
           </dd>
           <dd class="alternative">
@@ -82,6 +114,9 @@
             <div class="expansion">
               <span class="nonterminal"><a href="#delimited-expression-definition">delimited-expression</a></span>
             </div>
+            <div class="comment">
+              <span class="natural-language"><code>⸨x y z⸩</code></span>
+            </div>
           </dd>
           <dd class="alternative">
             <div class="bar">
@@ -90,6 +125,9 @@
             <div class="expansion">
               <span class="literal">#</span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
             </div>
+            <div class="comment">
+              <span class="natural-language"><code>#format “…”</code></span>
+            </div>
           </dd>
           <dd class="alternative">
             <div class="bar">
@@ -97,6 +135,9 @@
             </div>
             <div class="expansion">
               <span class="literal">#</span> <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
+            </div>
+            <div class="comment">
+              <span class="natural-language"><code>#Prelude.format “…”</code></span>
             </div>
           </dd>
         </div>
@@ -109,7 +150,7 @@
               ::=
             </div>
             <div class="expansion">
-              <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
+              <span class="nonterminal"><a href="#symbol-definition">symbol</a></span> <span class="literal">.</span>
             </div>
           </dd>
           <dd class="alternative">
@@ -117,7 +158,7 @@
               |
             </div>
             <div class="expansion">
-              <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span> <span class="literal">.</span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
+              <span class="nonterminal"><a href="#symbol-definition">symbol</a></span> <span class="literal">.</span> <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span>
             </div>
           </dd>
         </div>
@@ -172,7 +213,7 @@
               <span><span class="nonterminal"><a href="#symbol-element-definition">symbol-element</a></span><span class="quantification">…+</span></span>
             </div>
             <div class="comment">
-              <span class="natural-language">as long as constant does not generate this string</span>
+              <span class="natural-language">as long as <span class="nonterminal"><a href="#constant-definition">constant</a></span> does not generate this string</span>
             </div>
           </dd>
         </div>
@@ -218,214 +259,573 @@
             </div>
           </dd>
         </div>
-        <dt class="rule" id="constant-definition">
-          <span class="nonterminal"><a href="#constant-definition">constant</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span class="literal">"</span> <span><span class="nonterminal"><a href="#double-string-element-definition">double-string-element</a></span><span class="quantification">…</span></span> <span class="literal">"</span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="literal">‘</span> <span><span class="nonterminal"><a href="#single-string-element-definition">single-string-element</a></span><span class="quantification">…</span></span> <span class="literal">’</span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="nonterminal"><a href="#number-definition">number</a></span>
-            </div>
-          </dd>
-        </div>
-        <dt class="rule" id="double-string-element-definition">
-          <span class="nonterminal"><a href="#double-string-element-definition">double-string-element</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span class="natural-language">any character other than \ or "</span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="literal">"</span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="nonterminal"><a href="#general-escape-definition">general-escape</a></span>
-            </div>
-          </dd>
-        </div>
-        <dt class="rule" id="single-string-element-definition">
-          <span class="nonterminal"><a href="#single-string-element-definition">single-string-element</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span class="natural-language">any character other than \ or ’</span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="literal">\’</span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="nonterminal"><a href="#general-escape-definition">general-escape</a></span>
-            </div>
-          </dd>
-        </div>
-        <dt class="rule" id="general-escape-definition">
-          <span class="nonterminal"><a href="#general-escape-definition">general-escape</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span class="literal">\\</span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="literal">\</span> <span><span class="nonterminal"><a href="#hexadecimal-digit-definition">hexadecimal-digit</a></span><span class="quantification">…+</span></span>
-            </div>
-          </dd>
-        </div>
-        <dt class="rule" id="number-definition">
-          <span class="nonterminal"><a href="#number-definition">number</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span><span class="nonterminal"><a href="#decimal-digit-definition">decimal-digit</a></span><span class="quantification">…+</span></span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="nonterminal"><a href="#radix-definition">radix</a></span> <span class="literal">r</span> <span class="nonterminal"><a href="#radix-digit-definition">radix-digit</a></span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span class="nonterminal"><a href="#decimal-digit-definition">decimal-digit</a></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#decimal-digit-definition">decimal-digit</a></span><span class="close-bracket">]</span></span> <span class="literal">R</span> <span class="nonterminal"><a href="#radix-digit-definition">radix-digit</a></span>
-            </div>
-          </dd>
-        </div>
-        <dt class="rule" id="radix-definition">
-          <span class="nonterminal"><a href="#radix-definition">radix</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span><span class="literal">1</span> | <span class="literal">2</span> | <span class="natural-language">etc.</span> | <span class="literal">36</span></span>
-            </div>
-          </dd>
-        </div>
-        <dt class="rule" id="radix-digit-definition">
-          <span class="nonterminal"><a href="#radix-digit-definition">radix-digit</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span class="nonterminal"><a href="#hexadecimal-digit-definition">hexadecimal-digit</a></span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span><span class="group"><span class="open-brace">{</span><span><span class="literal">g</span> | <span class="literal">G</span></span><span class="close-brace">}</span></span> | <span class="group"><span class="open-brace">{</span><span><span class="literal">h</span> | <span class="literal">H</span></span><span class="close-brace">}</span></span> | <span class="natural-language">etc.</span> | <span class="group"><span class="open-brace">{</span><span><span class=
-              "literal">z</span> | <span class="literal">Z</span></span><span class="close-brace">}</span></span></span>
-            </div>
-          </dd>
-        </div>
-        <dt class="rule" id="decimal-digit-definition">
-          <span class="nonterminal"><a href="#decimal-digit-definition">decimal-digit</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span><span class="literal">0</span> | <span class="literal">1</span> | <span class="literal">etc.</span> | <span class="literal">9</span></span>
-            </div>
-          </dd>
-        </div>
-        <dt class="rule" id="hexadecimal-digit-definition">
-          <span class="nonterminal"><a href="#hexadecimal-digit-definition">hexadecimal-digit</a></span>
-        </dt>
-        <div class="alternatives">
-          <dd class="alternative">
-            <div class="arrow">
-              ::=
-            </div>
-            <div class="expansion">
-              <span class="nonterminal"><a href="#decimal-digit-definition">decimal-digit</a></span>
-            </div>
-          </dd>
-          <dd class="alternative">
-            <div class="bar">
-              |
-            </div>
-            <div class="expansion">
-              <span><span class="group"><span class="open-brace">{</span><span><span class="literal">a</span> | <span class="literal">A</span></span><span class="close-brace">}</span></span> | <span class="group"><span class="open-brace">{</span><span><span class="literal">b</span> | <span class="literal">B</span></span><span class="close-brace">}</span></span> | <span class="natural-language">etc.</span> | <span class="group"><span class="open-brace">{</span><span><span class=
-              "literal">f</span> | <span class="literal">F</span></span><span class="close-brace">}</span></span></span>
-            </div>
-          </dd>
-        </div>
       </dl>
+      <section>
+        <h3>Constants</h3>
+        <dl class="rule-sequence">
+          <dt class="rule" id="constant-definition">
+            <span class="nonterminal"><a href="#constant-definition">constant</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="literal">"</span> <span><span class="nonterminal"><a href="#double-string-element-definition">double-string-element</a></span><span class="quantification">…</span></span> <span class="literal">"</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="literal">‘</span> <span><span class="nonterminal"><a href="#single-string-element-definition">single-string-element</a></span><span class="quantification">…</span></span> <span class="literal">’</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#number-definition">number</a></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="double-string-element-definition">
+            <span class="nonterminal"><a href="#double-string-element-definition">double-string-element</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="natural-language">any character other than \ or "</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="literal">"</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#general-escape-definition">general-escape</a></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="single-string-element-definition">
+            <span class="nonterminal"><a href="#single-string-element-definition">single-string-element</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="natural-language">any character other than \ or ’</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="literal">\’</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#general-escape-definition">general-escape</a></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="general-escape-definition">
+            <span class="nonterminal"><a href="#general-escape-definition">general-escape</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="literal">\\</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="literal">\</span> <span><span class="nonterminal"><a href="#hexadecimal-digit-definition">hexadecimal-digit</a></span><span class="quantification">…+</span></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="number-definition">
+            <span class="nonterminal"><a href="#number-definition">number</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#integer-definition">integer</a></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#rational-definition">rational</a></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#floating-definition">floating</a></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="integer-definition">
+            <span class="nonterminal"><a href="#integer-definition">integer</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language"><code>-1234</code></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#radix-prefix-definition">radix-prefix</a></span> <span class="nonterminal"><a href="#radix-digits-definition">radix-digits</a></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language"><code>2r110101</code></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="rational-definition">
+            <span class="nonterminal"><a href="#rational-definition">rational</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span> <span class="literal">/</span> <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language"><code>10/3</code></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#radix-prefix-definition">radix-prefix</a></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#radix-digits-definition">radix-digits</a></span> <span class="literal">/</span> <span class="nonterminal"><a href="#radix-digits-definition">radix-digits</a></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language"><code>13r5/4</code></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="floating-definition">
+            <span class="nonterminal"><a href="#floating-definition">floating</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#floating-value-definition">floating-value</a></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">inexact floating-point</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#floating-value-definition">floating-value</a></span> <span class="literal">♯</span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#width-definition">width</a></span><span class="close-bracket">]</span></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">exact floating-point, can't be NaN or infinite</span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="width-definition">
+            <span class="nonterminal"><a href="#width-definition">width</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">number of bits of precision</span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="floating-value-definition">
+            <span class="nonterminal"><a href="#floating-value-definition">floating-value</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#unsigned-floating-definition">unsigned-floating</a></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#suffix-definition">suffix</a></span><span class="close-bracket">]</span></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="literal">NaN</span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">IEEE 754 not a number</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="literal">infinity</span>
+              </div>
+              <div class="comment">
+                <span class="natural-language">IEEE 754 infinity</span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="suffix-definition">
+            <span class="nonterminal"><a href="#suffix-definition">suffix</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#binary-format-definition">binary-format</a></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#decimal-format-definition">decimal-format</a></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="binary-format-definition">
+            <span class="nonterminal"><a href="#binary-format-definition">binary-format</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span><span class="literal">b16</span> | <span class="literal">b32</span> | <span class="literal">b64</span> | <span class="literal">b128</span></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="literal">B16</span> | <span class="literal">B32</span> | <span class="literal">B64</span> | <span class="literal">B128</span></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="decimal-format-definition">
+            <span class="nonterminal"><a href="#decimal-format-definition">decimal-format</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span><span class="literal">d32</span> | <span class="literal">d64</span> | <span class="literal">d128</span></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="literal">D32</span> | <span class="literal">D64</span> | <span class="literal">D128</span></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="unsigned-floating-definition">
+            <span class="nonterminal"><a href="#unsigned-floating-definition">unsigned-floating</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#radix-prefix-definition">radix-prefix</a></span> <span class="nonterminal"><a href="#radix-digits-definition">radix-digits</a></span> <span class="optional"><span class="open-bracket">[</span><span class="literal">.</span> <span class="nonterminal"><a href="#radix-digits-definition">radix-digits</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#exponent-definition">exponent</a></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language"><code>2r10×2↑4</code></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#radix-prefix-definition">radix-prefix</a></span> <span class="nonterminal"><a href="#radix-digits-definition">radix-digits</a></span> <span class="literal">.</span> <span class="nonterminal"><a href="#radix-digits-definition">radix-digits</a></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#exponent-definition">exponent</a></span><span class="close-bracket">]</span></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language"><code>3r0.2</code></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span> <span class="optional"><span class="open-bracket">[</span><span class="literal">.</span> <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#decimal-exponent-definition">decimal-exponent</a></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language"><code>4×10↑3</code>, <code>0.1E+10</code></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span> <span class="literal">.</span> <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#decimal-exponent-definition">decimal-exponent</a></span><span class="close-bracket">]</span></span>
+              </div>
+              <div class="comment">
+                <span class="natural-language"><code>0.5</code></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="exponent-definition">
+            <span class="nonterminal"><a href="#exponent-definition">exponent</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="literal">×</span> <span class="nonterminal"><a href="#radix-definition">radix</a></span> <span class="literal">↑</span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="decimal-exponent-definition">
+            <span class="nonterminal"><a href="#decimal-exponent-definition">decimal-exponent</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#exponent-definition">exponent</a></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="literal">e</span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="literal">E</span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#sign-definition">sign</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="sign-definition">
+            <span class="nonterminal"><a href="#sign-definition">sign</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="literal">-</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="literal">+</span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="radix-prefix-definition">
+            <span class="nonterminal"><a href="#radix-prefix-definition">radix-prefix</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#radix-definition">radix</a></span> <span class="literal">r</span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#radix-definition">radix</a></span> <span class="literal">R</span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="radix-definition">
+            <span class="nonterminal"><a href="#radix-definition">radix</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span><span class="literal">1</span> | <span class="literal">2</span> | <span class="natural-language">etc.</span> | <span class="literal">36</span></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="radix-digits-definition">
+            <span class="nonterminal"><a href="#radix-digits-definition">radix-digits</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span><span class="nonterminal"><a href="#radix-digit-definition">radix-digit</a></span><span class="quantification">…+</span></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="decimal-digits-definition">
+            <span class="nonterminal"><a href="#decimal-digits-definition">decimal-digits</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span><span class="nonterminal"><a href="#decimal-digit-definition">decimal-digit</a></span><span class="quantification">…+</span></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="decimal-digit-definition">
+            <span class="nonterminal"><a href="#decimal-digit-definition">decimal-digit</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span><span class="literal">0</span> | <span class="literal">1</span> | <span class="literal">etc.</span> | <span class="literal">9</span></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="hexadecimal-digit-definition">
+            <span class="nonterminal"><a href="#hexadecimal-digit-definition">hexadecimal-digit</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#decimal-digit-definition">decimal-digit</a></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="group"><span class="open-brace">{</span><span><span class="literal">a</span> | <span class="literal">A</span></span><span class="close-brace">}</span></span> | <span class="group"><span class="open-brace">{</span><span><span class="literal">b</span> | <span class="literal">B</span></span><span class="close-brace">}</span></span> | <span class="natural-language">etc.</span> | <span class="group"><span class="open-brace">{</span><span><span class=
+                "literal">f</span> | <span class="literal">F</span></span><span class="close-brace">}</span></span></span>
+              </div>
+            </dd>
+          </div>
+          <dt class="rule" id="radix-digit-definition">
+            <span class="nonterminal"><a href="#radix-digit-definition">radix-digit</a></span>
+          </dt>
+          <div class="alternatives">
+            <dd class="alternative">
+              <div class="arrow">
+                ::=
+              </div>
+              <div class="expansion">
+                <span class="nonterminal"><a href="#hexadecimal-digit-definition">hexadecimal-digit</a></span>
+              </div>
+            </dd>
+            <dd class="alternative">
+              <div class="bar">
+                |
+              </div>
+              <div class="expansion">
+                <span><span class="group"><span class="open-brace">{</span><span><span class="literal">g</span> | <span class="literal">G</span></span><span class="close-brace">}</span></span> | <span class="group"><span class="open-brace">{</span><span><span class="literal">h</span> | <span class="literal">H</span></span><span class="close-brace">}</span></span> | <span class="natural-language">etc.</span> | <span class="group"><span class="open-brace">{</span><span><span class=
+                "literal">z</span> | <span class="literal">Z</span></span><span class="close-brace">}</span></span></span>
+              </div>
+            </dd>
+          </div>
+        </dl>
+      </section>
     </section>
     <section>
       <h2>Phrase structure</h2>
@@ -606,7 +1006,7 @@
               </div>
               <div class="expansion">
                 <span><span class="literal">(</span><span class="literal">record</span> <span><span class="group"><span class="open-brace">{</span><span class="nonterminal"><a href="#label-definition">label</a></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#pattern-definition">pattern</a></span><span class="close-bracket">]</span></span><span class="close-brace">}</span></span><span class="quantification">…+</span></span> <span class=
-                "optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#name-definition">name</a><sub>term</sub></span><span class="close-bracket">]</span></span><span class="literal">)</span></span>
+                "optional"><span class="open-bracket">[</span><span class="literal">|</span> <span class="nonterminal"><a href="#name-definition">name</a><sub>term</sub></span><span class="close-bracket">]</span></span><span class="literal">)</span></span>
               </div>
               <div class="comment">
                 <span class="natural-language">match record with row</span>
@@ -1689,8 +2089,8 @@
                 |
               </div>
               <div class="expansion">
-                <span><span class="literal">(</span><span class="literal">record</span> <span><span class="group"><span class="open-brace">{</span><span class="nonterminal"><a href="#label-definition">label</a></span> <span class="nonterminal"><a href="#type-definition">type</a></span><span class="close-brace">}</span></span><span class="quantification">…+</span></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href="#type-definition">type</a></span>
-                <span class="close-bracket">]</span></span><span class="literal">)</span></span>
+                <span><span class="literal">(</span><span class="literal">record</span> <span><span class="group"><span class="open-brace">{</span><span class="nonterminal"><a href="#label-definition">label</a></span> <span class="nonterminal"><a href="#type-definition">type</a></span><span class="close-brace">}</span></span><span class="quantification">…+</span></span> <span class="optional"><span class="open-bracket">[</span><span class="literal">|</span> <span class="nonterminal"><a href=
+                "#type-definition">type</a></span><span class="close-bracket">]</span></span><span class="literal">)</span></span>
               </div>
               <div class="comment">
                 <span class="natural-language">type of records with row</span>
@@ -1909,8 +2309,8 @@
                 |
               </div>
               <div class="expansion">
-                <span><span class="literal">(</span><span class="literal">record</span> <span><span class="group"><span class="open-brace">{</span><span class="nonterminal"><a href="#label-definition">label</a></span> <span class="nonterminal"><a href="#expression-definition">expression</a></span><span class="close-brace">}</span></span><span class="quantification">…</span></span> <span class="optional"><span class="open-bracket">[</span><span class="nonterminal"><a href=
-                "#expression-definition">expression</a></span><span class="close-bracket">]</span></span><span class="literal">)</span></span>
+                <span><span class="literal">(</span><span class="literal">record</span> <span><span class="group"><span class="open-brace">{</span><span class="nonterminal"><a href="#label-definition">label</a></span> <span class="nonterminal"><a href="#expression-definition">expression</a></span><span class="close-brace">}</span></span><span class="quantification">…</span></span> <span class="optional"><span class="open-bracket">[</span><span class="literal">|</span> <span class=
+                "nonterminal"><a href="#expression-definition">expression</a></span><span class="close-bracket">]</span></span><span class="literal">)</span></span>
               </div>
               <div class="comment">
                 <span class="natural-language">construct record with row</span>

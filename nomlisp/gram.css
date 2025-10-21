@@ -92,6 +92,10 @@ dt.rule {
 	font-family: "IBM Plex Mono", monospace;
 }
 
+.nonterminal {
+	font-style: normal;
+}
+
 .nonterminal a {
 	text-decoration: none;
 	color: blue;
