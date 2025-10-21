@@ -24,7 +24,7 @@
               ::=
             </div>
             <div class="expansion">
-              <span class="nonterminal"><a href="#identifier-definition">identifier</a></span>
+              <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
             </div>
           </dd>
           <dd class="alternative">
@@ -32,7 +32,7 @@
               |
             </div>
             <div class="expansion">
-              <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span>
+              <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
             </div>
           </dd>
           <dd class="alternative">
@@ -80,7 +80,7 @@
               |
             </div>
             <div class="expansion">
-              <span class="optional"><span class="open-bracket">[</span><span class="literal">#</span> <span class="nonterminal"><a href="#identifier-definition">identifier</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#delimited-expression-definition">delimited-expression</a></span>
+              <span class="nonterminal"><a href="#delimited-expression-definition">delimited-expression</a></span>
             </div>
           </dd>
           <dd class="alternative">
@@ -88,12 +88,20 @@
               |
             </div>
             <div class="expansion">
-              <span class="optional"><span class="open-bracket">[</span><span class="literal">#</span> <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span><span class="close-bracket">]</span></span> <span class="nonterminal"><a href="#delimited-expression-definition">delimited-expression</a></span>
+              <span class="literal">#</span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
+            </div>
+          </dd>
+          <dd class="alternative">
+            <div class="bar">
+              |
+            </div>
+            <div class="expansion">
+              <span class="literal">#</span> <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span> <span class="nonterminal"><a href="#s-expression-definition">s-expression</a></span>
             </div>
           </dd>
         </div>
-        <dt class="rule" id="dotted-identifier-definition">
-          <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span>
+        <dt class="rule" id="qualifier-definition">
+          <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span>
         </dt>
         <div class="alternatives">
           <dd class="alternative">
@@ -101,7 +109,7 @@
               ::=
             </div>
             <div class="expansion">
-              <span class="nonterminal"><a href="#identifier-definition">identifier</a></span> <span class="literal">.</span> <span class="nonterminal"><a href="#identifier-definition">identifier</a></span>
+              <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
             </div>
           </dd>
           <dd class="alternative">
@@ -109,7 +117,7 @@
               |
             </div>
             <div class="expansion">
-              <span class="nonterminal"><a href="#identifier-definition">identifier</a></span> <span class="literal">.</span> <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span>
+              <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span> <span class="literal">.</span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
             </div>
           </dd>
         </div>
@@ -152,8 +160,8 @@
             </div>
           </dd>
         </div>
-        <dt class="rule" id="identifier-definition">
-          <span class="nonterminal"><a href="#identifier-definition">identifier</a></span>
+        <dt class="rule" id="symbol-definition">
+          <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
         </dt>
         <div class="alternatives">
           <dd class="alternative">
@@ -161,7 +169,7 @@
               ::=
             </div>
             <div class="expansion">
-              <span><span class="nonterminal"><a href="#identifier-element-definition">identifier-element</a></span><span class="quantification">…+</span></span>
+              <span><span class="nonterminal"><a href="#symbol-element-definition">symbol-element</a></span><span class="quantification">…+</span></span>
             </div>
             <div class="comment">
               <span class="natural-language">as long as constant does not generate this string</span>
@@ -177,7 +185,7 @@
               ::=
             </div>
             <div class="expansion">
-              <span class="literal">:</span> <span class="nonterminal"><a href="#identifier-definition">identifier</a></span>
+              <span class="literal">:</span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
             </div>
           </dd>
           <dd class="alternative">
@@ -185,12 +193,12 @@
               |
             </div>
             <div class="expansion">
-              <span class="literal">:</span> <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span>
+              <span class="literal">:</span> <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
             </div>
           </dd>
         </div>
-        <dt class="rule" id="identifier-element-definition">
-          <span class="nonterminal"><a href="#identifier-element-definition">identifier-element</a></span>
+        <dt class="rule" id="symbol-element-definition">
+          <span class="nonterminal"><a href="#symbol-element-definition">symbol-element</a></span>
         </dt>
         <div class="alternatives">
           <dd class="alternative">
@@ -433,7 +441,7 @@
                 ::=
               </div>
               <div class="expansion">
-                <span class="nonterminal"><a href="#identifier-definition">identifier</a></span>
+                <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
               </div>
             </dd>
             <dd class="alternative">
@@ -454,15 +462,15 @@
                 ::=
               </div>
               <div class="expansion">
-                <span class="nonterminal"><a href="#dotted-identifier-definition">dotted-identifier</a></span>
+                <span class="nonterminal"><a href="#qualifier-definition">qualifier</a></span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span>
               </div>
               <div class="comment">
                 <span class="natural-language">name exported by some module</span>
               </div>
             </dd>
           </div>
-          <dt class="rule" id="delimiter-template-definition">
-            <span class="nonterminal"><a href="#delimiter-template-definition">delimiter-template</a></span>
+          <dt class="rule" id="notation-template-definition">
+            <span class="nonterminal"><a href="#notation-template-definition">notation-template</a></span>
           </dt>
           <div class="alternatives">
             <dd class="alternative">
@@ -693,17 +701,6 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">except</span> <span class="nonterminal"><a href="#export-definition">export</a></span> <span><span class="nonterminal"><a href="#export-definition">export</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">omit bindings</span>
-                </div>
-              </dd>
-              <dd class="alternative">
-                <div class="bar">
-                  |
-                </div>
-                <div class="expansion">
                   <span><span class="literal">(</span><span class="literal">for-syntax</span> <span><span class="nonterminal"><a href="#export-definition">export</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
@@ -715,7 +712,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">prefix</span> <span class="nonterminal"><a href="#identifier-definition">identifier</a></span> <span class="nonterminal"><a href="#export-definition">export</a></span><span class="literal">)</span></span>
+                  <span><span class="literal">(</span><span class="literal">prefix</span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span> <span><span class="nonterminal"><a href="#export-definition">export</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">automatically rename</span>
@@ -762,7 +759,7 @@
                   <span><span class="literal">(</span><span class="literal">type</span> <span class="nonterminal"><a href="#ported-name-definition">ported-name</a><sub>type</sub></span> <span><span class="literal">(</span><span><span class="nonterminal"><a href="#ported-name-definition">ported-name</a><sub>term</sub></span><span class="quantification">…</span></span><span class="literal">)</span></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
-                  <span class="natural-language">ADT with constructors</span>
+                  <span class="natural-language">ADT with listed constructors</span>
                 </div>
               </dd>
               <dd class="alternative">
@@ -844,7 +841,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="nonterminal"><a href="#ported-delimiter-template-definition">ported-delimiter-template</a></span><span class="quantification">…</span></span>
+                  <span><span class="nonterminal"><a href="#ported-notation-template-definition">ported-notation-template</a></span><span class="quantification">…</span></span>
                 </div>
               </dd>
             </div>
@@ -872,8 +869,8 @@
                 </div>
               </dd>
             </div>
-            <dt class="rule" id="ported-delimiter-template-definition">
-              <span class="nonterminal"><a href="#ported-delimiter-template-definition">ported-delimiter-template</a><sub>ns</sub></span>
+            <dt class="rule" id="ported-notation-template-definition">
+              <span class="nonterminal"><a href="#ported-notation-template-definition">ported-notation-template</a><sub>ns</sub></span>
             </dt>
             <div class="alternatives">
               <dd class="alternative">
@@ -881,7 +878,7 @@
                   ::=
                 </div>
                 <div class="expansion">
-                  <span class="nonterminal"><a href="#delimiter-template-definition">delimiter-template</a><sub>ns</sub></span>
+                  <span class="nonterminal"><a href="#notation-template-definition">notation-template</a><sub>ns</sub></span>
                 </div>
               </dd>
               <dd class="alternative">
@@ -889,7 +886,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">rename</span> <span class="nonterminal"><a href="#delimiter-template-definition">delimiter-template</a><sub>ns</sub></span> <span class="nonterminal"><a href="#delimiter-template-definition">delimiter-template</a><sub>ns</sub></span><span class="literal">)</span></span>
+                  <span><span class="literal">(</span><span class="literal">rename</span> <span class="nonterminal"><a href="#notation-template-definition">notation-template</a><sub>ns</sub></span> <span class="nonterminal"><a href="#notation-template-definition">notation-template</a><sub>ns</sub></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">import/export under alias</span>
@@ -935,7 +932,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">prefix</span> <span class="nonterminal"><a href="#identifier-definition">identifier</a></span> <span class="nonterminal"><a href="#import-definition">import</a></span><span class="literal">)</span></span>
+                  <span><span class="literal">(</span><span class="literal">prefix</span> <span class="nonterminal"><a href="#symbol-definition">symbol</a></span> <span class="nonterminal"><a href="#import-definition">import</a></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">automatically rename</span>
@@ -1068,10 +1065,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">implicit</span> <span><span class="nonterminal"><a href="#name-definition">name</a><sub>type</sub></span><span class="quantification">…</span></span><span class="literal">)</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">make instances implicit</span>
+                  <span class="nonterminal"><a href="#metadata-declaration-definition">metadata-declaration</a></span>
                 </div>
               </dd>
               <dd class="alternative">
@@ -1079,7 +1073,10 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span class="nonterminal"><a href="#metadata-declaration-definition">metadata-declaration</a></span>
+                  <span><span class="literal">(</span><span class="literal">implicit</span> <span><span class="nonterminal"><a href="#name-definition">name</a><sub>type</sub></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+                </div>
+                <div class="comment">
+                  <span class="natural-language">make instances implicit</span>
                 </div>
               </dd>
               <dd class="alternative">
@@ -1098,7 +1095,10 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">splice</span> <span><span class="nonterminal"><a href="#declaration-definition">declaration</a></span><span class="quantification">…</span></span><span class="literal">)</span></span> <span class="literal">splice</span> <span class="literal">nested</span> <span class="literal">declarations</span>
+                  <span><span class="literal">(</span><span class="literal">splice</span> <span><span class="nonterminal"><a href="#declaration-definition">declaration</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+                </div>
+                <div class="comment">
+                  <span class="natural-language">splice nested declarations</span>
                 </div>
               </dd>
               <dd class="alternative">
@@ -1106,7 +1106,10 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">for-syntax</span> <span><span class="nonterminal"><a href="#declaration-definition">declaration</a></span><span class="quantification">…</span></span><span class="literal">)</span></span> <span class="literal">define</span> <span class="literal">at</span> <span class="literal">higher</span> <span class="literal">phase</span>
+                  <span><span class="literal">(</span><span class="literal">for-syntax</span> <span><span class="nonterminal"><a href="#declaration-definition">declaration</a></span><span class="quantification">…</span></span><span class="literal">)</span></span>
+                </div>
+                <div class="comment">
+                  <span class="natural-language">define at higher phase</span>
                 </div>
               </dd>
             </div>
@@ -1146,7 +1149,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">define/type</span> <span class="nonterminal"><a href="#type-definition">type</a></span> <span class="nonterminal"><a href="#data-body-definition">data-body</a></span><span class="literal">)</span></span>
+                  <span><span class="literal">(</span><span class="literal">define/data</span> <span class="nonterminal"><a href="#type-definition">type</a></span> <span class="nonterminal"><a href="#data-body-definition">data-body</a></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
                   <span class="natural-language">algebraic data type</span>
@@ -1179,11 +1182,11 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">define/syntax</span> <span class="nonterminal"><a href="#name-definition">name</a><sub>term</sub></span> <span><span class="literal">(</span><span><span class="nonterminal"><a href="#name-definition">name</a><sub>synspace</sub></span><span class="quantification">…+</span></span><span class="literal">)</span></span> <span class="nonterminal"><a href="#expression-definition">expression</a></span><span class=
+                  <span><span class="literal">(</span><span class="literal">define/syntax</span> <span><span class="literal">(</span><span><span class="nonterminal"><a href="#name-definition">name</a><sub>synspace</sub></span><span class="quantification">…+</span></span><span class="literal">)</span></span> <span class="nonterminal"><a href="#name-definition">name</a><sub>term</sub></span> <span class="nonterminal"><a href="#expression-definition">expression</a></span><span class=
                   "literal">)</span></span>
                 </div>
                 <div class="comment">
-                  <span class="natural-language">syntactic binding</span>
+                  <span class="natural-language">expansion-time binding</span>
                 </div>
               </dd>
               <dd class="alternative">
@@ -1191,7 +1194,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="literal">(</span><span class="literal">define/sugar</span> <span class="nonterminal"><a href="#delimiter-template-definition">delimiter-template</a><sub>term</sub></span> <span><span class="literal">(</span><span><span class="nonterminal"><a href="#name-definition">name</a><sub>synspace</sub></span><span class="quantification">…+</span></span><span class="literal">)</span></span> <span class="nonterminal"><a href=
+                  <span><span class="literal">(</span><span class="literal">define/notation</span> <span><span class="literal">(</span><span><span class="nonterminal"><a href="#name-definition">name</a><sub>synspace</sub></span><span class="quantification">…+</span></span><span class="literal">)</span></span> <span class="nonterminal"><a href="#notation-template-definition">notation-template</a><sub>term</sub></span> <span class="nonterminal"><a href=
                   "#expression-definition">expression</a></span><span class="literal">)</span></span>
                 </div>
                 <div class="comment">
@@ -1248,10 +1251,7 @@
                   ::=
                 </div>
                 <div class="expansion">
-                  <span class="nonterminal"><a href="#traditional-data-item-definition">traditional-data-item</a></span> <span><span class="nonterminal"><a href="#traditional-data-item-definition">traditional-data-item</a></span><span class="quantification">…+</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">avoid ambiguity by requiring two</span>
+                  <span><span class="nonterminal"><a href="#traditional-data-item-definition">traditional-data-item</a></span><span class="quantification">…</span></span>
                 </div>
               </dd>
               <dd class="alternative">
@@ -1259,10 +1259,7 @@
                   |
                 </div>
                 <div class="expansion">
-                  <span><span class="nonterminal"><a href="#gadt-item-definition">gadt-item</a></span><span class="quantification">…+</span></span>
-                </div>
-                <div class="comment">
-                  <span class="natural-language">always unambiguous</span>
+                  <span><span class="nonterminal"><a href="#gadt-item-definition">gadt-item</a></span><span class="quantification">…</span></span>
                 </div>
               </dd>
             </div>
