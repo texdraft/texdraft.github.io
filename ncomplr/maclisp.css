@@ -1,0 +1,88 @@
+body {
+  /*font-family: Pagella, serif;*/
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+body p {
+  max-width: 60ch;
+}
+
+.defun-head {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.listing,
+.contents {
+  font-size: larger;
+  line-height: 1.25em;
+}
+
+.contents {
+  list-style-type: square;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.tag-definition {
+  margin-left: -1em;
+}
+
+.indent {
+  margin-left: 1em;
+  vertical-align: top;
+}
+
+.align {
+  display: inline-block;
+  vertical-align: top;
+}
+
+div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.keyword {
+  font-weight: bold;
+}
+
+var, .sysfun, .ufun {
+  font-style: italic;
+}
+
+var,
+.ufun,
+.var {
+  color: blue;
+}
+
+.sysfunp {
+  font-style: normal;
+}
+
+.sysfun,
+.sysfunp {
+  color: green;
+}
+
+.special var {
+  color: red;
+}
+
+.top-level {
+  margin-top: 1em;
+  display: block;
+  border: solid 1px;
+  padding: 1em;
+}
+
+a {
+  text-decoration: none;
+}
